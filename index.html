@@ -373,51 +373,19 @@
             <a href="#account" class="toc-h1 toc-link" data-title="Account">Account</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#test" class="toc-h2 toc-link" data-title="Test">Test</a>
+                    <a href="#save-autoqueue-defaults" class="toc-h2 toc-link" data-title="Save autoqueue defaults">Save autoqueue defaults</a>
                   </li>
                   <li>
-                    <a href="#getgroups" class="toc-h2 toc-link" data-title="GetGroups">GetGroups</a>
+                    <a href="#create-company-groups" class="toc-h2 toc-link" data-title="Create company groups">Create company groups</a>
                   </li>
                   <li>
-                    <a href="#getstatistics" class="toc-h2 toc-link" data-title="GetStatistics">GetStatistics</a>
+                    <a href="#update-company-groups" class="toc-h2 toc-link" data-title="Update company groups">Update company groups</a>
                   </li>
                   <li>
-                    <a href="#saveautoqueuedefaults" class="toc-h2 toc-link" data-title="SaveAutoQueueDefaults">SaveAutoQueueDefaults</a>
+                    <a href="#get-company-groups" class="toc-h2 toc-link" data-title="Get company groups">Get company groups</a>
                   </li>
                   <li>
-                    <a href="#rank-delete" class="toc-h2 toc-link" data-title="rank/Delete">rank/Delete</a>
-                  </li>
-                  <li>
-                    <a href="#rank-create" class="toc-h2 toc-link" data-title="rank/Create">rank/Create</a>
-                  </li>
-                  <li>
-                    <a href="#rank-update" class="toc-h2 toc-link" data-title="rank/Update">rank/Update</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#status" class="toc-h1 toc-link" data-title="Status">Status</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#s3userfiles" class="toc-h2 toc-link" data-title="S3UserFiles">S3UserFiles</a>
-                  </li>
-                  <li>
-                    <a href="#api" class="toc-h2 toc-link" data-title="API">API</a>
-                  </li>
-                  <li>
-                    <a href="#privateapi" class="toc-h2 toc-link" data-title="PrivateAPI">PrivateAPI</a>
-                  </li>
-                  <li>
-                    <a href="#appapi" class="toc-h2 toc-link" data-title="AppAPI">AppAPI</a>
-                  </li>
-                  <li>
-                    <a href="#s3cdn" class="toc-h2 toc-link" data-title="S3Cdn">S3Cdn</a>
-                  </li>
-                  <li>
-                    <a href="#mail" class="toc-h2 toc-link" data-title="Mail">Mail</a>
-                  </li>
-                  <li>
-                    <a href="#oauthapi" class="toc-h2 toc-link" data-title="OAuthAPI">OAuthAPI</a>
+                    <a href="#delete-company-group" class="toc-h2 toc-link" data-title="Delete company group">Delete company group</a>
                   </li>
               </ul>
           </li>
@@ -425,22 +393,22 @@
             <a href="#queue" class="toc-h1 toc-link" data-title="Queue">Queue</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#updateitem" class="toc-h2 toc-link" data-title="UpdateItem">UpdateItem</a>
+                    <a href="#additem" class="toc-h2 toc-link" data-title="AddItem">AddItem</a>
                   </li>
                   <li>
-                    <a href="#setorder" class="toc-h2 toc-link" data-title="SetOrder">SetOrder</a>
+                    <a href="#getitems" class="toc-h2 toc-link" data-title="GetItems">GetItems</a>
+                  </li>
+                  <li>
+                    <a href="#updateitem" class="toc-h2 toc-link" data-title="UpdateItem">UpdateItem</a>
                   </li>
                   <li>
                     <a href="#deleteitem" class="toc-h2 toc-link" data-title="DeleteItem">DeleteItem</a>
                   </li>
                   <li>
-                    <a href="#additem" class="toc-h2 toc-link" data-title="AddItem">AddItem</a>
+                    <a href="#setorder" class="toc-h2 toc-link" data-title="SetOrder">SetOrder</a>
                   </li>
                   <li>
                     <a href="#emptyqueue" class="toc-h2 toc-link" data-title="EmptyQueue">EmptyQueue</a>
-                  </li>
-                  <li>
-                    <a href="#getitems" class="toc-h2 toc-link" data-title="GetItems">GetItems</a>
                   </li>
               </ul>
           </li>
@@ -502,15 +470,7 @@
               </ul>
           </li>
           <li>
-            <a href="#printers" class="toc-h1 toc-link" data-title="Printers">Printers</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#get-printer-s" class="toc-h2 toc-link" data-title="Get printer(s)">Get printer(s)</a>
-                  </li>
-                  <li>
-                    <a href="#preheat" class="toc-h2 toc-link" data-title="Preheat">Preheat</a>
-                  </li>
-              </ul>
+            <a href="#permissions" class="toc-h1 toc-link" data-title="Permissions">Permissions</a>
           </li>
           <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
@@ -814,10 +774,106 @@
 <blockquote>
 <p>Success response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code></code></pre></div>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"folder"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5290</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"org_folder_called_benchy"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"org"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"permissions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"view"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="mi">112</span><span class="p">,</span><span class="w">
+        </span><span class="mi">151</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"upload"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="mi">112</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"modify"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="mi">112</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
 <p>This endpoint returns details about a given folder.</p>
 <h3 id='request-3'>Request</h3>
 <p><code>GET /{id}/files/GetFolder</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>yes</td>
+<td>Folder ID to get details for.</td>
+</tr>
+</tbody></table>
+<h3 id='response-3'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is false.</td>
+</tr>
+<tr>
+<td><code>folder</code></td>
+<td>object</td>
+<td>Folder object.</td>
+</tr>
+<tr>
+<td><code>folder.id</code></td>
+<td>integer</td>
+<td>Folder ID.</td>
+</tr>
+<tr>
+<td><code>folder.name</code></td>
+<td>string</td>
+<td>Folder name.</td>
+</tr>
+<tr>
+<td><code>folder.org</code></td>
+<td>boolean</td>
+<td>True if the folder is an organization folder.<br><strong>Requires Print Farm plan</strong></td>
+</tr>
+<tr>
+<td><code>folder.permissions</code></td>
+<td>object</td>
+<td>null</td>
+</tr>
+<tr>
+<td><code>folder.permissions.view</code></td>
+<td>array</td>
+<td>Array of <a href="#get-company-groups">group IDs</a> that can view the folder.</td>
+</tr>
+<tr>
+<td><code>folder.permissions.upload</code></td>
+<td>array</td>
+<td>Array of <a href="#get-company-groups">group IDs</a> that can upload files to the folder.</td>
+</tr>
+<tr>
+<td><code>folder.permissions.modify</code></td>
+<td>array</td>
+<td>Array of <a href="#get-company-groups">group IDs</a> that can modify the folder.</td>
+</tr>
+</tbody></table>
 <h2 id='move-folder'>Move Folder</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/files/MoveFolder?folder<span class="o">=</span>5290&amp;target<span class="o">=</span>5291 <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
@@ -858,7 +914,7 @@ Also, folders cannot be moved into themselves.</p>
 <td>Folder ID to move to.</td>
 </tr>
 </tbody></table>
-<h3 id='response-3'>Response</h3>
+<h3 id='response-4'>Response</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1287,7 +1343,7 @@ Also, folders cannot be moved into themselves.</p>
 <td><code>custom_note</code></td>
 <td>string</td>
 <td>no</td>
-<td>Custom note.</td>
+<td>Custom note.<br><strong>Max 1000 characters</strong></td>
 </tr>
 <tr>
 <td><code>prod_id</code></td>
@@ -1317,7 +1373,7 @@ Also, folders cannot be moved into themselves.</p>
 <td><code>spool_id</code></td>
 <td>integer</td>
 <td>no</td>
-<td>Spool id.</td>
+<td>Filament spool id.</td>
 </tr>
 <tr>
 <td><code>slicing_settings</code></td>
@@ -1648,7 +1704,592 @@ Also, folders cannot be moved into themselves.</p>
 <td>Error message if <code>status</code> is false.</td>
 </tr>
 </tbody></table>
-<h1 id='account'>Account</h1><h2 id='test'>Test</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/account/Test <span class="se">\</span>
+<h1 id='account'>Account</h1><h2 id='save-autoqueue-defaults'>Save autoqueue defaults</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/account/SaveAutoQueueDefaults <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"gcodeAnalysis"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"fit"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"printerTemps"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"filament"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"filamentTemps"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+<table><thead>
+<tr>
+<th>Required permissions</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>PRINTER_SETTINGS</code></td>
+</tr>
+</tbody></table>
+
+<p>This endpoint saves the auto queue settings for the company.</p>
+
+<p>To restore the default settings, send an empty request body to <code>POST /{id}/account/SaveAutoQueueDefaults?default=true</code>.</p>
+<h3 id='request'>Request</h3>
+<p><code>POST /{id}/account/SaveAutoQueueDefaults</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>gcodeAnalysis</code></td>
+<td>boolean</td>
+<td>yes</td>
+<td>Whether to only allow gcode files that have been analysed.</td>
+</tr>
+<tr>
+<td><code>fit</code></td>
+<td>boolean</td>
+<td>yes</td>
+<td>If true, the model will be scaled to fit the build volume.</td>
+</tr>
+<tr>
+<td><code>printerTemps</code></td>
+<td>boolean</td>
+<td>yes</td>
+<td>If true, the printer temperatures will be set.</td>
+</tr>
+<tr>
+<td><code>filament</code></td>
+<td>boolean</td>
+<td>yes</td>
+<td>If true, the filament will be set.</td>
+</tr>
+<tr>
+<td><code>filamentTemps</code></td>
+<td>boolean</td>
+<td>yes</td>
+<td>If true, the filament temperatures will be set.</td>
+</tr>
+</tbody></table>
+<h3 id='response'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is false.</td>
+</tr>
+</tbody></table>
+<h2 id='create-company-groups'>Create company groups</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/account/settings/rank/Create <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"ranks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name of group in danish/default"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"title_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name of group in english"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"group description in danish/default"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"group description in english"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"sort_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"permissions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">view_news</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_admin</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">panel_printing</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">printer_restart</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">printer_edit</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">bed_leveling</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">gcode_profiles</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">printer_settings</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">filament_settings</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">change_filament</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">create_filament</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">see_filament_tab</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">view_users</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">change_user_rank</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">manual_user_email_confirm</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">invite_users</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">delete_user</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_user_registration_settings</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_hub_settings</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_rank_management</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_view_statistics</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">refill_quota</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">custom_slicer_profiles</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_profiles</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">all_slicer_modes</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">queue_remove_all</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_api</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">create_org_folder</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">cancel_others</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">see_who_printed</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">max_print_size</span><span class="se">\"</span><span class="s2">:[],</span><span class="se">\"</span><span class="s2">default_slicer_mode</span><span class="se">\"</span><span class="s2">:2}"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name of group in danish/default"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"title_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name of group in english"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"group description in danish/default"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"group description in english"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"company_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"company_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"sort_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"permissions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">view_news</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_admin</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">panel_printing</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">printer_restart</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">printer_edit</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">bed_leveling</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">gcode_profiles</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">printer_settings</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">filament_settings</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">change_filament</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">create_filament</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">see_filament_tab</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">view_users</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">change_user_rank</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">manual_user_email_confirm</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">invite_users</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">delete_user</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_user_registration_settings</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_hub_settings</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_rank_management</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_view_statistics</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">refill_quota</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">custom_slicer_profiles</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_profiles</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">all_slicer_modes</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">queue_remove_all</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_api</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">create_org_folder</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">cancel_others</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">see_who_printed</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">max_print_size</span><span class="se">\"</span><span class="s2">:[],</span><span class="se">\"</span><span class="s2">default_slicer_mode</span><span class="se">\"</span><span class="s2">:2}"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">319</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+<table><thead>
+<tr>
+<th>Required permissions</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>ORG_RANK_MANAGEMENT</code></td>
+</tr>
+</tbody></table>
+
+<p>This endpoint creates a new group in the company.</p>
+<h3 id='request-2'>Request</h3>
+<p><code>POST /{id}/account/settings/rank/Create</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>ranks</code></td>
+<td>array</td>
+<td>yes</td>
+<td>Array of groups to create.</td>
+</tr>
+<tr>
+<td><code>ranks[].title</code></td>
+<td>string</td>
+<td>yes</td>
+<td>The name of the group in danish or the name of the group if <code>title_en</code> is not set.</td>
+</tr>
+<tr>
+<td><code>ranks[].title_en</code></td>
+<td>string</td>
+<td>no</td>
+<td>The name of the group in english.</td>
+</tr>
+<tr>
+<td><code>ranks[].description</code></td>
+<td>string</td>
+<td>no</td>
+<td>The description of the group in danish or the description of the group if <code>description_en</code> is not set.</td>
+</tr>
+<tr>
+<td><code>ranks[].description_en</code></td>
+<td>string</td>
+<td>no</td>
+<td>The description of the group in english.</td>
+</tr>
+<tr>
+<td><code>ranks[].sort_order</code></td>
+<td>integer</td>
+<td>yes</td>
+<td>The sort index of the group.</td>
+</tr>
+<tr>
+<td><code>ranks[].permissions</code></td>
+<td>string</td>
+<td>yes</td>
+<td>JSON string of the permissions of the group. For more information, see <a href="#permissions">Permissions</a>.</td>
+</tr>
+</tbody></table>
+<h3 id='response-2'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is false.</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td>array</td>
+<td>Array of the created groups.</td>
+</tr>
+</tbody></table>
+<h2 id='update-company-groups'>Update company groups</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/account/settings/rank/Update <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"ranks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">319</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name of group in danish/default"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"title_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name of group in english"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"group description in danish/default"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"group description in english"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"permissions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">view_news</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_admin</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">panel_printing</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">printer_restart</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">printer_edit</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">bed_leveling</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">gcode_profiles</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">printer_settings</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">filament_settings</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">change_filament</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">create_filament</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">see_filament_tab</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">view_users</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">change_user_rank</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">manual_user_email_confirm</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">invite_users</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">delete_user</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_user_registration_settings</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_hub_settings</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_rank_management</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_view_statistics</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">refill_quota</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">custom_slicer_profiles</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_profiles</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">all_slicer_modes</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">queue_remove_all</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_api</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">create_org_folder</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">cancel_others</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">see_who_printed</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">max_print_size</span><span class="se">\"</span><span class="s2">:[],</span><span class="se">\"</span><span class="s2">default_slicer_mode</span><span class="se">\"</span><span class="s2">:2}"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"sort_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Success repsonse</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">319</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NAME"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"title_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DESCRIPTIONs"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"company_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"company_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"permissions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">view_news</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_admin</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">panel_printing</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">printer_restart</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">printer_edit</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">bed_leveling</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">gcode_profiles</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">printer_settings</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">filament_settings</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">change_filament</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">create_filament</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">see_filament_tab</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">view_users</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">change_user_rank</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">manual_user_email_confirm</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">invite_users</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">delete_user</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_user_registration_settings</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_hub_settings</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_rank_management</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_view_statistics</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">refill_quota</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">custom_slicer_profiles</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_profiles</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">all_slicer_modes</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">queue_remove_all</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_api</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">create_org_folder</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">cancel_others</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">see_who_printed</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">max_print_size</span><span class="se">\"</span><span class="s2">:[],</span><span class="se">\"</span><span class="s2">default_slicer_mode</span><span class="se">\"</span><span class="s2">:2}"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"sort_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-01-03 14:35:28"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+<table><thead>
+<tr>
+<th>Required permissions</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>ORG_RANK_MANAGEMENT</code></td>
+</tr>
+</tbody></table>
+
+<p>This endpoint updates the groups in the company.</p>
+<h3 id='request-3'>Request</h3>
+<p><code>POST /{id}/account/settings/rank/Update</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>ranks</code></td>
+<td>array</td>
+<td>yes</td>
+<td>Array of groups to update.</td>
+</tr>
+<tr>
+<td><code>ranks[].id</code></td>
+<td>integer</td>
+<td>yes</td>
+<td>The id of the group to update.</td>
+</tr>
+<tr>
+<td><code>ranks[].title</code></td>
+<td>string</td>
+<td>no</td>
+<td>The name of the group in danish or the name of the group if <code>title_en</code> is not set.</td>
+</tr>
+<tr>
+<td><code>ranks[].title_en</code></td>
+<td>string</td>
+<td>no</td>
+<td>The name of the group in english.</td>
+</tr>
+<tr>
+<td><code>ranks[].description</code></td>
+<td>string</td>
+<td>no</td>
+<td>The description of the group in danish or the description of the group if <code>description_en</code> is not set.</td>
+</tr>
+<tr>
+<td><code>ranks[].description_en</code></td>
+<td>string</td>
+<td>no</td>
+<td>The description of the group in english.</td>
+</tr>
+<tr>
+<td><code>ranks[].permissions</code></td>
+<td>string</td>
+<td>no</td>
+<td>JSON string of the permissions of the group. For more information, see <a href="#permissions">Permissions</a>.</td>
+</tr>
+<tr>
+<td><code>ranks[].company_type</code></td>
+<td>integer</td>
+<td>no</td>
+<td>The type of the company.</td>
+</tr>
+</tbody></table>
+<h3 id='response-3'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is false.</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td>array</td>
+<td>Array of the updated groups.</td>
+</tr>
+<tr>
+<td><code>data[].id</code></td>
+<td>integer</td>
+<td>The id of the group.</td>
+</tr>
+<tr>
+<td><code>data[].title</code></td>
+<td>string</td>
+<td>The name of the group in danish or the name of the group if <code>title_en</code> is not set.</td>
+</tr>
+<tr>
+<td><code>data[].title_en</code></td>
+<td>string</td>
+<td>The name of the group in english.</td>
+</tr>
+<tr>
+<td><code>data[].description</code></td>
+<td>string</td>
+<td>The description of the group in danish or the description of the group if <code>description_en</code> is not set.</td>
+</tr>
+<tr>
+<td><code>data[].description_en</code></td>
+<td>string</td>
+<td>The description of the group in english.</td>
+</tr>
+<tr>
+<td><code>data[].company_id</code></td>
+<td>integer</td>
+<td>The id of the company.</td>
+</tr>
+<tr>
+<td><code>data[].company_type</code></td>
+<td>integer</td>
+<td>The type of the company.</td>
+</tr>
+<tr>
+<td><code>data[].permissions</code></td>
+<td>string</td>
+<td>JSON string of the permissions of the group. For more information, see <a href="#permissions">Permissions</a>.</td>
+</tr>
+<tr>
+<td><code>data[].sort_order</code></td>
+<td>integer</td>
+<td>The sort order of the group.</td>
+</tr>
+<tr>
+<td><code>data[].created</code></td>
+<td>string</td>
+<td>The date and time the group was created.</td>
+</tr>
+</tbody></table>
+<h2 id='get-company-groups'>Get company groups</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/account/GetGroups <span class="se">\</span>
+  <span class="nt">-X</span> GET <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">112</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Administrator"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">151</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Manager"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">153</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"User"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+<table><thead>
+<tr>
+<th>Required permissions</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>ORG_RANK_MANAGEMENT</code></td>
+</tr>
+</tbody></table>
+
+<p>This endpoint returns a list of groups that exist in the company.</p>
+<h3 id='request-4'>Request</h3>
+<p><code>GET /{id}/account/GetGroups</code></p>
+<h3 id='response-4'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is false.</td>
+</tr>
+<tr>
+<td><code>groups</code></td>
+<td>array</td>
+<td>Array of group objects.</td>
+</tr>
+<tr>
+<td><code>groups[].id</code></td>
+<td>integer</td>
+<td>Group ID.</td>
+</tr>
+<tr>
+<td><code>groups[].name</code></td>
+<td>string</td>
+<td>Group name.</td>
+</tr>
+</tbody></table>
+<h2 id='delete-company-group'>Delete company group</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/account/settings/rank/Delete <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">112</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"replacementRankId"</span><span class="p">:</span><span class="w"> </span><span class="mi">151</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+<table><thead>
+<tr>
+<th>Required permissions</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>ORG_RANK_MANAGEMENT</code></td>
+</tr>
+</tbody></table>
+<h3 id='request-5'>Request</h3>
+<p><code>POST /{id}/account/settings/rank/Delete</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>yes</td>
+<td>The id of the group to delete.</td>
+</tr>
+<tr>
+<td><code>replacementRankId</code></td>
+<td>integer</td>
+<td>maybe</td>
+<td>The id of the group to replace the deleted group with.<br>This is only required if the group has users.</td>
+</tr>
+</tbody></table>
+<h3 id='response-5'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is false.</td>
+</tr>
+</tbody></table>
+<h1 id='queue'>Queue</h1><h2 id='additem'>AddItem</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/queue/AddItem <span class="se">\</span>
   <span class="nt">-X</span> ? <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
@@ -1660,277 +2301,7 @@ Also, folders cannot be moved into themselves.</p>
     </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='request'>Request</h3>
-<p><code>? /{id}/account/Test</code></p>
-
-<p>TODO</p>
-<h2 id='getgroups'>GetGroups</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/account/GetGroups <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-2'>Request</h3>
-<p><code>? /{id}/account/GetGroups</code></p>
-
-<p>TODO</p>
-<h2 id='getstatistics'>GetStatistics</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/account/GetStatistics <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-3'>Request</h3>
-<p><code>? /{id}/account/GetStatistics</code></p>
-
-<p>TODO</p>
-<h2 id='saveautoqueuedefaults'>SaveAutoQueueDefaults</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/account/SaveAutoQueueDefaults <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-4'>Request</h3>
-<p><code>? /{id}/account/SaveAutoQueueDefaults</code></p>
-
-<p>TODO</p>
-<h2 id='rank-delete'>rank/Delete</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/account/settings/rank/Delete <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-5'>Request</h3>
-<p><code>? /{id}/account/settings/rank/Delete</code></p>
-
-<p>TODO</p>
-<h2 id='rank-create'>rank/Create</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/account/settings/rank/Create <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-6'>Request</h3>
-<p><code>? /{id}/account/settings/rank/Create</code></p>
-
-<p>TODO</p>
-<h2 id='rank-update'>rank/Update</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/account/settings/rank/Update <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-7'>Request</h3>
-<p><code>? /{id}/account/settings/rank/Update</code></p>
-
-<p>TODO</p>
-<h1 id='status'>Status</h1><h2 id='s3userfiles'>S3UserFiles</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/status/S3UserFiles <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request'>Request</h3>
-<p><code>? /{id}/status/S3UserFiles</code></p>
-
-<p>TODO</p>
-<h2 id='api'>API</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/status/API <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-2'>Request</h3>
-<p><code>? /{id}/status/API</code></p>
-
-<p>TODO</p>
-<h2 id='privateapi'>PrivateAPI</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/status/PrivateAPI <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-3'>Request</h3>
-<p><code>? /{id}/status/PrivateAPI</code></p>
-
-<p>TODO</p>
-<h2 id='appapi'>AppAPI</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/status/AppAPI <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-4'>Request</h3>
-<p><code>? /{id}/status/AppAPI</code></p>
-
-<p>TODO</p>
-<h2 id='s3cdn'>S3Cdn</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/status/S3Cdn <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-5'>Request</h3>
-<p><code>? /{id}/status/S3Cdn</code></p>
-
-<p>TODO</p>
-<h2 id='mail'>Mail</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/status/Mail <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-6'>Request</h3>
-<p><code>? /{id}/status/Mail</code></p>
-
-<p>TODO</p>
-<h2 id='oauthapi'>OAuthAPI</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/status/OAuthAPI <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-7'>Request</h3>
-<p><code>? /{id}/status/OAuthAPI</code></p>
-
-<p>TODO</p>
-<h1 id='queue'>Queue</h1><h2 id='updateitem'>UpdateItem</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/queue/UpdateItem <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request'>Request</h3>
-<p><code>? /{id}/queue/UpdateItem</code></p>
-
-<p>TODO</p>
-<h2 id='setorder'>SetOrder</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/queue/SetOrder <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-2'>Request</h3>
-<p><code>? /{id}/queue/SetOrder</code></p>
-
-<p>TODO</p>
-<h2 id='deleteitem'>DeleteItem</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/queue/DeleteItem <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-3'>Request</h3>
-<p><code>? /{id}/queue/DeleteItem</code></p>
-
-<p>TODO</p>
-<h2 id='additem'>AddItem</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/queue/AddItem <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-4'>Request</h3>
 <p><code>? /{id}/queue/AddItem</code></p>
-
-<p>TODO</p>
-<h2 id='emptyqueue'>EmptyQueue</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/queue/EmptyQueue <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-5'>Request</h3>
-<p><code>? /{id}/queue/EmptyQueue</code></p>
 
 <p>TODO</p>
 <h2 id='getitems'>GetItems</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/queue/GetItems <span class="se">\</span>
@@ -1944,8 +2315,68 @@ Also, folders cannot be moved into themselves.</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-6'>Request</h3>
+</span></code></pre></div><h3 id='request-2'>Request</h3>
 <p><code>? /{id}/queue/GetItems</code></p>
+
+<p>TODO</p>
+<h2 id='updateitem'>UpdateItem</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/queue/UpdateItem <span class="se">\</span>
+  <span class="nt">-X</span> ? <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='request-3'>Request</h3>
+<p><code>? /{id}/queue/UpdateItem</code></p>
+
+<p>TODO</p>
+<h2 id='deleteitem'>DeleteItem</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/queue/DeleteItem <span class="se">\</span>
+  <span class="nt">-X</span> ? <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='request-4'>Request</h3>
+<p><code>? /{id}/queue/DeleteItem</code></p>
+
+<p>TODO</p>
+<h2 id='setorder'>SetOrder</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/queue/SetOrder <span class="se">\</span>
+  <span class="nt">-X</span> ? <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='request-5'>Request</h3>
+<p><code>? /{id}/queue/SetOrder</code></p>
+
+<p>TODO</p>
+<h2 id='emptyqueue'>EmptyQueue</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/queue/EmptyQueue <span class="se">\</span>
+  <span class="nt">-X</span> ? <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='request-6'>Request</h3>
+<p><code>? /{id}/queue/EmptyQueue</code></p>
 
 <p>TODO</p>
 <h1 id='user'>User</h1><h2 id='appreauth'>AppReauth</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/user/AppReauth <span class="se">\</span>
@@ -2158,100 +2589,8 @@ Also, folders cannot be moved into themselves.</p>
 <p><code>? /{id}/printers/logs/DeleteLog</code></p>
 
 <p>TODO</p>
-<h1 id='printers'>Printers</h1><h2 id='get-printer-s'>Get printer(s)</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> GET <span class="se">\</span>
-  <span class="nt">--url</span> http://api.simplyprint.io/v1/actions/printers/get <span class="se">\</span>
-  <span class="nt">--header</span> <span class="s1">'Authorization: Bearer {YOUR_TOKEN_HERE}'</span>
-</code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
-<span class="c1">//Coming soon...</span>
-<span class="cp">?&gt;</span>
-</code></pre></div>
-<blockquote>
-<p>Success return:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"printers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Ender-3"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"org_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"printer_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"operational"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"active_print_job"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"online"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Prusa Mini"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"org_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"printer_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"printing"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"active_print_job"</span><span class="p">:</span><span class="w"> </span><span class="mi">189</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"online"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>This endpoint retrieves one, or multiple printers.</p>
-<h3 id='request'>Request</h3>
-<p><code>GET /v1/printers/get</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td>false</td>
-<td>A single, or multiple <em>(comma separated)</em> printer ID&#39;s</td>
-</tr>
-<tr>
-<td>org_id</td>
-<td>false</td>
-<td>If you&#39;re a member of multiple organizations, and only wish to get printers from one</td>
-</tr>
-</tbody></table>
-<h2 id='preheat'>Preheat</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> GET <span class="se">\</span>
-  <span class="nt">--url</span> http://api.simplyprint.io/v1/actions/printers/preheat?id<span class="o">={</span>PRINTER_ID<span class="o">(</span>S<span class="o">)}</span> <span class="se">\</span>
-  <span class="nt">--header</span> <span class="s1">'Authorization: Bearer {YOUR_TOKEN_HERE}'</span>
-</code></pre></div><div class="highlight"><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
-<span class="c1">//Coming soon...</span>
-<span class="cp">?&gt;</span>
-</code></pre></div>
-<blockquote>
-<p>Success return:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="err">...</span><span class="w">
-</span></code></pre></div>
-<p>This endpoint retrieves a specific kitten.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET /v1/actions/printers/preheat?id={PRINTER_ID(S)}</code></p>
-<h3 id='query-parameters-2'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td>true</td>
-<td>A single, or multiple <em>(comma separated)</em> printer ID&#39;s</td>
-</tr>
-<tr>
-<td>temp</td>
-<td>false</td>
-<td>Target temperature for the printer(s). Defaults to <code>200</code></td>
-</tr>
-<tr>
-<td>type</td>
-<td>false</td>
-<td>Whether to heat the nozzle, bed or both. Options are; <code>nozzle</code> <em>(default)</em>, <code>bed</code>, <code>both</code></td>
-</tr>
-</tbody></table>
+<h1 id='permissions'>Permissions</h1>
+<p>TODO</p>
 <h1 id='errors'>Errors</h1>
 <p>The SimplyPrint API uses the following HTTP error codes:</p>
 
