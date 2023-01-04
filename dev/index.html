@@ -413,41 +413,19 @@
               </ul>
           </li>
           <li>
-            <a href="#user" class="toc-h1 toc-link" data-title="User">User</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#appreauth" class="toc-h2 toc-link" data-title="AppReauth">AppReauth</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#oauth" class="toc-h1 toc-link" data-title="Oauth">Oauth</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#token" class="toc-h2 toc-link" data-title="Token">Token</a>
-                  </li>
-                  <li>
-                    <a href="#authorize" class="toc-h2 toc-link" data-title="Authorize">Authorize</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
             <a href="#printers" class="toc-h1 toc-link" data-title="Printers">Printers</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#delete" class="toc-h2 toc-link" data-title="Delete">Delete</a>
+                    <a href="#permanently-delete-or-disconnect-printer" class="toc-h2 toc-link" data-title="Permanently delete or disconnect printer">Permanently delete or disconnect printer</a>
                   </li>
                   <li>
-                    <a href="#hasplugin" class="toc-h2 toc-link" data-title="HasPlugin">HasPlugin</a>
+                    <a href="#check-if-octoprint-plugin-is-installed" class="toc-h2 toc-link" data-title="Check if OctoPrint plugin is installed">Check if OctoPrint plugin is installed</a>
                   </li>
                   <li>
-                    <a href="#actions-clearbed" class="toc-h2 toc-link" data-title="actions/ClearBed">actions/ClearBed</a>
+                    <a href="#clear-print-bed" class="toc-h2 toc-link" data-title="Clear print bed">Clear print bed</a>
                   </li>
                   <li>
-                    <a href="#actions-start" class="toc-h2 toc-link" data-title="actions/Start">actions/Start</a>
-                  </li>
-                  <li>
-                    <a href="#actions-createjob" class="toc-h2 toc-link" data-title="actions/CreateJob">actions/CreateJob</a>
+                    <a href="#create-print-job-wip" class="toc-h2 toc-link" data-title="Create print job (WIP)">Create print job (WIP)</a>
                   </li>
                   <li>
                     <a href="#actions-resume" class="toc-h2 toc-link" data-title="actions/Resume">actions/Resume</a>
@@ -2379,8 +2357,7 @@ Also, folders cannot be moved into themselves.</p>
 <p><code>? /{id}/queue/EmptyQueue</code></p>
 
 <p>TODO</p>
-<h1 id='user'>User</h1><h2 id='appreauth'>AppReauth</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/user/AppReauth <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
+<h1 id='printers'>Printers</h1><h2 id='permanently-delete-or-disconnect-printer'>Permanently delete or disconnect printer</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/printers/Delete?pid<span class="o">=</span>1234&amp;just_connection<span class="o">=</span>1 <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
 </code></pre></div>
@@ -2388,14 +2365,65 @@ Also, folders cannot be moved into themselves.</p>
 <p>Success response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request'>Request</h3>
-<p><code>? /{id}/user/AppReauth</code></p>
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Required permissions</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>PRINTER_EDIT</code></td>
+</tr>
+</tbody></table>
 
-<p>TODO</p>
-<h1 id='oauth'>Oauth</h1><h2 id='token'>Token</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/oauth/Token <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
+<p>This endpoint can be used to delete a printer from the database, or to disconnect a pi from a printer. This is useful if you want to change the printer that is connected to a pi.</p>
+<h3 id='request'>Request</h3>
+<p><code>GET /{id}/printers/Delete</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>pid</code></td>
+<td>integer</td>
+<td>yes</td>
+<td>The ID of the printer to delete.</td>
+</tr>
+<tr>
+<td><code>just_connection</code></td>
+<td>integer</td>
+<td>no</td>
+<td>If set to 1, the Pi connection will be deleted. If set to 0, the printer and connection will be permanently deleted.<br><strong>Default: 0</strong></td>
+</tr>
+</tbody></table>
+<h3 id='response'>Response</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is false.</td>
+</tr>
+</tbody></table>
+<h2 id='check-if-octoprint-plugin-is-installed'>Check if OctoPrint plugin is installed</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/printers/HasPlugin?pid<span class="o">=</span>1234&amp;plugin<span class="o">=</span>PrintTimeGenius <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
 </code></pre></div>
@@ -2403,102 +2431,292 @@ Also, folders cannot be moved into themselves.</p>
 <p>Success response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"has"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request'>Request</h3>
-<p><code>? /{id}/oauth/Token</code></p>
+</span></code></pre></div>
+<p>This endpoint can be used to check if a printer has a plugin installed. The plugins are checked by ... ? TODO</p>
+<h3 id='request-2'>Request</h3>
+<p><code>GET /{id}/printers/HasPlugin</code></p>
 
-<p>TODO</p>
-<h2 id='authorize'>Authorize</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/oauth/Authorize <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>pid</code></td>
+<td>integer</td>
+<td>yes</td>
+<td>The ID of the printer to check.</td>
+</tr>
+<tr>
+<td><code>plugin</code></td>
+<td>string</td>
+<td>yes</td>
+<td>The name of the plugin key to check.</td>
+</tr>
+</tbody></table>
+<h3 id='response-2'>Response</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is false.</td>
+</tr>
+<tr>
+<td><code>has</code></td>
+<td>boolean</td>
+<td>True if the printer has the plugin.</td>
+</tr>
+</tbody></table>
+<h2 id='clear-print-bed'>Clear print bed</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/printers/actions/ClearBed?pid<span class="o">=</span>1234 <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
 </code></pre></div>
 <blockquote>
-<p>Success response</p>
+<p>Request body</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"rating"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-2'>Request</h3>
-<p><code>? /{id}/oauth/Authorize</code></p>
-
-<p>TODO</p>
-<h1 id='printers'>Printers</h1><h2 id='delete'>Delete</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/printers/Delete <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
+</span></code></pre></div>
 <blockquote>
 <p>Success response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request'>Request</h3>
-<p><code>? /{id}/printers/Delete</code></p>
-
-<p>TODO</p>
-<h2 id='hasplugin'>HasPlugin</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/printers/HasPlugin <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
+</span></code></pre></div>
+<p>This endpoint can be used to clear the print bed of a printer.</p>
+<h3 id='request-3'>Request</h3>
+<p><code>POST /{id}/printers/actions/ClearBed</code></p>
+<h4 id='query-parameters'>Query parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>pid</code></td>
+<td>integer</td>
+<td>yes</td>
+<td>The ID(s) of the printer to clear, comma separated. These printers have to be in either the <code>operational</code> or <code>offline</code> states.</td>
+</tr>
+</tbody></table>
+<h4 id='request-body'>Request body</h4>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>success</code></td>
+<td>boolean</td>
+<td>no</td>
+<td>True if the print was successful.<br><strong>Default: false</strong></td>
+</tr>
+<tr>
+<td><code>rating</code></td>
+<td>integer</td>
+<td>no</td>
+<td>The rating of the print. Don&#39;t send this field if you do not want to rate the print.</td>
+</tr>
+</tbody></table>
+<h3 id='response-3'>Response</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is false.</td>
+</tr>
+</tbody></table>
+<h2 id='create-print-job-wip'>Create print job (WIP)</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/printers/actions/CreateJob?pid<span class="o">=</span>1234&amp;filesystem<span class="o">=</span>291 <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
 </code></pre></div>
 <blockquote>
-<p>Success response</p>
+<p>Request body</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
+  </span><span class="nl">"pid"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1234</span><span class="p">,</span><span class="w"> </span><span class="mi">1235</span><span class="p">],</span><span class="w">
+  </span><span class="nl">"filesystem"</span><span class="p">:</span><span class="w"> </span><span class="s2">"196a1dd0b93a66c19192a39fa4c16e71"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-2'>Request</h3>
-<p><code>? /{id}/printers/HasPlugin</code></p>
-
-<p>TODO</p>
-<h2 id='actions-clearbed'>actions/ClearBed</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/printers/actions/ClearBed <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
+</span></code></pre></div>
 <blockquote>
 <p>Success response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"files"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Benchy.gcode"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"analysis"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"slicer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Simplify3D"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"filament"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="mi">60</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"estimate"</span><span class="p">:</span><span class="w"> </span><span class="mi">240</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"movement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"mRelative"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"eRelative"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"temps"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"tool"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"T0"</span><span class="p">:</span><span class="w"> </span><span class="mi">210</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nl">"bed"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"pset"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"modelSize"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"x"</span><span class="p">:</span><span class="w"> </span><span class="mi">151</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"y"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"z"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"printArea"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"maxX"</span><span class="p">:</span><span class="w"> </span><span class="mf">156.05</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"minX"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"maxY"</span><span class="p">:</span><span class="w"> </span><span class="mf">157.86</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"minY"</span><span class="p">:</span><span class="w"> </span><span class="mf">142.14</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"maxZ"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"minZ"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"minDeltaRadius"</span><span class="p">:</span><span class="w"> </span><span class="mf">313.91</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"v"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"printers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="mi">1234</span><span class="p">,</span><span class="w">
+        </span><span class="mi">1235</span><span class="w">        
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"queued"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"jobIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="mi">495462</span><span class="p">,</span><span class="w">
+    </span><span class="mi">495463</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-3'>Request</h3>
-<p><code>? /{id}/printers/actions/ClearBed</code></p>
+</span></code></pre></div>
+<p>This endpoint can be used to create a print job for one or more printers. The printers have to be in the <code>operational</code> state.</p>
+<h3 id='request-4'>Request</h3>
+<p><code>POST /{id}/printers/actions/CreateJob</code></p>
 
-<p>TODO</p>
-<h2 id='actions-start'>actions/Start</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/printers/actions/Start <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-4'>Request</h3>
-<p><code>? /{id}/printers/actions/Start</code></p>
+<p>To start a print job you must either specify a <code>filesystem</code> ID, a <code>queue_file</code> ID file or set <code>next_queue_item</code> to true.</p>
 
-<p>TODO</p>
-<h2 id='actions-createjob'>actions/CreateJob</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/printers/actions/CreateJob <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-5'>Request</h3>
-<p><code>? /{id}/printers/actions/CreateJob</code></p>
-
-<p>TODO</p>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>pid</code></td>
+<td>integer or integer[]</td>
+<td>yes</td>
+<td>The ID(s) of the printer to create the job for.</td>
+</tr>
+<tr>
+<td><code>filesystem</code></td>
+<td>string</td>
+<td>no</td>
+<td>The filesystem ID of the file to print.</td>
+</tr>
+<tr>
+<td><code>queue_file</code></td>
+<td>integer</td>
+<td>no</td>
+<td>The queue ID of the queue item to print.</td>
+</tr>
+<tr>
+<td><code>next_queue_item</code></td>
+<td>boolean</td>
+<td>no</td>
+<td>If true, the next queue item will be printed.</td>
+</tr>
+</tbody></table>
+<h3 id='response-4'>Response</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is false.</td>
+</tr>
+<tr>
+<td><code>files</code></td>
+<td>array</td>
+<td>Array of started print job objects.</td>
+</tr>
+<tr>
+<td><code>files[].name</code></td>
+<td>string</td>
+<td>The name of the file.</td>
+</tr>
+<tr>
+<td><code>files[].analysis</code></td>
+<td>object</td>
+<td>The analysis of the file. This has been documented in the <a href="#save-autoqueue-defaults">Save autoqueue defaults endpoint.</a>.</td>
+</tr>
+<tr>
+<td><code>files[].printers</code></td>
+<td>integer[]</td>
+<td>The IDs of the printers that the print job was started on.</td>
+</tr>
+<tr>
+<td><code>files[].queued</code></td>
+<td>boolean</td>
+<td>True if the print job was queued.</td>
+</tr>
+</tbody></table>
 <h2 id='actions-resume'>actions/Resume</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/printers/actions/Resume <span class="se">\</span>
   <span class="nt">-X</span> ? <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
@@ -2510,7 +2728,7 @@ Also, folders cannot be moved into themselves.</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-6'>Request</h3>
+</span></code></pre></div><h3 id='request-5'>Request</h3>
 <p><code>? /{id}/printers/actions/Resume</code></p>
 
 <p>TODO</p>
@@ -2525,7 +2743,7 @@ Also, folders cannot be moved into themselves.</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-7'>Request</h3>
+</span></code></pre></div><h3 id='request-6'>Request</h3>
 <p><code>? /{id}/printers/actions/Pause</code></p>
 
 <p>TODO</p>
@@ -2540,7 +2758,7 @@ Also, folders cannot be moved into themselves.</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-8'>Request</h3>
+</span></code></pre></div><h3 id='request-7'>Request</h3>
 <p><code>? /{id}/printers/actions/Get</code></p>
 
 <p>TODO</p>
@@ -2555,7 +2773,7 @@ Also, folders cannot be moved into themselves.</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-9'>Request</h3>
+</span></code></pre></div><h3 id='request-8'>Request</h3>
 <p><code>? /{id}/printers/actions/Cancel</code></p>
 
 <p>TODO</p>
@@ -2570,7 +2788,7 @@ Also, folders cannot be moved into themselves.</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-10'>Request</h3>
+</span></code></pre></div><h3 id='request-9'>Request</h3>
 <p><code>? /{id}/printers/logs/ReadLog</code></p>
 
 <p>TODO</p>
@@ -2585,7 +2803,7 @@ Also, folders cannot be moved into themselves.</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-11'>Request</h3>
+</span></code></pre></div><h3 id='request-10'>Request</h3>
 <p><code>? /{id}/printers/logs/DeleteLog</code></p>
 
 <p>TODO</p>
