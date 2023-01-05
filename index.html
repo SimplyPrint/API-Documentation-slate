@@ -505,13 +505,6 @@
 </aside>
 <h2 id='test-your-api-key'>Test your API key</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="o">{</span>base_url<span class="o">}</span>/account/Test <span class="se">\</span>
   <span class="nt">--header</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
-
-<span class="n">url</span> <span class="o">=</span> <span class="s">"{base_url}/account/Test"</span>
-
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'X-API-KEY'</span><span class="p">:</span> <span class="s">'{API_KEY}'</span><span class="p">})</span>
-
-<span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre></div>
 <blockquote>
 <p>Success return:</p>
