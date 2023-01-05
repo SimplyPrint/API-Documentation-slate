@@ -428,22 +428,19 @@
                     <a href="#create-print-job-wip" class="toc-h2 toc-link" data-title="Create print job (WIP)">Create print job (WIP)</a>
                   </li>
                   <li>
-                    <a href="#actions-resume" class="toc-h2 toc-link" data-title="actions/Resume">actions/Resume</a>
+                    <a href="#get-printer-info" class="toc-h2 toc-link" data-title="Get printer info">Get printer info</a>
                   </li>
                   <li>
-                    <a href="#actions-pause" class="toc-h2 toc-link" data-title="actions/Pause">actions/Pause</a>
+                    <a href="#pause-print-job" class="toc-h2 toc-link" data-title="Pause print job">Pause print job</a>
                   </li>
                   <li>
-                    <a href="#actions-get" class="toc-h2 toc-link" data-title="actions/Get">actions/Get</a>
+                    <a href="#resume-print-job" class="toc-h2 toc-link" data-title="Resume print job">Resume print job</a>
                   </li>
                   <li>
-                    <a href="#actions-cancel" class="toc-h2 toc-link" data-title="actions/Cancel">actions/Cancel</a>
+                    <a href="#cancel-print-job" class="toc-h2 toc-link" data-title="Cancel print job">Cancel print job</a>
                   </li>
                   <li>
-                    <a href="#logs-readlog" class="toc-h2 toc-link" data-title="logs/ReadLog">logs/ReadLog</a>
-                  </li>
-                  <li>
-                    <a href="#logs-deletelog" class="toc-h2 toc-link" data-title="logs/DeleteLog">logs/DeleteLog</a>
+                    <a href="#cancel-reasons" class="toc-h2 toc-link" data-title="Cancel reasons">Cancel reasons</a>
                   </li>
               </ul>
           </li>
@@ -2313,7 +2310,7 @@ Also, folders cannot be moved into themselves.</p>
 </tr>
 <tr>
 <td><code>amount</code></td>
-<td>int</td>
+<td>integer</td>
 <td>no</td>
 <td>The amount of prints to add to the queue.<br><strong>Default: 1</strong></td>
 </tr>
@@ -2442,7 +2439,7 @@ Also, folders cannot be moved into themselves.</p>
 </thead><tbody>
 <tr>
 <td><code>p</code></td>
-<td>int</td>
+<td>integer</td>
 <td>no</td>
 <td>The printer id to get the queue for. If not specified, the queue for all printers will be returned.</td>
 </tr>
@@ -2482,12 +2479,12 @@ Also, folders cannot be moved into themselves.</p>
 </tr>
 <tr>
 <td><code>queue.items[].id</code></td>
-<td>int</td>
+<td>integer</td>
 <td>The queue item id.</td>
 </tr>
 <tr>
 <td><code>queue.items[].index</code></td>
-<td>int</td>
+<td>integer</td>
 <td>The queue item index.</td>
 </tr>
 <tr>
@@ -2502,12 +2499,12 @@ Also, folders cannot be moved into themselves.</p>
 </tr>
 <tr>
 <td><code>queue.items[].left</code></td>
-<td>int</td>
+<td>integer</td>
 <td>The amount of prints left to print.</td>
 </tr>
 <tr>
 <td><code>queue.items[].printed</code></td>
-<td>int</td>
+<td>integer</td>
 <td>The amount of prints that have been printed.</td>
 </tr>
 <tr>
@@ -2547,7 +2544,7 @@ Also, folders cannot be moved into themselves.</p>
 </tr>
 <tr>
 <td><code>queue.items[].analysis.estimate</code></td>
-<td>int</td>
+<td>integer</td>
 <td>The estimated print time in seconds.</td>
 </tr>
 <tr>
@@ -2567,12 +2564,12 @@ Also, folders cannot be moved into themselves.</p>
 </tr>
 <tr>
 <td><code>queue.items[].analysis.temps.bed</code></td>
-<td>int</td>
+<td>integer</td>
 <td>Temperature for the bed.</td>
 </tr>
 <tr>
 <td><code>queue.items[].analysis.temps.pset</code></td>
-<td>int</td>
+<td>integer</td>
 <td>TODO</td>
 </tr>
 <tr>
@@ -2592,7 +2589,7 @@ Also, folders cannot be moved into themselves.</p>
 </tr>
 <tr>
 <td><code>queue.items[].analysis.v</code></td>
-<td>int</td>
+<td>integer</td>
 <td>The analysis version.</td>
 </tr>
 <tr>
@@ -2602,7 +2599,7 @@ Also, folders cannot be moved into themselves.</p>
 </tr>
 <tr>
 <td><code>queue.items[].user_id</code></td>
-<td>int</td>
+<td>integer</td>
 <td>The user id of who added the queue item.</td>
 </tr>
 </tbody></table>
@@ -2652,7 +2649,7 @@ Also, folders cannot be moved into themselves.</p>
 </thead><tbody>
 <tr>
 <td><code>job</code></td>
-<td>int</td>
+<td>integer</td>
 <td>yes</td>
 <td>The queue item id to update.</td>
 </tr>
@@ -2686,7 +2683,7 @@ Also, folders cannot be moved into themselves.</p>
 </tr>
 <tr>
 <td><code>amount</code></td>
-<td>int</td>
+<td>integer</td>
 <td>no</td>
 <td>The new amount to set.</td>
 </tr>
@@ -2740,7 +2737,7 @@ Also, folders cannot be moved into themselves.</p>
 </thead><tbody>
 <tr>
 <td><code>job</code></td>
-<td>int</td>
+<td>integer</td>
 <td>yes</td>
 <td>The queue item id to delete.</td>
 </tr>
@@ -2794,19 +2791,19 @@ Also, folders cannot be moved into themselves.</p>
 </thead><tbody>
 <tr>
 <td><code>job</code></td>
-<td>int</td>
+<td>integer</td>
 <td>yes</td>
 <td>The queue item id to move.</td>
 </tr>
 <tr>
 <td><code>from</code></td>
-<td>int</td>
+<td>integer</td>
 <td>yes</td>
 <td>The current position of the queue item.</td>
 </tr>
 <tr>
 <td><code>to</code></td>
-<td>int</td>
+<td>integer</td>
 <td>yes</td>
 <td>The new position of the queue item.</td>
 </tr>
@@ -2922,7 +2919,7 @@ Also, folders cannot be moved into themselves.</p>
 <td><code>just_connection</code></td>
 <td>integer</td>
 <td>no</td>
-<td>If set to 1, the Pi connection will be deleted. If set to 0, the printer and connection will be permanently deleted.<br><strong>Default: 0</strong></td>
+<td>If set to 1, only the Pi connection will be deleted. Otherwise, the printer will be permanently deleted.<br><strong>Default: 0</strong></td>
 </tr>
 </tbody></table>
 <h3 id='response'>Response</h3>
@@ -3225,7 +3222,7 @@ Also, folders cannot be moved into themselves.</p>
 <tr>
 <td><code>files[].analysis</code></td>
 <td>object</td>
-<td>The analysis of the file. This has been documented in the <a href="#save-autoqueue-defaults">Save autoqueue defaults endpoint.</a>.</td>
+<td>The analysis of the file. This has been documented in the <a href="#get-queue-items">Get queue items endpoint</a>.</td>
 </tr>
 <tr>
 <td><code>files[].printers</code></td>
@@ -3235,11 +3232,26 @@ Also, folders cannot be moved into themselves.</p>
 <tr>
 <td><code>files[].queued</code></td>
 <td>boolean</td>
-<td>True if the print job was queued.</td>
+<td>TODO</td>
+</tr>
+<tr>
+<td><code>jobIds</code></td>
+<td>integer[]</td>
+<td>The IDs of the print jobs that were started.</td>
 </tr>
 </tbody></table>
-<h2 id='actions-resume'>actions/Resume</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/printers/actions/Resume <span class="se">\</span>
+<h2 id='get-printer-info'>Get printer info</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/printers/actions/Get <span class="se">\</span>
   <span class="nt">-X</span> ? <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<aside class="warning">
+  This endpoint has not been implemented yet.
+</aside>
+<h3 id='request-5'>Request</h3>
+<p><code>? /{id}/printers/actions/Get</code></p>
+<h2 id='pause-print-job'>Pause print job</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/printers/actions/Pause?pid<span class="o">=</span>1234 <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
 </code></pre></div>
@@ -3247,14 +3259,50 @@ Also, folders cannot be moved into themselves.</p>
 <p>Success response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-5'>Request</h3>
-<p><code>? /{id}/printers/actions/Resume</code></p>
-
-<p>TODO</p>
-<h2 id='actions-pause'>actions/Pause</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/printers/actions/Pause <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
+</span></code></pre></div>
+<p>This endpoint can be used to pause one or multiple print jobs. The printers have to be in the <code>PRINTING</code> state.</p>
+<h3 id='request-6'>Request</h3>
+<p><code>POST /{id}/printers/actions/Pause</code></p>
+<h4 id='query-parameters-2'>Query parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>pid</code></td>
+<td>integer or integer[]</td>
+<td>yes</td>
+<td>The ID(s) of the printer to pause. Pause multiple printers by comma separating printer ids.<br><strong>Printer must be in <code>PRINTER_PRINTING</code> state</strong></td>
+</tr>
+</tbody></table>
+<h4 id='response-5'>Response</h4>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is false.</td>
+</tr>
+</tbody></table>
+<h2 id='resume-print-job'>Resume print job</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/printers/actions/Resume?pid<span class="o">=</span>1234 <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
 </code></pre></div>
@@ -3262,72 +3310,171 @@ Also, folders cannot be moved into themselves.</p>
 <p>Success response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-6'>Request</h3>
-<p><code>? /{id}/printers/actions/Pause</code></p>
-
-<p>TODO</p>
-<h2 id='actions-get'>actions/Get</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/printers/actions/Get <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h3 id='request-7'>Request</h3>
-<p><code>? /{id}/printers/actions/Get</code></p>
-
-<p>TODO</p>
-<h2 id='actions-cancel'>actions/Cancel</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/printers/actions/Cancel <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
+<p><code>POST /{id}/printers/actions/Resume</code></p>
+<h4 id='query-parameters-3'>Query parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>pid</code></td>
+<td>integer or integer[]</td>
+<td>yes</td>
+<td>The ID(s) of the printer to resume. Resume multiple printers by comma separating printer ids.<br><strong>Printer must be in <code>PRINTER_PAUSED</code> state</strong></td>
+</tr>
+</tbody></table>
+<h4 id='response-6'>Response</h4>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is false.</td>
+</tr>
+</tbody></table>
+<h2 id='cancel-print-job'>Cancel print job</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/printers/actions/Cancel?pid<span class="o">=</span>1234 <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
 </code></pre></div>
 <blockquote>
-<p>Success response</p>
+<p>Request body</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
+  </span><span class="nl">"reason"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cancel comment"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-8'>Request</h3>
-<p><code>? /{id}/printers/actions/Cancel</code></p>
-
-<p>TODO</p>
-<h2 id='logs-readlog'>logs/ReadLog</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/printers/logs/ReadLog <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
+</span></code></pre></div>
 <blockquote>
 <p>Success response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-9'>Request</h3>
-<p><code>? /{id}/printers/logs/ReadLog</code></p>
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Required permission</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>CANCEL_OTHERS_PRINTS</code></td>
+<td>Need permission to cancel other users&#39; prints if the print job was started by another user.</td>
+</tr>
+</tbody></table>
 
-<p>TODO</p>
-<h2 id='logs-deletelog'>logs/DeleteLog</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/printers/logs/DeleteLog <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-10'>Request</h3>
-<p><code>? /{id}/printers/logs/DeleteLog</code></p>
-
-<p>TODO</p>
+<p>This endpoint can be used to cancel one or multiple print jobs. The printers have to be in the <code>PRINTING</code>, <code>PAUSED</code> or <code>PAUSING</code> state.</p>
+<h3 id='request-8'>Request</h3>
+<p><code>POST /{id}/printers/actions/Cancel</code></p>
+<h4 id='query-parameters-4'>Query parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>pid</code></td>
+<td>integer or integer[]</td>
+<td>yes</td>
+<td>The ID(s) of the printer to cancel. Cancel multiple printers by comma separating printer ids.<br><strong>Printer must be in <code>PRINTER_PRINTING</code>, <code>PRINTER_PAUSED</code> or <code>PRINTER_PAUSING</code> state</strong></td>
+</tr>
+</tbody></table>
+<h4 id='request-body-2'>Request body</h4>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>reason</code></td>
+<td>integer</td>
+<td>no</td>
+<td>The reason for cancelling the print job. See <a href="#cancel-reasons">Cancel reasons</a>. Depending on the <code>require_cancel_reason</code> organization setting, this field may be required.</td>
+</tr>
+<tr>
+<td><code>comment</code></td>
+<td>string</td>
+<td>no</td>
+<td>A comment for the cancel reason. Depending on the <code>require_comment</code> organization setting, this field may be required.<br><strong>Max length: 500 characters</strong></td>
+</tr>
+</tbody></table>
+<h3 id='response-7'>Response</h3>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is false.</td>
+</tr>
+</tbody></table>
+<h2 id='cancel-reasons'>Cancel reasons</h2>
+<table><thead>
+<tr>
+<th>ID</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>Print failed</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Regretted print</td>
+</tr>
+<tr>
+<td>3</td>
+<td>No filament extruded / nozzle clog</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Fell of the plate</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Not enough filament</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Other</td>
+</tr>
+</tbody></table>
 <h1 id='permissions'>Permissions</h1>
 <p>TODO</p>
 <h1 id='errors'>Errors</h1>
