@@ -393,22 +393,22 @@
             <a href="#queue" class="toc-h1 toc-link" data-title="Queue">Queue</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#additem" class="toc-h2 toc-link" data-title="AddItem">AddItem</a>
+                    <a href="#add-item-to-queue" class="toc-h2 toc-link" data-title="Add item to queue">Add item to queue</a>
                   </li>
                   <li>
-                    <a href="#getitems" class="toc-h2 toc-link" data-title="GetItems">GetItems</a>
+                    <a href="#get-queue-items" class="toc-h2 toc-link" data-title="Get queue items">Get queue items</a>
                   </li>
                   <li>
-                    <a href="#updateitem" class="toc-h2 toc-link" data-title="UpdateItem">UpdateItem</a>
+                    <a href="#update-queue-item" class="toc-h2 toc-link" data-title="Update queue item">Update queue item</a>
                   </li>
                   <li>
-                    <a href="#deleteitem" class="toc-h2 toc-link" data-title="DeleteItem">DeleteItem</a>
+                    <a href="#delete-queue-item" class="toc-h2 toc-link" data-title="Delete queue item">Delete queue item</a>
                   </li>
                   <li>
-                    <a href="#setorder" class="toc-h2 toc-link" data-title="SetOrder">SetOrder</a>
+                    <a href="#change-queue-order" class="toc-h2 toc-link" data-title="Change queue order">Change queue order</a>
                   </li>
                   <li>
-                    <a href="#emptyqueue" class="toc-h2 toc-link" data-title="EmptyQueue">EmptyQueue</a>
+                    <a href="#empty-queue" class="toc-h2 toc-link" data-title="Empty queue">Empty queue</a>
                   </li>
               </ul>
           </li>
@@ -480,7 +480,7 @@
 <h2 id='getting-an-api-key'>Getting an API key</h2>
 <p>To get an API key you&#39;ll need a SimplyPrint account that is either a member of an organization or has at least the <a href="https://simplyprint.io/#pricing">SimplyPrint Pro plan</a>.</p>
 
-<p>To create your own API key you first need a SimplyPrint account, you can go to your <a href="https://simplyprint.io/account/settings">account settings</a> and create a new API key.</p>
+<p>To create your own API key you first need a SimplyPrint account, you can go to your <a href="https://simplyprint.io/panel/user_settings/security">account settings</a> and create a new API key.</p>
 
 <p>TODO; Create API key page and explain how to create an API key.</p>
 <h2 id='the-base-url'>The base URL</h2>
@@ -2267,38 +2267,93 @@ Also, folders cannot be moved into themselves.</p>
 <td>Error message if <code>status</code> is false.</td>
 </tr>
 </tbody></table>
-<h1 id='queue'>Queue</h1><h2 id='additem'>AddItem</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/queue/AddItem <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
+<h1 id='queue'>Queue</h1><h2 id='add-item-to-queue'>Add item to queue</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/queue/AddItem <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
 </code></pre></div>
 <blockquote>
+<p>Request body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"filesystem"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1a077dd6296417fe75555bf806b68089"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
 <p>Success response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request'>Request</h3>
-<p><code>? /{id}/queue/AddItem</code></p>
+</span></code></pre></div>
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
 
-<p>TODO</p>
-<h2 id='getitems'>GetItems</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/queue/GetItems <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-2'>Request</h3>
-<p><code>? /{id}/queue/GetItems</code></p>
+<p>This endpoint adds a file to the queue. The file can either be a file on the filesystem or an uploaded stl/3mf/obj/gcode/gco/nc/npg file.</p>
+<h3 id='request'>Request</h3>
+<p><code>POST /{id}/queue/AddItem</code></p>
 
-<p>TODO</p>
-<h2 id='updateitem'>UpdateItem</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/queue/UpdateItem <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
+<p>You must specify either a filesystem id or a file to upload.</p>
+<h4 id='parameters'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>filesystem</code></td>
+<td>string</td>
+<td>no</td>
+<td>The filesystem id of the file to add to the queue.</td>
+</tr>
+<tr>
+<td><code>amount</code></td>
+<td>int</td>
+<td>no</td>
+<td>The amount of prints to add to the queue.<br><strong>Default: 1</strong></td>
+</tr>
+</tbody></table>
+<h4 id='file-upload'>File upload</h4>
+<table><thead>
+<tr>
+<th>File</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>file</code></td>
+<td>stl/3mf/obj/gcode/gco/nc/npg</td>
+<td>no</td>
+<td>The file to add to the queue.<br><strong>Max file size: 100MB (bigger files must be uploaded to the filesystem first)</strong></td>
+</tr>
+</tbody></table>
+<h3 id='response'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Success message or error message if <code>status</code> is false.</td>
+</tr>
+</tbody></table>
+<h2 id='get-queue-items'>Get queue items</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/queue/GetItems?p<span class="o">=</span>1234 <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
 </code></pre></div>
@@ -2306,14 +2361,356 @@ Also, folders cannot be moved into themselves.</p>
 <p>Success response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"queue"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"fits"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">51293</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"index"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"benchy.gcode"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"model"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"left"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"printed"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"for"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"printers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="mi">1234</span><span class="w">
+          </span><span class="p">],</span><span class="w">
+          </span><span class="nl">"models"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="mi">1234</span><span class="w">
+          </span><span class="p">],</span><span class="w">
+          </span><span class="nl">"groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="mi">1234</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"analysis"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"slicer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Simplify3D"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"filament"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="mi">60</span><span class="w">
+          </span><span class="p">],</span><span class="w">
+          </span><span class="nl">"estimate"</span><span class="p">:</span><span class="w"> </span><span class="mi">240</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"movement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"mRelative"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"eRelative"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nl">"temps"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"tool"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"T0"</span><span class="p">:</span><span class="w"> </span><span class="mi">210</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"bed"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"pset"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nl">"modelSize"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"x"</span><span class="p">:</span><span class="w"> </span><span class="mi">151</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"y"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"z"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nl">"printArea"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"maxX"</span><span class="p">:</span><span class="w"> </span><span class="mf">156.05</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"minX"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"maxY"</span><span class="p">:</span><span class="w"> </span><span class="mf">157.86</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"minY"</span><span class="p">:</span><span class="w"> </span><span class="mf">142.14</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"maxZ"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"minZ"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nl">"minDeltaRadius"</span><span class="p">:</span><span class="w"> </span><span class="mf">313.91</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"v"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-3'>Request</h3>
-<p><code>? /{id}/queue/UpdateItem</code></p>
+</span></code></pre></div>
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
 
-<p>TODO</p>
-<h2 id='deleteitem'>DeleteItem</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/queue/DeleteItem <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
+<p>This endpoint returns the queue for the specified or all printers.</p>
+<h3 id='request-2'>Request</h3>
+<p><code>GET /{id}/queue/GetItems</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>p</code></td>
+<td>int</td>
+<td>no</td>
+<td>The printer id to get the queue for. If not specified, the queue for all printers will be returned.</td>
+</tr>
+</tbody></table>
+<h3 id='response-2'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Success message or error message if <code>status</code> is false.</td>
+</tr>
+<tr>
+<td><code>queue</code></td>
+<td>object</td>
+<td>The queue object.</td>
+</tr>
+<tr>
+<td><code>queue.fits</code></td>
+<td>boolean</td>
+<td>TODO</td>
+</tr>
+<tr>
+<td><code>queue.items</code></td>
+<td>array</td>
+<td>An array of queue item objects.</td>
+</tr>
+<tr>
+<td><code>queue.items[].id</code></td>
+<td>int</td>
+<td>The queue item id.</td>
+</tr>
+<tr>
+<td><code>queue.items[].index</code></td>
+<td>int</td>
+<td>The queue item index.</td>
+</tr>
+<tr>
+<td><code>queue.items[].filename</code></td>
+<td>string</td>
+<td>The queue item filename.</td>
+</tr>
+<tr>
+<td><code>queue.items[].model</code></td>
+<td>boolean</td>
+<td>True if the queue item is a model.</td>
+</tr>
+<tr>
+<td><code>queue.items[].left</code></td>
+<td>int</td>
+<td>The amount of prints left to print.</td>
+</tr>
+<tr>
+<td><code>queue.items[].printed</code></td>
+<td>int</td>
+<td>The amount of prints that have been printed.</td>
+</tr>
+<tr>
+<td><code>queue.items[].for</code></td>
+<td>object</td>
+<td>For which printers, models and groups this queue item is for.</td>
+</tr>
+<tr>
+<td><code>queue.items[].for.printers</code></td>
+<td>array</td>
+<td>An array of printer ids.</td>
+</tr>
+<tr>
+<td><code>queue.items[].for.models</code></td>
+<td>array</td>
+<td>An array of printer model ids.</td>
+</tr>
+<tr>
+<td><code>queue.items[].for.groups</code></td>
+<td>array</td>
+<td>An array of group ids.</td>
+</tr>
+<tr>
+<td><code>queue.items[].analysis</code></td>
+<td>object</td>
+<td>The analysis object.</td>
+</tr>
+<tr>
+<td><code>queue.items[].analysis.slicer</code></td>
+<td>string</td>
+<td>The slicer used to slice the file.</td>
+</tr>
+<tr>
+<td><code>queue.items[].analysis.filament</code></td>
+<td>array</td>
+<td>An array of filament lengths.</td>
+</tr>
+<tr>
+<td><code>queue.items[].analysis.estimate</code></td>
+<td>int</td>
+<td>The estimated print time in seconds.</td>
+</tr>
+<tr>
+<td><code>queue.items[].analysis.movement</code></td>
+<td>object</td>
+<td>The movement object.</td>
+</tr>
+<tr>
+<td><code>queue.items[].analysis.temps</code></td>
+<td>object</td>
+<td>The temperatures object.</td>
+</tr>
+<tr>
+<td><code>queue.items[].analysis.temps.tool</code></td>
+<td>object</td>
+<td>Temperature for each tool (extruder).</td>
+</tr>
+<tr>
+<td><code>queue.items[].analysis.temps.bed</code></td>
+<td>int</td>
+<td>Temperature for the bed.</td>
+</tr>
+<tr>
+<td><code>queue.items[].analysis.temps.pset</code></td>
+<td>int</td>
+<td>TODO</td>
+</tr>
+<tr>
+<td><code>queue.items[].analysis.modelSize</code></td>
+<td>object</td>
+<td>The model size object. Represented as <code>x</code>, <code>y</code> and <code>z</code> values in millimeters.</td>
+</tr>
+<tr>
+<td><code>queue.items[].analysis.printArea</code></td>
+<td>object</td>
+<td>The print area object. Represented as <code>maxX</code>, <code>minX</code>, <code>maxY</code>, <code>minY</code>, <code>maxZ</code> and <code>minZ</code> values in millimeters.</td>
+</tr>
+<tr>
+<td><code>queue.items[].analysis.minDeltaRadius</code></td>
+<td>float</td>
+<td>Minimum radius for delta printers.</td>
+</tr>
+<tr>
+<td><code>queue.items[].analysis.v</code></td>
+<td>int</td>
+<td>The analysis version.</td>
+</tr>
+<tr>
+<td><code>queue.items[].user</code></td>
+<td>string</td>
+<td>The user name of who added the queue item.</td>
+</tr>
+<tr>
+<td><code>queue.items[].user_id</code></td>
+<td>int</td>
+<td>The user id of who added the queue item.</td>
+</tr>
+</tbody></table>
+<h2 id='update-queue-item'>Update queue item</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/queue/UpdateItem?job<span class="o">=</span>1234 <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"for_groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="mi">1234</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"for_models"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="mi">1234</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"for_printers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="mi">1234</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+<p>This endpoint updates the queue item with the specified id.</p>
+<h3 id='request-3'>Request</h3>
+<p><code>POST /{id}/queue/UpdateItem</code></p>
+<h4 id='query-parameters'>Query parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>job</code></td>
+<td>int</td>
+<td>yes</td>
+<td>The queue item id to update.</td>
+</tr>
+</tbody></table>
+<h4 id='request-body'>Request body</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>for_groups</code></td>
+<td>array</td>
+<td>no</td>
+<td>An array of group ids to assign the queue item to.</td>
+</tr>
+<tr>
+<td><code>for_models</code></td>
+<td>array</td>
+<td>no</td>
+<td>An array of printer model ids to assign the queue item to.</td>
+</tr>
+<tr>
+<td><code>for_printers</code></td>
+<td>array</td>
+<td>no</td>
+<td>An array of printer ids to assign the queue item to.</td>
+</tr>
+<tr>
+<td><code>amount</code></td>
+<td>int</td>
+<td>no</td>
+<td>The new amount to set.</td>
+</tr>
+</tbody></table>
+<h3 id='response-3'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Success message or error message if <code>status</code> is false.</td>
+</tr>
+</tbody></table>
+<h2 id='delete-queue-item'>Delete queue item</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/queue/DeleteItem?job<span class="o">=</span>1234 <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
 </code></pre></div>
@@ -2321,14 +2718,53 @@ Also, folders cannot be moved into themselves.</p>
 <p>Success response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-4'>Request</h3>
+</span></code></pre></div>
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+<p>This endpoint deletes the queue item with the specified id.</p>
+<h3 id='request-4'>Request</h3>
 <p><code>? /{id}/queue/DeleteItem</code></p>
 
-<p>TODO</p>
-<h2 id='setorder'>SetOrder</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/queue/SetOrder <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>job</code></td>
+<td>int</td>
+<td>yes</td>
+<td>The queue item id to delete.</td>
+</tr>
+</tbody></table>
+<h3 id='response-4'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Success message or error message if <code>status</code> is false.</td>
+</tr>
+</tbody></table>
+<h2 id='change-queue-order'>Change queue order</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/queue/SetOrder?job<span class="o">=</span>1234&amp;from<span class="o">=</span>0&amp;to<span class="o">=</span>1 <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
 </code></pre></div>
@@ -2336,14 +2772,65 @@ Also, folders cannot be moved into themselves.</p>
 <p>Success response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-5'>Request</h3>
-<p><code>? /{id}/queue/SetOrder</code></p>
+</span></code></pre></div>
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
 
-<p>TODO</p>
-<h2 id='emptyqueue'>EmptyQueue</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/queue/EmptyQueue <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
+<p>This endpoint changes the order of the queue items by moving the queue item with the specified id.</p>
+<h3 id='request-5'>Request</h3>
+<p><code>GET /{id}/queue/SetOrder</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>job</code></td>
+<td>int</td>
+<td>yes</td>
+<td>The queue item id to move.</td>
+</tr>
+<tr>
+<td><code>from</code></td>
+<td>int</td>
+<td>yes</td>
+<td>The current position of the queue item.</td>
+</tr>
+<tr>
+<td><code>to</code></td>
+<td>int</td>
+<td>yes</td>
+<td>The new position of the queue item.</td>
+</tr>
+</tbody></table>
+<h3 id='response-5'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>success</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Success message or error message if <code>success</code> is false.</td>
+</tr>
+</tbody></table>
+<h2 id='empty-queue'>Empty queue</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/queue/EmptyQueue <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
 </code></pre></div>
@@ -2351,12 +2838,46 @@ Also, folders cannot be moved into themselves.</p>
 <p>Success response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-6'>Request</h3>
-<p><code>? /{id}/queue/EmptyQueue</code></p>
+</span></code></pre></div>
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
 
-<p>TODO</p>
+<table><thead>
+<tr>
+<th>Required Permissions</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>PRINT_QUEUE_REMOVE_ALL</code></td>
+</tr>
+</tbody></table>
+
+<p>This endpoint empties the queue.</p>
+<h3 id='request-6'>Request</h3>
+<p><code>GET /{id}/queue/EmptyQueue</code></p>
+<h3 id='response-6'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Success message or error message if <code>status</code> is false.</td>
+</tr>
+</tbody></table>
 <h1 id='printers'>Printers</h1><h2 id='permanently-delete-or-disconnect-printer'>Permanently delete or disconnect printer</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/printers/Delete?pid<span class="o">=</span>1234&amp;just_connection<span class="o">=</span>1 <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
