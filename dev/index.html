@@ -339,9 +339,6 @@
                     <a href="#permanently-delete-or-disconnect-printer" class="toc-h2 toc-link" data-title="Permanently delete or disconnect printer">Permanently delete or disconnect printer</a>
                   </li>
                   <li>
-                    <a href="#check-if-octoprint-plugin-is-installed" class="toc-h2 toc-link" data-title="Check if OctoPrint plugin is installed">Check if OctoPrint plugin is installed</a>
-                  </li>
-                  <li>
                     <a href="#clear-print-bed" class="toc-h2 toc-link" data-title="Clear print bed">Clear print bed</a>
                   </li>
                   <li>
@@ -427,9 +424,6 @@
           <li>
             <a href="#account" class="toc-h1 toc-link" data-title="Account">Account</a>
               <ul class="toc-list-h2">
-                  <li>
-                    <a href="#save-autoqueue-defaults" class="toc-h2 toc-link" data-title="Save autoqueue defaults">Save autoqueue defaults</a>
-                  </li>
                   <li>
                     <a href="#create-company-groups" class="toc-h2 toc-link" data-title="Create company groups">Create company groups</a>
                   </li>
@@ -616,68 +610,6 @@
 <td>Error message if <code>status</code> is false.</td>
 </tr>
 </tbody></table>
-<h2 id='check-if-octoprint-plugin-is-installed'>Check if OctoPrint plugin is installed</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/printers/HasPlugin?pid<span class="o">=</span>1234&amp;plugin<span class="o">=</span>PrintTimeGenius <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"has"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>This endpoint can be used to check if a printer has a plugin installed. The plugins are checked by ... ? TODO</p>
-<h3 id='request-2'>Request</h3>
-<p><code>GET /{id}/printers/HasPlugin</code></p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>pid</code></td>
-<td>integer</td>
-<td>yes</td>
-<td>The ID of the printer to check.</td>
-</tr>
-<tr>
-<td><code>plugin</code></td>
-<td>string</td>
-<td>yes</td>
-<td>The name of the plugin key to check.</td>
-</tr>
-</tbody></table>
-<h3 id='response-2'>Response</h3>
-<table><thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>status</code></td>
-<td>boolean</td>
-<td>True if the request was successful.</td>
-</tr>
-<tr>
-<td><code>message</code></td>
-<td>string</td>
-<td>Error message if <code>status</code> is false.</td>
-</tr>
-<tr>
-<td><code>has</code></td>
-<td>boolean</td>
-<td>True if the printer has the plugin.</td>
-</tr>
-</tbody></table>
 <h2 id='clear-print-bed'>Clear print bed</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/printers/actions/ClearBed?pid<span class="o">=</span>1234 <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
@@ -700,7 +632,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>This endpoint can be used to clear the print bed of a printer.</p>
-<h3 id='request-3'>Request</h3>
+<h3 id='request-2'>Request</h3>
 <p><code>POST /{id}/printers/actions/ClearBed</code></p>
 <h4 id='query-parameters'>Query parameters</h4>
 <table><thead>
@@ -740,7 +672,7 @@
 <td>The rating of the print. Don&#39;t send this field if you do not want to rate the print.</td>
 </tr>
 </tbody></table>
-<h3 id='response-3'>Response</h3>
+<h3 id='response-2'>Response</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -828,7 +760,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>This endpoint can be used to create a print job for one or more printers. The printers have to be in the <code>operational</code> state.</p>
-<h3 id='request-4'>Request</h3>
+<h3 id='request-3'>Request</h3>
 <p><code>POST /{id}/printers/actions/CreateJob</code></p>
 
 <p>To start a print job you must either specify a <code>filesystem</code> ID, a <code>queue_file</code> ID file or set <code>next_queue_item</code> to true.</p>
@@ -866,7 +798,7 @@
 <td>If true, the next queue item will be printed.</td>
 </tr>
 </tbody></table>
-<h3 id='response-4'>Response</h3>
+<h3 id='response-3'>Response</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -923,7 +855,7 @@
 <aside class="warning">
   This endpoint has not been implemented yet.
 </aside>
-<h3 id='request-5'>Request</h3>
+<h3 id='request-4'>Request</h3>
 <p><code>? /{id}/printers/actions/Get</code></p>
 <h2 id='pause-print-job'>Pause print job</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/printers/actions/Pause?pid<span class="o">=</span>1234 <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
@@ -939,7 +871,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>This endpoint can be used to pause one or multiple print jobs. The printers have to be in the <code>PRINTING</code> state.</p>
-<h3 id='request-6'>Request</h3>
+<h3 id='request-5'>Request</h3>
 <p><code>POST /{id}/printers/actions/Pause</code></p>
 <h4 id='query-parameters-2'>Query parameters</h4>
 <table><thead>
@@ -957,7 +889,7 @@
 <td>The ID(s) of the printer to pause. Pause multiple printers by comma separating printer ids.<br><strong>Printer must be in <code>PRINTER_PRINTING</code> state</strong></td>
 </tr>
 </tbody></table>
-<h4 id='response-5'>Response</h4>
+<h4 id='response-4'>Response</h4>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -988,7 +920,7 @@
   </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-7'>Request</h3>
+</span></code></pre></div><h3 id='request-6'>Request</h3>
 <p><code>POST /{id}/printers/actions/Resume</code></p>
 <h4 id='query-parameters-3'>Query parameters</h4>
 <table><thead>
@@ -1006,7 +938,7 @@
 <td>The ID(s) of the printer to resume. Resume multiple printers by comma separating printer ids.<br><strong>Printer must be in <code>PRINTER_PAUSED</code> state</strong></td>
 </tr>
 </tbody></table>
-<h4 id='response-6'>Response</h4>
+<h4 id='response-5'>Response</h4>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -1059,7 +991,7 @@
 </tbody></table>
 
 <p>This endpoint can be used to cancel one or multiple print jobs. The printers have to be in the <code>PRINTING</code>, <code>PAUSED</code> or <code>PAUSING</code> state.</p>
-<h3 id='request-8'>Request</h3>
+<h3 id='request-7'>Request</h3>
 <p><code>POST /{id}/printers/actions/Cancel</code></p>
 <h4 id='query-parameters-4'>Query parameters</h4>
 <table><thead>
@@ -1099,7 +1031,7 @@
 <td>A comment for the cancel reason. Depending on the <code>require_comment</code> organization setting, this field may be required.<br><strong>Max length: 500 characters</strong></td>
 </tr>
 </tbody></table>
-<h3 id='response-7'>Response</h3>
+<h3 id='response-6'>Response</h3>
 <table><thead>
 <tr>
 <th>Field</th>
@@ -2307,8 +2239,6 @@ Also, folders cannot be moved into themselves.</p>
 <h3 id='request'>Request</h3>
 <p><code>POST /{id}/queue/AddItem</code></p>
 
-<p>You must specify either a filesystem id or a file to upload.</p>
-<h4 id='parameters'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2328,22 +2258,6 @@ Also, folders cannot be moved into themselves.</p>
 <td>integer</td>
 <td>no</td>
 <td>The amount of prints to add to the queue.<br><strong>Default: 1</strong></td>
-</tr>
-</tbody></table>
-<h4 id='file-upload'>File upload</h4>
-<table><thead>
-<tr>
-<th>File</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>file</code></td>
-<td>stl/3mf/obj/gcode/gco/nc/npg</td>
-<td>no</td>
-<td>The file to add to the queue.<br><strong>Max file size: 100MB (bigger files must be uploaded to the filesystem first)</strong></td>
 </tr>
 </tbody></table>
 <h3 id='response'>Response</h3>
@@ -2890,109 +2804,7 @@ Also, folders cannot be moved into themselves.</p>
 <td>Success message or error message if <code>status</code> is false.</td>
 </tr>
 </tbody></table>
-<h1 id='account'>Account</h1><h2 id='save-autoqueue-defaults'>Save autoqueue defaults</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/account/SaveAutoQueueDefaults <span class="se">\</span>
-  <span class="nt">-X</span> POST <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Request body</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"gcodeAnalysis"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"fit"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"printerTemps"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"filament"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"filamentTemps"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<aside class="notice">
-  This endpoint requires the <b>Print Farm</b> plan.
-</aside>
-
-<table><thead>
-<tr>
-<th>Required permissions</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>PRINTER_SETTINGS</code></td>
-</tr>
-</tbody></table>
-
-<p>This endpoint saves the auto queue settings for the company.</p>
-
-<p>To restore the default settings, send an empty request body to <code>POST /{id}/account/SaveAutoQueueDefaults?default=true</code>.</p>
-<h3 id='request'>Request</h3>
-<p><code>POST /{id}/account/SaveAutoQueueDefaults</code></p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>gcodeAnalysis</code></td>
-<td>boolean</td>
-<td>yes</td>
-<td>Whether to only allow gcode files that have been analysed.</td>
-</tr>
-<tr>
-<td><code>fit</code></td>
-<td>boolean</td>
-<td>yes</td>
-<td>If true, the model will be scaled to fit the build volume.</td>
-</tr>
-<tr>
-<td><code>printerTemps</code></td>
-<td>boolean</td>
-<td>yes</td>
-<td>If true, the printer temperatures will be set.</td>
-</tr>
-<tr>
-<td><code>filament</code></td>
-<td>boolean</td>
-<td>yes</td>
-<td>If true, the filament will be set.</td>
-</tr>
-<tr>
-<td><code>filamentTemps</code></td>
-<td>boolean</td>
-<td>yes</td>
-<td>If true, the filament temperatures will be set.</td>
-</tr>
-</tbody></table>
-<h3 id='response'>Response</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>status</code></td>
-<td>boolean</td>
-<td>True if the request was successful.</td>
-</tr>
-<tr>
-<td><code>message</code></td>
-<td>string</td>
-<td>Error message if <code>status</code> is false.</td>
-</tr>
-</tbody></table>
-<h2 id='create-company-groups'>Create company groups</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/account/settings/rank/Create <span class="se">\</span>
+<h1 id='account'>Account</h1><h2 id='create-company-groups'>Create company groups</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/account/settings/rank/Create <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
@@ -3003,10 +2815,8 @@ Also, folders cannot be moved into themselves.</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"ranks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name of group in danish/default"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"title_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name of group in english"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"group description in danish/default"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"group description in english"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name of group"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"group description"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"sort_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
       </span><span class="nl">"permissions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">view_news</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_admin</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">panel_printing</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">printer_restart</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">printer_edit</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">bed_leveling</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">gcode_profiles</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">printer_settings</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">filament_settings</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">change_filament</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">create_filament</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">see_filament_tab</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">view_users</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">change_user_rank</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">manual_user_email_confirm</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">invite_users</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">delete_user</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_user_registration_settings</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_hub_settings</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_rank_management</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_view_statistics</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">refill_quota</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">custom_slicer_profiles</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_profiles</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">all_slicer_modes</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">queue_remove_all</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_api</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">create_org_folder</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">cancel_others</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">see_who_printed</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">max_print_size</span><span class="se">\"</span><span class="s2">:[],</span><span class="se">\"</span><span class="s2">default_slicer_mode</span><span class="se">\"</span><span class="s2">:2}"</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -3021,10 +2831,8 @@ Also, folders cannot be moved into themselves.</p>
   </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name of group in danish/default"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"title_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name of group in english"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"group description in danish/default"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"group description in english"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name of group"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"group description"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"company_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
       </span><span class="nl">"company_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
       </span><span class="nl">"sort_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
@@ -3049,7 +2857,7 @@ Also, folders cannot be moved into themselves.</p>
 </tbody></table>
 
 <p>This endpoint creates a new group in the company.</p>
-<h3 id='request-2'>Request</h3>
+<h3 id='request'>Request</h3>
 <p><code>POST /{id}/account/settings/rank/Create</code></p>
 
 <table><thead>
@@ -3070,25 +2878,13 @@ Also, folders cannot be moved into themselves.</p>
 <td><code>ranks[].title</code></td>
 <td>string</td>
 <td>yes</td>
-<td>The name of the group in danish or the name of the group if <code>title_en</code> is not set.</td>
-</tr>
-<tr>
-<td><code>ranks[].title_en</code></td>
-<td>string</td>
-<td>no</td>
-<td>The name of the group in english.</td>
+<td>The name of the group.</td>
 </tr>
 <tr>
 <td><code>ranks[].description</code></td>
 <td>string</td>
 <td>no</td>
-<td>The description of the group in danish or the description of the group if <code>description_en</code> is not set.</td>
-</tr>
-<tr>
-<td><code>ranks[].description_en</code></td>
-<td>string</td>
-<td>no</td>
-<td>The description of the group in english.</td>
+<td>The description of the group.</td>
 </tr>
 <tr>
 <td><code>ranks[].sort_order</code></td>
@@ -3103,7 +2899,7 @@ Also, folders cannot be moved into themselves.</p>
 <td>JSON string of the permissions of the group. For more information, see <a href="#permissions">Permissions</a>.</td>
 </tr>
 </tbody></table>
-<h3 id='response-2'>Response</h3>
+<h3 id='response'>Response</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3139,10 +2935,8 @@ Also, folders cannot be moved into themselves.</p>
   </span><span class="nl">"ranks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">319</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name of group in danish/default"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"title_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name of group in english"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"group description in danish/default"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"group description in english"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TITLE"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DESCRIPTION"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"permissions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">view_news</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_admin</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">panel_printing</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">printer_restart</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">printer_edit</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">bed_leveling</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">gcode_profiles</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">printer_settings</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">filament_settings</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">change_filament</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">create_filament</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">see_filament_tab</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">view_users</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">change_user_rank</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">manual_user_email_confirm</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">invite_users</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">delete_user</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_user_registration_settings</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_hub_settings</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_rank_management</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_view_statistics</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">refill_quota</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">custom_slicer_profiles</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_profiles</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">all_slicer_modes</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">queue_remove_all</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_api</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">create_org_folder</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">cancel_others</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">see_who_printed</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">max_print_size</span><span class="se">\"</span><span class="s2">:[],</span><span class="se">\"</span><span class="s2">default_slicer_mode</span><span class="se">\"</span><span class="s2">:2}"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"sort_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -3159,9 +2953,7 @@ Also, folders cannot be moved into themselves.</p>
     </span><span class="p">{</span><span class="w">
       </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">319</span><span class="p">,</span><span class="w">
       </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NAME"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"title_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DESCRIPTIONs"</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"description_en"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DESCRIPTION"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"company_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
       </span><span class="nl">"company_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
       </span><span class="nl">"permissions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">view_news</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_admin</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">panel_printing</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">printer_restart</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">printer_edit</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">bed_leveling</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">gcode_profiles</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">printer_settings</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">filament_settings</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">change_filament</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">create_filament</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">see_filament_tab</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">view_users</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">change_user_rank</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">manual_user_email_confirm</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">invite_users</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">delete_user</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_user_registration_settings</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_hub_settings</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_rank_management</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_view_statistics</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">refill_quota</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">custom_slicer_profiles</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_profiles</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">all_slicer_modes</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">queue_remove_all</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">org_api</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">create_org_folder</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">cancel_others</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">see_who_printed</span><span class="se">\"</span><span class="s2">:true,</span><span class="se">\"</span><span class="s2">max_print_size</span><span class="se">\"</span><span class="s2">:[],</span><span class="se">\"</span><span class="s2">default_slicer_mode</span><span class="se">\"</span><span class="s2">:2}"</span><span class="p">,</span><span class="w">
@@ -3186,7 +2978,7 @@ Also, folders cannot be moved into themselves.</p>
 </tbody></table>
 
 <p>This endpoint updates the groups in the company.</p>
-<h3 id='request-3'>Request</h3>
+<h3 id='request-2'>Request</h3>
 <p><code>POST /{id}/account/settings/rank/Update</code></p>
 
 <table><thead>
@@ -3213,25 +3005,13 @@ Also, folders cannot be moved into themselves.</p>
 <td><code>ranks[].title</code></td>
 <td>string</td>
 <td>no</td>
-<td>The name of the group in danish or the name of the group if <code>title_en</code> is not set.</td>
-</tr>
-<tr>
-<td><code>ranks[].title_en</code></td>
-<td>string</td>
-<td>no</td>
-<td>The name of the group in english.</td>
+<td>The name of the group.</td>
 </tr>
 <tr>
 <td><code>ranks[].description</code></td>
 <td>string</td>
 <td>no</td>
-<td>The description of the group in danish or the description of the group if <code>description_en</code> is not set.</td>
-</tr>
-<tr>
-<td><code>ranks[].description_en</code></td>
-<td>string</td>
-<td>no</td>
-<td>The description of the group in english.</td>
+<td>The description of the group.</td>
 </tr>
 <tr>
 <td><code>ranks[].permissions</code></td>
@@ -3240,13 +3020,13 @@ Also, folders cannot be moved into themselves.</p>
 <td>JSON string of the permissions of the group. For more information, see <a href="#permissions">Permissions</a>.</td>
 </tr>
 <tr>
-<td><code>ranks[].company_type</code></td>
+<td><code>ranks[].sort_order</code></td>
 <td>integer</td>
 <td>no</td>
-<td>The type of the company.</td>
+<td>The sort index of the group.</td>
 </tr>
 </tbody></table>
-<h3 id='response-3'>Response</h3>
+<h3 id='response-2'>Response</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3277,22 +3057,12 @@ Also, folders cannot be moved into themselves.</p>
 <tr>
 <td><code>data[].title</code></td>
 <td>string</td>
-<td>The name of the group in danish or the name of the group if <code>title_en</code> is not set.</td>
-</tr>
-<tr>
-<td><code>data[].title_en</code></td>
-<td>string</td>
-<td>The name of the group in english.</td>
+<td>The name of the group.</td>
 </tr>
 <tr>
 <td><code>data[].description</code></td>
 <td>string</td>
-<td>The description of the group in danish or the description of the group if <code>description_en</code> is not set.</td>
-</tr>
-<tr>
-<td><code>data[].description_en</code></td>
-<td>string</td>
-<td>The description of the group in english.</td>
+<td>The description of the group.</td>
 </tr>
 <tr>
 <td><code>data[].company_id</code></td>
@@ -3362,9 +3132,9 @@ Also, folders cannot be moved into themselves.</p>
 </tbody></table>
 
 <p>This endpoint returns a list of groups that exist in the company.</p>
-<h3 id='request-4'>Request</h3>
+<h3 id='request-3'>Request</h3>
 <p><code>GET /{id}/account/GetGroups</code></p>
-<h3 id='response-4'>Response</h3>
+<h3 id='response-3'>Response</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3432,7 +3202,7 @@ Also, folders cannot be moved into themselves.</p>
 <td><code>ORG_RANK_MANAGEMENT</code></td>
 </tr>
 </tbody></table>
-<h3 id='request-5'>Request</h3>
+<h3 id='request-4'>Request</h3>
 <p><code>POST /{id}/account/settings/rank/Delete</code></p>
 
 <table><thead>
@@ -3456,7 +3226,7 @@ Also, folders cannot be moved into themselves.</p>
 <td>The id of the group to replace the deleted group with.<br>This is only required if the group has users.</td>
 </tr>
 </tbody></table>
-<h3 id='response-5'>Response</h3>
+<h3 id='response-4'>Response</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
