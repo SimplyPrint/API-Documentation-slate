@@ -25,3 +25,7 @@ doc/
 
 # Vagrant artifacts
 ubuntu-*-console.log
+
+# Python
+__pycache__/
+/scripts/settings.py
