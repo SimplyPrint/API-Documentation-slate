@@ -13,6 +13,22 @@
             name="keywords"
             content="SimplyPrint API,SimplyPrint Documentation"
         >
+        <meta
+            name="og:title"
+            content="SimplyPrint API Reference"
+        >
+        <meta
+            name="og:description"
+            content="Documentation for the SimplyPrint API"
+        >
+        <meta
+            name="og:image"
+            content="https://cdn.simplyprint.io/i/static/logo/png/2x/icon_gradient.png"
+        >
+        <meta
+            name="og:url"
+            content="https://apidocs.simplyprint.io"
+        >
     <title>SimplyPrint API Reference</title>
     <link href="images/favicon-b842322c.ico?v=1" rel="icon" type="image/ico?v=1" />
 
@@ -385,7 +401,7 @@
             <a href="#files" class="toc-h1 toc-link" data-title="Files">Files</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-files" class="toc-h2 toc-link" data-title="Get Files">Get Files</a>
+                    <a href="#list-files-and-folders" class="toc-h2 toc-link" data-title="List Files and Folders">List Files and Folders</a>
                   </li>
                   <li>
                     <a href="#move-file-s-to-folder" class="toc-h2 toc-link" data-title="Move File(s) to Folder">Move File(s) to Folder</a>
@@ -438,6 +454,37 @@
                   </li>
                   <li>
                     <a href="#get-statistics" class="toc-h2 toc-link" data-title="Get statistics">Get statistics</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#print-jobs" class="toc-h1 toc-link" data-title="Print Jobs">Print Jobs</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-print-jobs" class="toc-h2 toc-link" data-title="Get Print Jobs">Get Print Jobs</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#user-management" class="toc-h1 toc-link" data-title="User Management">User Management</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-invitation-link" class="toc-h2 toc-link" data-title="Create Invitation Link">Create Invitation Link</a>
+                  </li>
+                  <li>
+                    <a href="#invite-users-by-email" class="toc-h2 toc-link" data-title="Invite Users By Email">Invite Users By Email</a>
+                  </li>
+                  <li>
+                    <a href="#delete-user" class="toc-h2 toc-link" data-title="Delete User">Delete User</a>
+                  </li>
+                  <li>
+                    <a href="#accept-or-deny-pending-user" class="toc-h2 toc-link" data-title="Accept or Deny Pending User">Accept or Deny Pending User</a>
+                  </li>
+                  <li>
+                    <a href="#change-user-rank" class="toc-h2 toc-link" data-title="Change User Rank">Change User Rank</a>
+                  </li>
+                  <li>
+                    <a href="#get-company-users" class="toc-h2 toc-link" data-title="Get Company Users">Get Company Users</a>
                   </li>
               </ul>
           </li>
@@ -1851,7 +1898,7 @@
 <td>Error message if <code>status</code> is false.</td>
 </tr>
 </tbody></table>
-<h1 id='files'>Files</h1><h2 id='get-files'>Get Files</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/files/GetFiles?f<span class="o">=</span>123&amp;search<span class="o">=</span>benchy <span class="se">\</span>
+<h1 id='files'>Files</h1><h2 id='list-files-and-folders'>List Files and Folders</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/files/GetFiles?f<span class="o">=</span>123&amp;search<span class="o">=</span>benchy <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
 </code></pre></div>
@@ -3304,6 +3351,10 @@ Also, folders cannot be moved into themselves.</p>
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
+<aside class="notice">
+  This endpoint requires the <b>Pro</b> plan.
+</aside>
+
 <p>This endpoint returns statistics for the user / company.</p>
 <h3 id='request-5'>Request</h3>
 <p><code>POST /{id}/account/GetStatistics</code></p>
@@ -3503,6 +3554,592 @@ Also, folders cannot be moved into themselves.</p>
 <td><code>data.print_jobs[].filament_usage_gram</code></td>
 <td>float</td>
 <td>Filament usage in grams.</td>
+</tr>
+</tbody></table>
+<h1 id='print-jobs'>Print Jobs</h1><h2 id='get-print-jobs'>Get Print Jobs</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/jobs/GetPaginatedPrintJobs <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"page_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"printer_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">385</span><span class="p">],</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"cancelled"</span><span class="p">,</span><span class="w"> </span><span class="s2">"finished"</span><span class="p">],</span><span class="w">
+  </span><span class="nl">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-02-28"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">549145</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7df103aa-b12c-4b33-8305-b55f91c11a4d"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cancelled"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"cancelReasonType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"rating"</span><span class="p">:</span><span class="w"> </span><span class="mi">-2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Benchy.gcode"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-02-28T21:05:50+00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-02-28T21:06:07+00:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="mi">5933</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"printer"</span><span class="p">:</span><span class="w"> </span><span class="mi">385</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"filament"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">e0</span><span class="se">\"</span><span class="s2">: {</span><span class="se">\"</span><span class="s2">usage</span><span class="se">\"</span><span class="s2">: 60}}"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"filUsage"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"filUsageGram"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"currentPercentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">48</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"printTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"page_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Get paginated data about ongoing or finished print jobs.</p>
+<h3 id='request'>Request</h3>
+<p><code>POST /{id}/jobs/GetPaginatedPrintJobs</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>page</code></td>
+<td>integer</td>
+<td>yes</td>
+<td>The page number to get.</td>
+</tr>
+<tr>
+<td><code>page_size</code></td>
+<td>integer</td>
+<td>yes</td>
+<td>The number of items per page. (Between 1 and 100)</td>
+</tr>
+<tr>
+<td><code>printer_types[]</code></td>
+<td>integer[]</td>
+<td>no</td>
+<td>Array of printer type ids to filter on.</td>
+</tr>
+<tr>
+<td><code>printer_ids[]</code></td>
+<td>integer[]</td>
+<td>no</td>
+<td>Array of printer ids to filter on.</td>
+</tr>
+<tr>
+<td><code>user_ids[]</code></td>
+<td>integer[]</td>
+<td>no</td>
+<td>Array of user ids to filter on.</td>
+</tr>
+<tr>
+<td><code>accepted_statuses[]</code></td>
+<td>string[]</td>
+<td>no</td>
+<td>Array of job statuses to filter on. One of <code>ongoing</code>, <code>cancelled</code>, <code>failed</code>, <code>done</code>.</td>
+</tr>
+<tr>
+<td><code>start_date</code></td>
+<td>string</td>
+<td>no</td>
+<td>The start date to filter on. In unix timestamp format. Can be set without <code>end_date</code>.</td>
+</tr>
+<tr>
+<td><code>end_date</code></td>
+<td>string</td>
+<td>no</td>
+<td>The end date to filter on. In unix timestamp format. Can be set without <code>start_date</code>.</td>
+</tr>
+</tbody></table>
+<h3 id='response'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is false.</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td>array</td>
+<td>The jobs.</td>
+</tr>
+<tr>
+<td><code>data[].id</code></td>
+<td>integer</td>
+<td>The job id.</td>
+</tr>
+<tr>
+<td><code>data[].uid</code></td>
+<td>string</td>
+<td>The job uid.</td>
+</tr>
+<tr>
+<td><code>data[].status</code></td>
+<td>string</td>
+<td>The job status. One of <code>ongoing</code>, <code>cancelled</code>, <code>failed</code>, <code>done</code>.</td>
+</tr>
+<tr>
+<td><code>data[].cancelReasonType</code></td>
+<td>string</td>
+<td>The job cancel reason type.</td>
+</tr>
+<tr>
+<td><code>data[].rating</code></td>
+<td>integer</td>
+<td>The job rating.</td>
+</tr>
+<tr>
+<td><code>data[].filename</code></td>
+<td>string</td>
+<td>The job filename.</td>
+</tr>
+<tr>
+<td><code>data[].startDate</code></td>
+<td>string</td>
+<td>The job start date.</td>
+</tr>
+<tr>
+<td><code>data[].endDate</code></td>
+<td>string/null</td>
+<td>The job end date. Is null if the job is ongoing.</td>
+</tr>
+<tr>
+<td><code>data[].user</code></td>
+<td>integer</td>
+<td>The user id of the user who started the job.</td>
+</tr>
+<tr>
+<td><code>data[].printer</code></td>
+<td>integer</td>
+<td>The printer id that was used to print the job.</td>
+</tr>
+<tr>
+<td><code>data[].filament</code></td>
+<td>string</td>
+<td>The filament usage. JSON encoded string with usage per extruder.</td>
+</tr>
+<tr>
+<td><code>data[].filUsage</code></td>
+<td>integer</td>
+<td>The filament usage in mm.</td>
+</tr>
+<tr>
+<td><code>data[].filUsageGram</code></td>
+<td>integer</td>
+<td>The filament usage in grams.</td>
+</tr>
+<tr>
+<td><code>data[].currentPercentage</code></td>
+<td>integer</td>
+<td>The current percentage of the job.</td>
+</tr>
+<tr>
+<td><code>page_amount</code></td>
+<td>integer</td>
+<td>The total number of pages for the given parameters.</td>
+</tr>
+</tbody></table>
+<h1 id='user-management'>User Management</h1><h2 id='create-invitation-link'>Create Invitation Link</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/users/CreateInvitationLink <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"maxUses"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://simplyprint.io/accept_invitation/b3d9b5a0-5b5b-11e9-8d7c-2d3b9e84aafd"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+<table><thead>
+<tr>
+<th>Required permissions</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>INVITE_USERS</code></td>
+</tr>
+</tbody></table>
+
+<p>This endpoint creates an invitation link that can be used to invite new users to the company.
+Please note that links with unlimited uses expire at the end of the day.</p>
+<h3 id='request'>Request</h3>
+<p><code>POST /{id}/users/CreateInvitationLink</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>maxUses</code></td>
+<td>integer</td>
+<td>no</td>
+<td>The maximum number of times the link can be used. Specify 0 for unlimited uses.</td>
+</tr>
+</tbody></table>
+<h3 id='response'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is false.</td>
+</tr>
+<tr>
+<td><code>link</code></td>
+<td>string</td>
+<td>The invitation link.</td>
+</tr>
+</tbody></table>
+<h2 id='invite-users-by-email'>Invite Users By Email</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/users/InviteSpecificUser <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"test@example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"test2@example.com"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">192</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+<table><thead>
+<tr>
+<th>Required permissions</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>INVITE_USERS</code></td>
+</tr>
+</tbody></table>
+
+<p>This endpoint invites one or more users to the company by email.</p>
+<h3 id='request-2'>Request</h3>
+<p><code>POST /{id}/users/InviteSpecificUser</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>emails</code></td>
+<td>string[]</td>
+<td>yes</td>
+<td>The emails of the users to invite.</td>
+</tr>
+<tr>
+<td><code>rank</code></td>
+<td>integer</td>
+<td>no</td>
+<td>The rank id that the users should be assigned.</td>
+</tr>
+</tbody></table>
+<h3 id='response-2'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is false.</td>
+</tr>
+</tbody></table>
+<h2 id='delete-user'>Delete User</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/users/DeleteUser <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+<table><thead>
+<tr>
+<th>Required permissions</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>DELETE_USER</code></td>
+</tr>
+</tbody></table>
+
+<p>This endpoint deletes a user from the company. Use this endpoint with caution.</p>
+<h3 id='request-3'>Request</h3>
+<p><code>POST /{id}/users/DeleteUser</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>user_id</code></td>
+<td>integer</td>
+<td>yes</td>
+<td>The id of the user to delete.</td>
+</tr>
+</tbody></table>
+<h3 id='response-3'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is false.</td>
+</tr>
+</tbody></table>
+<h2 id='accept-or-deny-pending-user'>Accept or Deny Pending User</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/users/SetPendingUserState <span class="se">\</span>
+  <span class="nt">-X</span> ? <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='request-4'>Request</h3>
+<p><code>? /{id}/users/SetPendingUserState</code></p>
+
+<p>TODO</p>
+<h2 id='change-user-rank'>Change User Rank</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/users/ChangeUserRank <span class="se">\</span>
+  <span class="nt">-X</span> ? <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='request-5'>Request</h3>
+<p><code>? /{id}/users/ChangeUserRank</code></p>
+
+<p>TODO</p>
+<h2 id='get-company-users'>Get Company Users</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/users/GetPaginatedUsers <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"page"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"page_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"approved"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"search"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sort_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sort_dir"</span><span class="p">:</span><span class="w"> </span><span class="s2">"asc"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+<table><thead>
+<tr>
+<th>Required permissions</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>VIEW_USERS</code></td>
+</tr>
+</tbody></table>
+<h3 id='request-6'>Request</h3>
+<p><code>POST /{id}/users/GetPaginatedUsers</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>page</code></td>
+<td>integer</td>
+<td>yes</td>
+<td>The page number to retrieve.</td>
+</tr>
+<tr>
+<td><code>page_size</code></td>
+<td>integer</td>
+<td>yes</td>
+<td>The number of users to retrieve per page.</td>
+</tr>
+<tr>
+<td><code>approved</code></td>
+<td>boolean</td>
+<td>no</td>
+<td>If true, only approved users will be returned. If false, only pending users will be returned.<br><strong>Defaults to true</strong></td>
+</tr>
+<tr>
+<td><code>search</code></td>
+<td>string</td>
+<td>no</td>
+<td>A search string to filter the users by. Searches for name, email and phone number.</td>
+</tr>
+<tr>
+<td><code>sort_id</code></td>
+<td>integer</td>
+<td>no</td>
+<td>Which field to sort by. See <a href="#sort-ids">Sort IDs</a>.</td>
+</tr>
+<tr>
+<td><code>sort_dir</code></td>
+<td>string</td>
+<td>no</td>
+<td>The sort direction. Either <code>asc</code> or <code>desc</code>.</td>
+</tr>
+</tbody></table>
+<h4 id='sort-ids'>Sort IDs</h4>
+<table><thead>
+<tr>
+<th>ID</th>
+<th>Field</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>Name</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Email</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Rank id</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Last online</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Join date</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Amount of prints</td>
 </tr>
 </tbody></table>
 <h1 id='permissions'>Permissions</h1>
