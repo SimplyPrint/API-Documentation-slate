@@ -421,6 +421,9 @@
                     <a href="#add-item-to-queue" class="toc-h2 toc-link" data-title="Add item to queue">Add item to queue</a>
                   </li>
                   <li>
+                    <a href="#get-next-queue-item" class="toc-h2 toc-link" data-title="Get next queue item">Get next queue item</a>
+                  </li>
+                  <li>
                     <a href="#get-queue-items" class="toc-h2 toc-link" data-title="Get queue items">Get queue items</a>
                   </li>
                   <li>
@@ -469,13 +472,13 @@
             <a href="#user-management" class="toc-h1 toc-link" data-title="User Management">User Management</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#get-company-users" class="toc-h2 toc-link" data-title="Get Company Users">Get Company Users</a>
+                  </li>
+                  <li>
                     <a href="#create-invitation-link" class="toc-h2 toc-link" data-title="Create Invitation Link">Create Invitation Link</a>
                   </li>
                   <li>
                     <a href="#invite-users-by-email" class="toc-h2 toc-link" data-title="Invite Users By Email">Invite Users By Email</a>
-                  </li>
-                  <li>
-                    <a href="#delete-user" class="toc-h2 toc-link" data-title="Delete User">Delete User</a>
                   </li>
                   <li>
                     <a href="#accept-or-deny-pending-user" class="toc-h2 toc-link" data-title="Accept or Deny Pending User">Accept or Deny Pending User</a>
@@ -484,7 +487,7 @@
                     <a href="#change-user-rank" class="toc-h2 toc-link" data-title="Change User Rank">Change User Rank</a>
                   </li>
                   <li>
-                    <a href="#get-company-users" class="toc-h2 toc-link" data-title="Get Company Users">Get Company Users</a>
+                    <a href="#delete-user" class="toc-h2 toc-link" data-title="Delete User">Delete User</a>
                   </li>
               </ul>
           </li>
@@ -2324,6 +2327,232 @@ Also, folders cannot be moved into themselves.</p>
 <td>Success message or error message if <code>status</code> is false.</td>
 </tr>
 </tbody></table>
+<h2 id='get-next-queue-item'>Get next queue item</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/queue/GetNextItems?p<span class="o">=</span>1234 <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"settings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"filament"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"filamentTemps"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"fit"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"gcodeAnalysis"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"printerTemps"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"queue"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"printers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">385</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"matches"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1212</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"index"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"printer"</span><span class="p">:</span><span class="w"> </span><span class="mi">385</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"match"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"issues"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"size"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"temps"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"missed"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Benchy.gcode"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"printed"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"left"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Failed response (Could not find any items that match the specified conditions)</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"queue"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"printers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">385</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"matches"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"printer"</span><span class="p">:</span><span class="w"> </span><span class="mi">385</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"match"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"issues"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"size"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"temps"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"missed"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+<p>This endpoint gets the next item in the queue for the specified printer. The next item is the item that has the highest priority. The result will have skipped all items that do not meet the specified conditions.</p>
+<h3 id='request-2'>Request</h3>
+<p><code>POST /{id}/queue/GetNextItems</code></p>
+<h4 id='request-parameters'>Request parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>p</td>
+<td>integer[]</td>
+<td>yes</td>
+<td>Comma separated list of printer ids to get the next items for.</td>
+</tr>
+</tbody></table>
+<h4 id='request-body'>Request body</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>settings</code></td>
+<td>object</td>
+<td>no</td>
+<td>Conditions that must be met for the next item.</td>
+</tr>
+<tr>
+<td><code>settings.filament</code></td>
+<td>boolean</td>
+<td>no</td>
+<td>Must have enough filament.<br><strong>Default: true</strong></td>
+</tr>
+<tr>
+<td><code>settings.filamentTemps</code></td>
+<td>boolean</td>
+<td>no</td>
+<td>Printer&#39;s filament temperature must match filament temperature of file.<br><strong>Default: true</strong></td>
+</tr>
+<tr>
+<td><code>settings.fit</code></td>
+<td>boolean</td>
+<td>no</td>
+<td>Print must fit printer&#39;s bed.<br><strong>Default: true</strong></td>
+</tr>
+<tr>
+<td><code>settings.gcodeAnalysis</code></td>
+<td>boolean</td>
+<td>no</td>
+<td>Must have gcode analysis.<br><strong>Default: true</strong></td>
+</tr>
+<tr>
+<td><code>settings.printerTemps</code></td>
+<td>boolean</td>
+<td>no</td>
+<td>File must have a max temperature that is lower than the printer&#39;s max temperature.<br><strong>Default: true</strong></td>
+</tr>
+</tbody></table>
+<h3 id='response-2'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Success message or error message if <code>status</code> is false.</td>
+</tr>
+<tr>
+<td><code>queue</code></td>
+<td>object</td>
+<td>The queue object.</td>
+</tr>
+<tr>
+<td><code>queue.total</code></td>
+<td>integer</td>
+<td>The total amount of items in the queue.</td>
+</tr>
+<tr>
+<td><code>queue.printers</code></td>
+<td>integer[]</td>
+<td>The printer ids that were requested.</td>
+</tr>
+<tr>
+<td><code>queue.matches</code></td>
+<td>array</td>
+<td>The next items for each printer.</td>
+</tr>
+<tr>
+<td><code>queue.matches[].id</code></td>
+<td>integer</td>
+<td>The id of the next item. Only present if <code>match</code> is true.</td>
+</tr>
+<tr>
+<td><code>queue.matches[].index</code></td>
+<td>integer</td>
+<td>The index of the item in the queue. Only present if <code>match</code> is true.</td>
+</tr>
+<tr>
+<td><code>queue.matches[].printer</code></td>
+<td>integer</td>
+<td>The id of the printer that the item is for.</td>
+</tr>
+<tr>
+<td><code>queue.matches[].match</code></td>
+<td>boolean</td>
+<td>True if a match was found.</td>
+</tr>
+<tr>
+<td><code>queue.matches[].issues</code></td>
+<td>string[]</td>
+<td>The issues that are present in the item. Can also have values if an item was matched but would have been catched by other settings.</td>
+</tr>
+<tr>
+<td><code>queue.matches[].missed</code></td>
+<td>integer</td>
+<td>The amount of items that were skipped.</td>
+</tr>
+<tr>
+<td><code>queue.matches[].name</code></td>
+<td>string</td>
+<td>The name of the item. Only present if <code>match</code> is true.</td>
+</tr>
+<tr>
+<td><code>queue.matches[].printed</code></td>
+<td>integer</td>
+<td>The amount of completed prints of this item (from print queue). Only present if <code>match</code> is true.</td>
+</tr>
+<tr>
+<td><code>queue.matches[].left</code></td>
+<td>integer</td>
+<td>The amount of prints left (from print queue). Only present if <code>match</code> is true.</td>
+</tr>
+</tbody></table>
 <h2 id='get-queue-items'>Get queue items</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/queue/GetItems?p<span class="o">=</span>1234 <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
@@ -2400,7 +2629,7 @@ Also, folders cannot be moved into themselves.</p>
 </aside>
 
 <p>This endpoint returns the queue for the specified or all printers.</p>
-<h3 id='request-2'>Request</h3>
+<h3 id='request-3'>Request</h3>
 <p><code>GET /{id}/queue/GetItems</code></p>
 
 <table><thead>
@@ -2418,7 +2647,7 @@ Also, folders cannot be moved into themselves.</p>
 <td>The printer id to get the queue for. If not specified, the queue for all printers will be returned.</td>
 </tr>
 </tbody></table>
-<h3 id='response-2'>Response</h3>
+<h3 id='response-3'>Response</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2610,7 +2839,7 @@ Also, folders cannot be moved into themselves.</p>
 </aside>
 
 <p>This endpoint updates the queue item with the specified id.</p>
-<h3 id='request-3'>Request</h3>
+<h3 id='request-4'>Request</h3>
 <p><code>POST /{id}/queue/UpdateItem</code></p>
 <h4 id='query-parameters'>Query parameters</h4>
 <table><thead>
@@ -2628,7 +2857,7 @@ Also, folders cannot be moved into themselves.</p>
 <td>The queue item id to update.</td>
 </tr>
 </tbody></table>
-<h4 id='request-body'>Request body</h4>
+<h4 id='request-body-2'>Request body</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2662,7 +2891,7 @@ Also, folders cannot be moved into themselves.</p>
 <td>The new amount to set.</td>
 </tr>
 </tbody></table>
-<h3 id='response-3'>Response</h3>
+<h3 id='response-4'>Response</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2698,7 +2927,7 @@ Also, folders cannot be moved into themselves.</p>
 </aside>
 
 <p>This endpoint deletes the queue item with the specified id.</p>
-<h3 id='request-4'>Request</h3>
+<h3 id='request-5'>Request</h3>
 <p><code>? /{id}/queue/DeleteItem</code></p>
 
 <table><thead>
@@ -2716,7 +2945,7 @@ Also, folders cannot be moved into themselves.</p>
 <td>The queue item id to delete.</td>
 </tr>
 </tbody></table>
-<h3 id='response-4'>Response</h3>
+<h3 id='response-5'>Response</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2752,7 +2981,7 @@ Also, folders cannot be moved into themselves.</p>
 </aside>
 
 <p>This endpoint changes the order of the queue items by moving the queue item with the specified id.</p>
-<h3 id='request-5'>Request</h3>
+<h3 id='request-6'>Request</h3>
 <p><code>GET /{id}/queue/SetOrder</code></p>
 
 <table><thead>
@@ -2782,7 +3011,7 @@ Also, folders cannot be moved into themselves.</p>
 <td>The new position of the queue item.</td>
 </tr>
 </tbody></table>
-<h3 id='response-5'>Response</h3>
+<h3 id='response-6'>Response</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2828,9 +3057,9 @@ Also, folders cannot be moved into themselves.</p>
 </tbody></table>
 
 <p>This endpoint empties the queue.</p>
-<h3 id='request-6'>Request</h3>
+<h3 id='request-7'>Request</h3>
 <p><code>GET /{id}/queue/EmptyQueue</code></p>
-<h3 id='response-6'>Response</h3>
+<h3 id='response-7'>Response</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3761,271 +3990,7 @@ Also, folders cannot be moved into themselves.</p>
 <td>The total number of pages for the given parameters.</td>
 </tr>
 </tbody></table>
-<h1 id='user-management'>User Management</h1><h2 id='create-invitation-link'>Create Invitation Link</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/users/CreateInvitationLink <span class="se">\</span>
-  <span class="nt">-X</span> POST <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Request body</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"maxUses"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://simplyprint.io/accept_invitation/b3d9b5a0-5b5b-11e9-8d7c-2d3b9e84aafd"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<aside class="notice">
-  This endpoint requires the <b>Print Farm</b> plan.
-</aside>
-
-<table><thead>
-<tr>
-<th>Required permissions</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>INVITE_USERS</code></td>
-</tr>
-</tbody></table>
-
-<p>This endpoint creates an invitation link that can be used to invite new users to the company.
-Please note that links with unlimited uses expire at the end of the day.</p>
-<h3 id='request'>Request</h3>
-<p><code>POST /{id}/users/CreateInvitationLink</code></p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>maxUses</code></td>
-<td>integer</td>
-<td>no</td>
-<td>The maximum number of times the link can be used. Specify 0 for unlimited uses.</td>
-</tr>
-</tbody></table>
-<h3 id='response'>Response</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>status</code></td>
-<td>boolean</td>
-<td>True if the request was successful.</td>
-</tr>
-<tr>
-<td><code>message</code></td>
-<td>string</td>
-<td>Error message if <code>status</code> is false.</td>
-</tr>
-<tr>
-<td><code>link</code></td>
-<td>string</td>
-<td>The invitation link.</td>
-</tr>
-</tbody></table>
-<h2 id='invite-users-by-email'>Invite Users By Email</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/users/InviteSpecificUser <span class="se">\</span>
-  <span class="nt">-X</span> POST <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Request body</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"test@example.com"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"test2@example.com"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">192</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<aside class="notice">
-  This endpoint requires the <b>Print Farm</b> plan.
-</aside>
-
-<table><thead>
-<tr>
-<th>Required permissions</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>INVITE_USERS</code></td>
-</tr>
-</tbody></table>
-
-<p>This endpoint invites one or more users to the company by email.</p>
-<h3 id='request-2'>Request</h3>
-<p><code>POST /{id}/users/InviteSpecificUser</code></p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>emails</code></td>
-<td>string[]</td>
-<td>yes</td>
-<td>The emails of the users to invite.</td>
-</tr>
-<tr>
-<td><code>rank</code></td>
-<td>integer</td>
-<td>no</td>
-<td>The rank id that the users should be assigned.</td>
-</tr>
-</tbody></table>
-<h3 id='response-2'>Response</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>status</code></td>
-<td>boolean</td>
-<td>True if the request was successful.</td>
-</tr>
-<tr>
-<td><code>message</code></td>
-<td>string</td>
-<td>Error message if <code>status</code> is false.</td>
-</tr>
-</tbody></table>
-<h2 id='delete-user'>Delete User</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/users/DeleteUser <span class="se">\</span>
-  <span class="nt">-X</span> POST <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Request body</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<aside class="notice">
-  This endpoint requires the <b>Print Farm</b> plan.
-</aside>
-
-<table><thead>
-<tr>
-<th>Required permissions</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>DELETE_USER</code></td>
-</tr>
-</tbody></table>
-
-<p>This endpoint deletes a user from the company. Use this endpoint with caution.</p>
-<h3 id='request-3'>Request</h3>
-<p><code>POST /{id}/users/DeleteUser</code></p>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>user_id</code></td>
-<td>integer</td>
-<td>yes</td>
-<td>The id of the user to delete.</td>
-</tr>
-</tbody></table>
-<h3 id='response-3'>Response</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><code>status</code></td>
-<td>boolean</td>
-<td>True if the request was successful.</td>
-</tr>
-<tr>
-<td><code>message</code></td>
-<td>string</td>
-<td>Error message if <code>status</code> is false.</td>
-</tr>
-</tbody></table>
-<h2 id='accept-or-deny-pending-user'>Accept or Deny Pending User</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/users/SetPendingUserState <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-4'>Request</h3>
-<p><code>? /{id}/users/SetPendingUserState</code></p>
-
-<p>TODO</p>
-<h2 id='change-user-rank'>Change User Rank</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/users/ChangeUserRank <span class="se">\</span>
-  <span class="nt">-X</span> ? <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
-</code></pre></div>
-<blockquote>
-<p>Success response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='request-5'>Request</h3>
-<p><code>? /{id}/users/ChangeUserRank</code></p>
-
-<p>TODO</p>
-<h2 id='get-company-users'>Get Company Users</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/users/GetPaginatedUsers <span class="se">\</span>
+<h1 id='user-management'>User Management</h1><h2 id='get-company-users'>Get Company Users</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/users/GetPaginatedUsers <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
@@ -4046,7 +4011,25 @@ Please note that links with unlimited uses expire at the end of the day.</p>
 <p>Success response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"TODO"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TODO"</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"relation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4321</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"email_confirmed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"johndoe@example.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"relation_created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-07-28 23:30:14"</span><span class="p">,</span><span class="w"> </span><span class="err">TODO:</span><span class="w"> </span><span class="err">CHANGE</span><span class="w"> </span><span class="err">TIME</span><span class="w"> </span><span class="err">TO</span><span class="w"> </span><span class="err">UNIX</span><span class="w"> </span><span class="err">TIMESTAMP</span><span class="w">
+            </span><span class="nl">"last_online"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-03-02 15:44:44"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"approved_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-07-29 11:14:52"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"org_account"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"total_prints"</span><span class="p">:</span><span class="w"> </span><span class="mi">68</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">185</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"page_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <aside class="notice">
@@ -4062,7 +4045,7 @@ Please note that links with unlimited uses expire at the end of the day.</p>
 <td><code>VIEW_USERS</code></td>
 </tr>
 </tbody></table>
-<h3 id='request-6'>Request</h3>
+<h3 id='request'>Request</h3>
 <p><code>POST /{id}/users/GetPaginatedUsers</code></p>
 
 <table><thead>
@@ -4140,6 +4123,476 @@ Please note that links with unlimited uses expire at the end of the day.</p>
 <tr>
 <td>5</td>
 <td>Amount of prints</td>
+</tr>
+</tbody></table>
+<h3 id='response'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is false.</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td>array</td>
+<td>An array of users.</td>
+</tr>
+<tr>
+<td><code>data[].id</code></td>
+<td>integer</td>
+<td>The id of the user.</td>
+</tr>
+<tr>
+<td><code>data[].relation_id</code></td>
+<td>integer</td>
+<td>The id of the user-company relation.</td>
+</tr>
+<tr>
+<td><code>data[].name</code></td>
+<td>string</td>
+<td>The name of the user.</td>
+</tr>
+<tr>
+<td><code>data[].email_confirmed</code></td>
+<td>boolean</td>
+<td>True if the user has confirmed their email address.</td>
+</tr>
+<tr>
+<td><code>data[].email</code></td>
+<td>string</td>
+<td>The email address of the user.</td>
+</tr>
+<tr>
+<td><code>data[].phone</code></td>
+<td>string</td>
+<td>The phone number of the user.</td>
+</tr>
+<tr>
+<td><code>data[].relation_created_at</code></td>
+<td>string</td>
+<td>The date and time the user joined the company.</td>
+</tr>
+<tr>
+<td><code>data[].last_online</code></td>
+<td>string</td>
+<td>The date and time the user was last online. Only present if user is approved</td>
+</tr>
+<tr>
+<td><code>data[].approved_at</code></td>
+<td>string</td>
+<td>The date and time the user was approved. Only present if user is approved</td>
+</tr>
+<tr>
+<td><code>data[].org_account</code></td>
+<td>boolean</td>
+<td>True if the user is an organization account. Only present if user is approved</td>
+</tr>
+<tr>
+<td><code>data[].total_prints</code></td>
+<td>integer</td>
+<td>The total number of prints the user has made on this company. Only present if user is approved</td>
+</tr>
+<tr>
+<td><code>data[].rank</code></td>
+<td>integer</td>
+<td>The id of the rank of the user. Only present if user is approved</td>
+</tr>
+<tr>
+<td><code>page_amount</code></td>
+<td>integer</td>
+<td>The total number of pages.</td>
+</tr>
+</tbody></table>
+<h2 id='create-invitation-link'>Create Invitation Link</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/users/CreateInvitationLink <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"maxUses"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://simplyprint.io/accept_invitation/b3d9b5a0-5b5b-11e9-8d7c-2d3b9e84aafd"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+<table><thead>
+<tr>
+<th>Required permissions</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>INVITE_USERS</code></td>
+</tr>
+</tbody></table>
+
+<p>This endpoint creates an invitation link that can be used to invite new users to the company.
+Please note that links with unlimited uses expire at the end of the day.</p>
+<h3 id='request-2'>Request</h3>
+<p><code>POST /{id}/users/CreateInvitationLink</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>maxUses</code></td>
+<td>integer</td>
+<td>no</td>
+<td>The maximum number of times the link can be used. Specify 0 for unlimited uses.</td>
+</tr>
+</tbody></table>
+<h3 id='response-2'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is false.</td>
+</tr>
+<tr>
+<td><code>link</code></td>
+<td>string</td>
+<td>The invitation link.</td>
+</tr>
+</tbody></table>
+<h2 id='invite-users-by-email'>Invite Users By Email</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/users/InviteSpecificUser <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"emails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"test@example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"test2@example.com"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"rank"</span><span class="p">:</span><span class="w"> </span><span class="mi">192</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+<table><thead>
+<tr>
+<th>Required permissions</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>INVITE_USERS</code></td>
+</tr>
+</tbody></table>
+
+<p>This endpoint invites one or more users to the company by email.</p>
+<h3 id='request-3'>Request</h3>
+<p><code>POST /{id}/users/InviteSpecificUser</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>emails</code></td>
+<td>string[]</td>
+<td>yes</td>
+<td>The emails of the users to invite.</td>
+</tr>
+<tr>
+<td><code>rank</code></td>
+<td>integer</td>
+<td>no</td>
+<td>The rank id that the users should be assigned.</td>
+</tr>
+</tbody></table>
+<h3 id='response-3'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is false.</td>
+</tr>
+</tbody></table>
+<h2 id='accept-or-deny-pending-user'>Accept or Deny Pending User</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/users/SetPendingUserState <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"relation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"approve"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"notify"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+<table><thead>
+<tr>
+<th>Required permissions</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>INVITE_USERS</code></td>
+</tr>
+</tbody></table>
+<h3 id='request-4'>Request</h3>
+<p><code>POST /{id}/users/SetPendingUserState</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>relation_id</code></td>
+<td>integer</td>
+<td>yes</td>
+<td>The id of the pending user-company relation.</td>
+</tr>
+<tr>
+<td><code>approve</code></td>
+<td>boolean</td>
+<td>yes</td>
+<td>True to approve the user, false to deny.</td>
+</tr>
+<tr>
+<td><code>notify</code></td>
+<td>boolean</td>
+<td>yes</td>
+<td>True to notify the user of the decision. Will send an email if the user has an email address.</td>
+</tr>
+</tbody></table>
+<h3 id='response-4'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is false.</td>
+</tr>
+</tbody></table>
+<h2 id='change-user-rank'>Change User Rank</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/users/ChangeUserRank <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"relation_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rank_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">192</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='request-5'>Request</h3>
+<p><code>POST /{id}/users/ChangeUserRank</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>relation_id</code></td>
+<td>integer</td>
+<td>yes</td>
+<td>The id of the user-company relation.</td>
+</tr>
+<tr>
+<td><code>rank_id</code></td>
+<td>integer</td>
+<td>yes</td>
+<td>The id of the rank to assign to the user.</td>
+</tr>
+</tbody></table>
+<h3 id='response-5'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is false.</td>
+</tr>
+</tbody></table>
+<h2 id='delete-user'>Delete User</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/users/DeleteUser <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+<table><thead>
+<tr>
+<th>Required permissions</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>DELETE_USER</code></td>
+</tr>
+</tbody></table>
+
+<p>This endpoint deletes a user from the company. Use this endpoint with caution.</p>
+<h3 id='request-6'>Request</h3>
+<p><code>POST /{id}/users/DeleteUser</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>user_id</code></td>
+<td>integer</td>
+<td>yes</td>
+<td>The id of the user to delete.</td>
+</tr>
+</tbody></table>
+<h3 id='response-6'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is false.</td>
 </tr>
 </tbody></table>
 <h1 id='permissions'>Permissions</h1>
