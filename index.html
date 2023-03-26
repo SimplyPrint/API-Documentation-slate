@@ -542,8 +542,6 @@
 <p>To get an API key you&#39;ll need a SimplyPrint account that is either a member of an organization or has at least the <a href="https://simplyprint.io/#pricing">SimplyPrint Pro plan</a>.</p>
 
 <p>To create your own API key you first need a SimplyPrint account, you can go to your <a href="https://simplyprint.io/panel/user_settings/api">account settings</a> and create a new API key.</p>
-
-<p>TODO; Create API key page and explain how to create an API key.</p>
 <h2 id='the-base-url'>The base URL</h2>
 <p>The base URL for the SimplyPrint API is <code>https://api.simplyprint.io/{id}/</code>.</p>
 
@@ -1123,7 +1121,7 @@
 <tr>
 <td><code>files[].queued</code></td>
 <td>boolean</td>
-<td>TODO</td>
+<td>Whether the print job was from print queue.</td>
 </tr>
 <tr>
 <td><code>jobIds</code></td>
@@ -2998,7 +2996,7 @@ Also, folders cannot be moved into themselves.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <aside class="notice">
-  This endpoint requires the <b>Print Farm</b> plan.
+  This endpoint requires the <b>Pro</b> plan.
 </aside>
 
 <p>This endpoint returns the queue for the specified or all printers.</p>
@@ -3142,11 +3140,6 @@ Also, folders cannot be moved into themselves.</p>
 <td><code>queue.items[].analysis.temps.bed</code></td>
 <td>integer</td>
 <td>Temperature for the bed.</td>
-</tr>
-<tr>
-<td><code>queue.items[].analysis.temps.pset</code></td>
-<td>integer</td>
-<td>TODO</td>
 </tr>
 <tr>
 <td><code>queue.items[].analysis.modelSize</code></td>
@@ -5246,7 +5239,49 @@ Please note that links with unlimited uses expire at the end of the day.</p>
 </tr>
 </tbody></table>
 <h1 id='permissions'>Permissions</h1>
-<p>TODO</p>
+<table><thead>
+<tr>
+<th>Permission</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>PRINTER_EDIT</code></td>
+<td>&quot;Allow to create, edit and delete printers&quot;</td>
+</tr>
+<tr>
+<td><code>CREATE_FILAMENT</code></td>
+<td>&quot;Allow creating, editing and deleting filament spools&quot;</td>
+</tr>
+<tr>
+<td><code>CHANGE_FILAMENT</code></td>
+<td>&quot;Allow change of filament&quot;</td>
+</tr>
+<tr>
+<td><code>PRINT_QUEUE_REMOVE_ALL</code></td>
+<td>&quot;Allow deletion of other user&#39;s print queue items&quot;</td>
+</tr>
+<tr>
+<td><code>ORG_RANK_MANAGEMENT</code></td>
+<td>&quot;Allow to create, edit, delete and change order of user groups&quot;</td>
+</tr>
+<tr>
+<td><code>VIEW_USERS</code></td>
+<td>&quot;Allow overview of users in organization&quot;</td>
+</tr>
+<tr>
+<td><code>INVITE_USERS</code></td>
+<td>&quot;Allow invite of other users&quot;</td>
+</tr>
+<tr>
+<td><code>DELETE_USER</code></td>
+<td>&quot;Allow delete users&quot;</td>
+</tr>
+<tr>
+<td><code>SLICER_ORG_PROFILES</code></td>
+<td>&quot;Allow to create and edit organisation slicer profiles&quot;</td>
+</tr>
+</tbody></table>
 <h1 id='errors'>Errors</h1>
 <p>The SimplyPrint API uses the following HTTP error codes:</p>
 
