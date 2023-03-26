@@ -252,7 +252,7 @@ curl https://api.simplyprint.io/{id}/queue/GetItems?p=1234 \
 ```
 
 <aside class="notice">
-  This endpoint requires the <b>Print Farm</b> plan.
+  This endpoint requires the <b>Pro</b> plan.
 </aside>
 
 This endpoint returns the queue for the specified or all printers.
@@ -292,7 +292,6 @@ This endpoint returns the queue for the specified or all printers.
 | `queue.items[].analysis.temps` | object | The temperatures object. |
 | `queue.items[].analysis.temps.tool` | object | Temperature for each tool (extruder). |
 | `queue.items[].analysis.temps.bed` | integer | Temperature for the bed. |
-| `queue.items[].analysis.temps.pset` | integer | TODO |
 | `queue.items[].analysis.modelSize` | object | The model size object. Represented as `x`, `y` and `z` values in millimeters. |
 | `queue.items[].analysis.printArea` | object | The print area object. Represented as `maxX`, `minX`, `maxY`, `minY`, `maxZ` and `minZ` values in millimeters. |
 | `queue.items[].analysis.minDeltaRadius` | float | Minimum radius for delta printers. |

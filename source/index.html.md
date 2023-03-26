@@ -58,8 +58,6 @@ To get an API key you'll need a SimplyPrint account that is either a member of a
 
 To create your own API key you first need a SimplyPrint account, you can go to your [account settings](https://simplyprint.io/panel/user_settings/api) and create a new API key.
 
-TODO; Create API key page and explain how to create an API key.
-
 ## The base URL
 
 The base URL for the SimplyPrint API is `https://api.simplyprint.io/{id}/`.

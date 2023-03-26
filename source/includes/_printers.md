@@ -302,7 +302,7 @@ To start a print job you must either specify a `filesystem` ID, a `queue_file` I
 | `files[].name` | string | The name of the file. |
 | `files[].analysis` | object | The analysis of the file. This has been documented in the [Get queue items endpoint](#get-queue-items). |
 | `files[].printers` | integer[] | The IDs of the printers that the print job was started on. |
-| `files[].queued` | boolean | TODO |
+| `files[].queued` | boolean | Whether the print job was from print queue. |
 | `jobIds` | integer[] | The IDs of the print jobs that were started. |
 
 ## Pause print job
