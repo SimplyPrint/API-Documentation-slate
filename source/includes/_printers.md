@@ -277,10 +277,6 @@ curl https://api.simplyprint.io/{id}/printers/actions/CreateJob?pid=1234&filesys
 }
 ```
 
-<aside class="notice">
-  This endpoint requires the <b>Print Farm</b> plan.
-</aside>
-
 This endpoint can be used to create a print job for one or more printers. The printers have to be in the `operational` state.
 
 ### Request
@@ -294,7 +290,7 @@ To start a print job you must either specify a `filesystem` ID, a `queue_file` I
 | `pid` | integer or integer[] | yes | The ID(s) of the printer to create the job for. |
 | `filesystem` | string | no | The filesystem ID of the file to print. |
 | `queue_file` | integer | no | The queue ID of the queue item to print. |
-| `next_queue_item` | boolean | no | If true, the next queue item will be printed. |
+| `next_queue_item` | boolean | no | If true, the next queue item will be printed.<br>**This requires the Print Farm plan** |
 
 ### Response
 
