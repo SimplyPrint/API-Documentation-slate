@@ -298,9 +298,9 @@ You can specify these parameters if `next_queue_item` is `true`. Note that you c
 
 | Parameter | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
-| `analysis_strict` | boolean | no | Match the next item that has a valid gcode analysis.<br>**Defaults to false** |
-| `fit_strict` | boolean | no | Match the next item if it fits on the printers print area.<br>**Defaults to false** |
-| `temps_strict` | boolean | no | Match the next item where the printer can reach the temperatures specified in the gcode.<br>**Defaults to false** |
+| `analysis_strict` | boolean | no | Match the next item that has a valid gcode analysis.<br>**Defaults to true** |
+| `fit_strict` | boolean | no | Match the next item if it fits on the printers print area.<br>**Defaults to true** |
+| `temps_strict` | boolean | no | Match the next item where the printer can reach the temperatures specified in the gcode.<br>**Defaults to true** |
 | `filament_strict` | boolean | no | Match the next item that was sliced for the same filament type that the printer is assigned to in SimplyPrint.<br>**Defaults to false** | 
 | `filament_temps_strict` | boolean | no | Match the next item that has the same filament temperatures as the printer has in SimplyPrint.<br>**Defaults to false** |
 
