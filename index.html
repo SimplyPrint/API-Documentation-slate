@@ -1080,6 +1080,48 @@
 <td>If true, the next queue item will be printed.<br><strong>This requires the Print Farm plan</strong></td>
 </tr>
 </tbody></table>
+<h4 id='extra-settings-for-next_queue_item'>Extra settings for <code>next_queue_item</code></h4>
+<p>You can specify these parameters if <code>next_queue_item</code> is <code>true</code>. Note that you can specify more/all of the below parameters.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>analysis_strict</code></td>
+<td>boolean</td>
+<td>no</td>
+<td>Match the next item that has a valid gcode analysis.<br><strong>Defaults to false</strong></td>
+</tr>
+<tr>
+<td><code>fit_strict</code></td>
+<td>boolean</td>
+<td>no</td>
+<td>Match the next item if it fits on the printers print area.<br><strong>Defaults to false</strong></td>
+</tr>
+<tr>
+<td><code>temps_strict</code></td>
+<td>boolean</td>
+<td>no</td>
+<td>Match the next item where the printer can reach the temperatures specified in the gcode.<br><strong>Defaults to false</strong></td>
+</tr>
+<tr>
+<td><code>filament_strict</code></td>
+<td>boolean</td>
+<td>no</td>
+<td>Match the next item that was sliced for the same filament type that the printer is assigned to in SimplyPrint.<br><strong>Defaults to false</strong></td>
+</tr>
+<tr>
+<td><code>filament_temps_strict</code></td>
+<td>boolean</td>
+<td>no</td>
+<td>Match the next item that has the same filament temperatures as the printer has in SimplyPrint.<br><strong>Defaults to false</strong></td>
+</tr>
+</tbody></table>
 <h3 id='response-2'>Response</h3>
 <table><thead>
 <tr>
