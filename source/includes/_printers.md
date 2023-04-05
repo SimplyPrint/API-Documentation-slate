@@ -292,6 +292,19 @@ To start a print job you must either specify a `filesystem` ID, a `queue_file` I
 | `queue_file` | integer | no | The queue ID of the queue item to print. |
 | `next_queue_item` | boolean | no | If true, the next queue item will be printed.<br>**This requires the Print Farm plan** |
 
+#### Extra settings for `next_queue_item`
+
+You can specify these parameters if `next_queue_item` is `true`. Note that you can specify more/all of the below parameters.
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `analysis_strict` | boolean | no | Match the next item that has a valid gcode analysis.<br>**Defaults to false** |
+| `fit_strict` | boolean | no | Match the next item if it fits on the printers print area.<br>**Defaults to false** |
+| `temps_strict` | boolean | no | Match the next item where the printer can reach the temperatures specified in the gcode.<br>**Defaults to false** |
+| `filament_strict` | boolean | no | Match the next item that was sliced for the same filament type that the printer is assigned to in SimplyPrint.<br>**Defaults to false** | 
+| `filament_temps_strict` | boolean | no | Match the next item that has the same filament temperatures as the printer has in SimplyPrint.<br>**Defaults to false** |
+
+
 ### Response
 
 | Field | Type | Description |
