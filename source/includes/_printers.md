@@ -346,7 +346,7 @@ This endpoint can be used to pause one or multiple print jobs. The printers have
 
 | Parameter | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
-| `pid` | integer or integer[] | yes | The ID(s) of the printer to pause. Pause multiple printers by comma separating printer ids.<br>**Printer must be in `PRINTER_PRINTING` state** |
+| `pid` | integer or integer[] | yes | The ID(s) of the printer to pause. Pause multiple printers by comma separating printer ids.<br>**Printer must be in `PRINTING` state** |
 
 #### Response
 
@@ -431,7 +431,7 @@ This endpoint can be used to cancel one or multiple print jobs. The printers hav
 
 | Parameter | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
-| `pid` | integer or integer[] | yes | The ID(s) of the printer to cancel. Cancel multiple printers by comma separating printer ids.<br>**Printer must be in `PRINTER_PRINTING`, `PRINTER_PAUSED` or `PRINTER_PAUSING` state** |
+| `pid` | integer or integer[] | yes | The ID(s) of the printer to cancel. Cancel multiple printers by comma separating printer ids.<br>**Printer must be in `PRINTING`, `PAUSED` or `PAUSING` state** |
 
 #### Request body
 
