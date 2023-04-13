@@ -22,7 +22,8 @@ curl https://api.simplyprint.io/{id}/queue/AddItem \
 ```json
 {
   "status": true,
-  "message": null
+  "message": null,
+  "created_id": 1337
 }
 ```
 
@@ -49,6 +50,7 @@ This endpoint adds a file to the queue. The file can either be a file on the fil
 | --------- | ---- | ----------- |
 | `status` | boolean | True if the request was successful. |
 | `message` | string | Success message or error message if `status` is false. |
+| `created_id` | integer | The id of the created queue item |
 
 ## Get next queue item
 
