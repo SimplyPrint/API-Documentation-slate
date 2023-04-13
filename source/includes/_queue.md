@@ -201,6 +201,7 @@ curl https://api.simplyprint.io/{id}/queue/GetItems?p=1234 \
         "model": false,
         "left": 1,
         "printed": 0,
+        "filesystem_id": "c00489ef361771ac098b5a60e6740757",
         "for": {
           "printers": [
             1234
@@ -282,6 +283,7 @@ This endpoint returns the queue for the specified or all printers.
 | `queue.items[].model` | boolean | True if the queue item is a model. |
 | `queue.items[].left` | integer | The amount of prints left to print. |
 | `queue.items[].printed` | integer | The amount of prints that have been printed. |
+| `queue.items[].filesystem_id` | string/null | File id if print is from SimplyPrint filesystem. | 
 | `queue.items[].for` | object | For which printers, models and groups this queue item is for. |
 | `queue.items[].for.printers` | array | An array of printer ids. |
 | `queue.items[].for.models` | array | An array of printer model ids. |
