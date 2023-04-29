@@ -134,6 +134,18 @@ curl https://api.simplyprint.io/{id}/printers/Get \
         "time": 12627,
         "canPreview": true,
         "layer": null
+      },
+      "tags": {
+        "nozzle": 0.6,
+        "material": [
+          {
+            "ext": 0,
+            "type": 123,
+            "color": "Green",
+            "hex":"#4CAF50"
+          }
+        ],
+        "custom": [1, 2, 3]
       }
     },
     ...

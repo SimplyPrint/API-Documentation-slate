@@ -29,10 +29,47 @@ curl https://api.simplyprint.io/{id}/files/GetFiles?f=123&search=benchy \
         "printsFailed": 0,
         "timesSliced": 0
       },
-      "user_id": 6044,
+      "user_id": 123,
       "thumbnail": 1,
       "folder": 0,
-      "user": 6044
+      "user": 123,
+    },
+    {
+      "id": "e82ab9e1cc3c20850d94d5cf539390c0",
+      "name": "3DBenchy",
+      "ext": "gcode",
+      "type": "model",
+      "size": 1285384,
+      "created": "December 23, 2022, 18:00",
+      "createdint": 1671813330,
+      "printData": {
+        "printsDone": 10,
+        "printsCancelled": 5,
+        "printsFailed": 0,
+        "timesSliced": 0
+      },
+      "user_id": 123,
+      "thumbnail": 1,
+      "folder": 0,
+      "user": 123,
+      "forPrinters": [
+        // list of printers IDs selected for file; key not present if no printers are selected 
+        1,
+        2,
+        3
+      ],
+      "tags": {
+        "nozzle": 0.6,
+        "material": [
+          {
+            "ext": 0,
+            "type": 123,
+            "color": "Green",
+            "hex":"#4CAF50"
+          }
+        ],
+        "custom": [1, 2, 3]
+      }
     }
   ],
   "folders": [

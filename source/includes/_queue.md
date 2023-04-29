@@ -158,6 +158,7 @@ This endpoint gets the next item in the queue for the specified printer. The nex
 | `settings.fit` | boolean | no | Print must fit printer's bed.<br>**Default: true** |
 | `settings.gcodeAnalysis` | boolean | no | Must have gcode analysis.<br>**Default: true** |
 | `settings.printerTemps` | boolean | no | File must have a max temperature that is lower than the printer's max temperature.<br>**Default: true** |
+| `settings.tags` | boolean | no | Printer must match possible queue item tags (nozzle size, material data & custom tags).<br>**Default: true** |
 
 ### Response
 
@@ -249,7 +250,19 @@ curl https://api.simplyprint.io/{id}/queue/GetItems?p=1234 \
           "v": 5
         },
         "user": "John Doe",
-        "user_id": 1234
+        "user_id": 1234,
+        "tags": {
+          "nozzle": 0.6,
+          "material": [
+            {
+              "ext": 0,
+              "type": 123,
+              "color": "Green",
+              "hex":"#4CAF50"
+            }
+          ],
+          "custom": [1, 2, 3]
+        }
       }
     ]
   }
