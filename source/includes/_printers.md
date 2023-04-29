@@ -214,6 +214,7 @@ Note that `data` will be an object if `pid` is specified, otherwise it will be a
 | `data.*.printer.outOfOrder` | boolean | Whether the printer is out of order. |
 | `data.*.filament` | object | Printer's filament data. |
 | `data.*.job` | object | Printer's current job data. See [Get Print Jobs](#get-print-jobs) for more info. |
+| `data.*.tags` | object|nullable | Tags for printer; custom tags, static material data & nozzle size |
 
 ## Start print / create job
 
