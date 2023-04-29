@@ -317,6 +317,7 @@ This endpoint returns the queue for the specified or all printers.
 | `queue.items[].analysis.v` | integer | The analysis version. |
 | `queue.items[].user` | string | The user name of who added the queue item. |
 | `queue.items[].user_id` | integer | The user id of who added the queue item. |
+| `queue.items[].tags` | object|nullable | Tags for queue item; custom tags, static material data & nozzle size |
 
 ## Update queue item
 
