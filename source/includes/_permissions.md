@@ -11,3 +11,4 @@
 | `INVITE_USERS` | "Allow invite of other users" |
 | `DELETE_USER` | "Allow delete users" |
 | `SLICER_ORG_PROFILES` | "Allow to create and edit organisation slicer profiles" |
+| `EDIT_TAGS` | "Allow user to create, update and delete tags" |
