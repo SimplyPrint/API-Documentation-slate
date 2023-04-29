@@ -984,6 +984,11 @@
 <td>object</td>
 <td>Printer&#39;s current job data. See <a href="#get-print-jobs">Get Print Jobs</a> for more info.</td>
 </tr>
+<tr>
+<td><code>data.*.tags</code></td>
+<td>object</td>
+<td>nullable</td>
+</tr>
 </tbody></table>
 <h2 id='start-print-create-job'>Start print / create job</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/printers/actions/CreateJob?pid<span class="o">=</span>1234&amp;filesystem<span class="o">=</span>291 <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
