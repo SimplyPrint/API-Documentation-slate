@@ -3299,6 +3299,11 @@ Also, folders cannot be moved into themselves.</p>
 <td>integer</td>
 <td>The user id of who added the queue item.</td>
 </tr>
+<tr>
+<td><code>queue.items[].tags</code></td>
+<td>object</td>
+<td>nullable</td>
+</tr>
 </tbody></table>
 <h2 id='update-queue-item'>Update queue item</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/queue/UpdateItem?job<span class="o">=</span>1234 <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
