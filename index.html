@@ -309,6 +309,7 @@
     </style>
     <link href="stylesheets/screen-39dadbeb.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print-953e3353.css" rel="stylesheet" media="print" />
+    <link href="stylesheets/custom-05ae9260.css" rel="stylesheet" media="screen" />
       <script src="javascripts/all-b12a2749.js"></script>
 
     <script>
@@ -505,6 +506,35 @@
                   </li>
                   <li>
                     <a href="#delete-slicer-profile" class="toc-h2 toc-link" data-title="Delete Slicer Profile">Delete Slicer Profile</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#tags" class="toc-h1 toc-link" data-title="Tags">Tags</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-or-update-custom-tag" class="toc-h2 toc-link" data-title="Create or Update Custom Tag">Create or Update Custom Tag</a>
+                  </li>
+                  <li>
+                    <a href="#get-custom-tag-s" class="toc-h2 toc-link" data-title="Get Custom Tag(s)">Get Custom Tag(s)</a>
+                  </li>
+                  <li>
+                    <a href="#delete-custom-tag" class="toc-h2 toc-link" data-title="Delete Custom Tag">Delete Custom Tag</a>
+                  </li>
+                  <li>
+                    <a href="#assign-nozzle-size-tag" class="toc-h2 toc-link" data-title="Assign Nozzle Size Tag">Assign Nozzle Size Tag</a>
+                  </li>
+                  <li>
+                    <a href="#assign-material-tag" class="toc-h2 toc-link" data-title="Assign Material Tag">Assign Material Tag</a>
+                  </li>
+                  <li>
+                    <a href="#assign-custom-tag" class="toc-h2 toc-link" data-title="Assign Custom Tag">Assign Custom Tag</a>
+                  </li>
+                  <li>
+                    <a href="#detach-custom-tag" class="toc-h2 toc-link" data-title="Detach Custom Tag">Detach Custom Tag</a>
+                  </li>
+                  <li>
+                    <a href="#colors" class="toc-h2 toc-link" data-title="Colors">Colors</a>
                   </li>
               </ul>
           </li>
@@ -5371,6 +5401,773 @@ Please note that links with unlimited uses expire at the end of the day.</p>
 <td>Error message if <code>status</code> is false.</td>
 </tr>
 </tbody></table>
+<h1 id='tags'>Tags</h1><h2 id='create-or-update-custom-tag'>Create or Update Custom Tag</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/tags/Create <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Custom Tag"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"badge"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A tag"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"badge"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primary"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"used_by"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"printers"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"printer_groups"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"files"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"queue_items"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Custom Tag"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"badge"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+<table><thead>
+<tr>
+<th>Required permissions</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>EDIT_TAGS</code></td>
+</tr>
+</tbody></table>
+
+<p>This endpoint creates or updates a custom tag.</p>
+<h3 id='request'>Request</h3>
+<p><code>POST /{id}/tags/Create</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>no</td>
+<td>ID of the tag to update. Leave empty to create a new tag.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>yes</td>
+<td>Name of the tag.</td>
+</tr>
+<tr>
+<td><code>badge</code></td>
+<td>string</td>
+<td>yes</td>
+<td>Color of the tag. Please refer to the <a href="#colors">Colors</a> section for a list of available colors.</td>
+</tr>
+</tbody></table>
+<h3 id='response'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Success message or error message if <code>status</code> is false.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>ID of the created or updated tag.</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td>array</td>
+<td>Array of all tags.</td>
+</tr>
+<tr>
+<td><code>tags.*.id</code></td>
+<td>integer</td>
+<td>ID of the tag.</td>
+</tr>
+<tr>
+<td><code>tags.*.name</code></td>
+<td>string</td>
+<td>Name of the tag.</td>
+</tr>
+<tr>
+<td><code>tags.*.badge</code></td>
+<td>string</td>
+<td><a href="#colors">Color</a> of the tag.</td>
+</tr>
+<tr>
+<td><code>tags.*.used_by</code></td>
+<td>object</td>
+<td>Only present if the tag is used on any printers, printer groups, files or queue items.</td>
+</tr>
+<tr>
+<td><code>tags.*.used_by.printers</code></td>
+<td>integer</td>
+<td>Number of printers the tag is used on.</td>
+</tr>
+<tr>
+<td><code>tags.*.used_by.printer_groups</code></td>
+<td>integer</td>
+<td>Number of printer groups the tag is used on.</td>
+</tr>
+<tr>
+<td><code>tags.*.used_by.files</code></td>
+<td>integer</td>
+<td>Number of files the tag is used on.</td>
+</tr>
+<tr>
+<td><code>tags.*.used_by.queue_items</code></td>
+<td>integer</td>
+<td>Number of queue items the tag is used on.</td>
+</tr>
+</tbody></table>
+<h2 id='get-custom-tag-s'>Get Custom Tag(s)</h2>
+<blockquote>
+<p>Get a single tag</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/tags/Get?id<span class="o">=</span>2 <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"tag"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Custom Tag"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"badge"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Get all tags</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/tags/Get <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A tag"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"badge"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primary"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"used_by"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"printers"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"printer_groups"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"files"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"queue_items"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Custom Tag"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"badge"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+<p>This endpoint gets a single tag or all tags.</p>
+<h3 id='request-2'>Request</h3>
+<p><code>GET /{id}/tags/Get</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>no</td>
+<td>ID of the tag to get. Leave empty to get all tags.</td>
+</tr>
+</tbody></table>
+<h3 id='response-2'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Success message or error message if <code>status</code> is false.</td>
+</tr>
+<tr>
+<td><code>tag</code></td>
+<td>object</td>
+<td>Only present if <code>id</code> is set.</td>
+</tr>
+<tr>
+<td><code>tag.id</code></td>
+<td>integer</td>
+<td>ID of the tag.</td>
+</tr>
+<tr>
+<td><code>tag.name</code></td>
+<td>string</td>
+<td>Name of the tag.</td>
+</tr>
+<tr>
+<td><code>tag.badge</code></td>
+<td>string</td>
+<td><a href="#colors">Color</a> of the tag.</td>
+</tr>
+<tr>
+<td><code>tag.used_by</code></td>
+<td>object</td>
+<td>Only present if the tag is used on any printers, printer groups, files or queue items.</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td>array</td>
+<td>Only present if <code>id</code> is not set. Array of all tags.</td>
+</tr>
+<tr>
+<td><code>tags.*</code></td>
+<td>object</td>
+<td>Tag data like in the <code>tag</code> object above.</td>
+</tr>
+</tbody></table>
+<h2 id='delete-custom-tag'>Delete Custom Tag</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/tags/Delete?id<span class="o">=</span>2 <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A tag"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"badge"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primary"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"used_by"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"printers"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"printer_groups"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"files"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"queue_items"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+<table><thead>
+<tr>
+<th>Required permissions</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>EDIT_TAGS</code></td>
+</tr>
+</tbody></table>
+
+<p>This endpoint deletes a custom tag.</p>
+<h3 id='request-3'>Request</h3>
+<p><code>GET /{id}/tags/Delete</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>yes</td>
+<td>ID of the tag to delete.</td>
+</tr>
+</tbody></table>
+<h3 id='response-3'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Success message or error message if <code>status</code> is false.</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td>array</td>
+<td>Array of all tags.</td>
+</tr>
+</tbody></table>
+<h2 id='assign-nozzle-size-tag'>Assign Nozzle Size Tag</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/tags/Assign <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span> <span class="se">\</span>
+</code></pre></div>
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2315</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"edited"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nozzle"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"nozzle"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint assigns a nozzle size tag to a printer, printer group, file or queue item.</p>
+
+<p>Please note that to assign a tag to a printer, you need the <code>EDIT_PRINTER</code> permission.</p>
+<h3 id='request-4'>Request</h3>
+<p><code>POST /{id}/tags/Assign</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>type</code></td>
+<td>integer</td>
+<td>yes</td>
+<td>What to assign the tag to. <code>1</code> for printer, <code>2</code> for printer group, <code>3</code> for file, <code>4</code> for queue item.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td>integer/string</td>
+<td>yes</td>
+<td>ID of the printer, printer group, file or queue item to assign the tag to.</td>
+</tr>
+<tr>
+<td><code>edited</code></td>
+<td>string</td>
+<td>yes</td>
+<td>Set to <code>nozzle</code> to assign a nozzle size tag.</td>
+</tr>
+<tr>
+<td><code>nozzle</code></td>
+<td>float</td>
+<td>yes</td>
+<td>Nozzle size to assign in millimeters.</td>
+</tr>
+</tbody></table>
+<h3 id='response-4'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Success message or error message if <code>status</code> is false.</td>
+</tr>
+</tbody></table>
+<h2 id='assign-material-tag'>Assign Material Tag</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/tags/Assign <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span> <span class="se">\</span>
+</code></pre></div>
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2315</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"edited"</span><span class="p">:</span><span class="w"> </span><span class="s2">"material"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"material"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"ext"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">412</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"hex"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#ff0000"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Red"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint assigns a material tag to a printer, printer group, file or queue item.</p>
+
+<p>Please note that to assign a tag to a printer, you need the <code>EDIT_PRINTER</code> permission.</p>
+<h3 id='request-5'>Request</h3>
+<p><code>POST /{id}/tags/Assign</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>type</code></td>
+<td>integer</td>
+<td>yes</td>
+<td>What to assign the tag to. <code>1</code> for printer, <code>2</code> for printer group, <code>3</code> for file, <code>4</code> for queue item.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td>integer/string</td>
+<td>yes</td>
+<td>ID of the printer, printer group, file or queue item to assign the tag to.</td>
+</tr>
+<tr>
+<td><code>edited</code></td>
+<td>string</td>
+<td>yes</td>
+<td>Set to <code>material</code> to assign a material tag.</td>
+</tr>
+<tr>
+<td><code>material</code></td>
+<td>array</td>
+<td>yes</td>
+<td>Array of materials to assign.</td>
+</tr>
+<tr>
+<td><code>material.*.ext</code></td>
+<td>integer</td>
+<td>yes</td>
+<td>Material extruder to assign the tag to. (zero-indexed)</td>
+</tr>
+<tr>
+<td><code>material.*.type</code></td>
+<td>integer</td>
+<td>yes</td>
+<td>Material type id to assign.</td>
+</tr>
+<tr>
+<td><code>material.*.hex</code></td>
+<td>string</td>
+<td>yes</td>
+<td>Material color hex code.</td>
+</tr>
+<tr>
+<td><code>material.*.color</code></td>
+<td>string</td>
+<td>yes</td>
+<td>Material color name.</td>
+</tr>
+</tbody></table>
+<h3 id='response-5'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Success message or error message if <code>status</code> is false.</td>
+</tr>
+</tbody></table>
+<h2 id='assign-custom-tag'>Assign Custom Tag</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/tags/Assign <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span> <span class="se">\</span>
+</code></pre></div>
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2315</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"edited"</span><span class="p">:</span><span class="w"> </span><span class="s2">"custom"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"tag_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+<p>This endpoint assigns a custom tag to a printer, printer group, file or queue item.</p>
+
+<p>Please note that to assign a tag to a printer, you need the <code>EDIT_PRINTER</code> permission.</p>
+<h3 id='request-6'>Request</h3>
+<p><code>POST /{id}/tags/Assign</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>type</code></td>
+<td>integer</td>
+<td>yes</td>
+<td>What to assign the tag to. <code>1</code> for printer, <code>2</code> for printer group, <code>3</code> for file, <code>4</code> for queue item.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td>integer/string</td>
+<td>yes</td>
+<td>ID of the printer, printer group, file or queue item to assign the tag to.</td>
+</tr>
+<tr>
+<td><code>edited</code></td>
+<td>string</td>
+<td>yes</td>
+<td>Set to <code>custom</code> to assign a custom tag.</td>
+</tr>
+<tr>
+<td><code>tag_id</code></td>
+<td>integer</td>
+<td>yes</td>
+<td>ID of the custom tag to assign.</td>
+</tr>
+</tbody></table>
+<h3 id='response-6'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Success message or error message if <code>status</code> is false.</td>
+</tr>
+</tbody></table>
+<h2 id='detach-custom-tag'>Detach Custom Tag</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/tags/Detach <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span> <span class="se">\</span>
+</code></pre></div>
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2315</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"tag_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+<p>This endpoint detaches a custom tag from a printer, printer group, file or queue item.</p>
+
+<p>Please note that to detach a tag from a printer, you need the <code>EDIT_PRINTER</code> permission.</p>
+<h3 id='request-7'>Request</h3>
+<p><code>POST /{id}/tags/Detach</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>type</code></td>
+<td>integer</td>
+<td>yes</td>
+<td>What to detach the tag from. <code>1</code> for printer, <code>2</code> for printer group, <code>3</code> for file, <code>4</code> for queue item.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td>integer/string</td>
+<td>yes</td>
+<td>ID of the printer, printer group, file or queue item to detach the tag from.</td>
+</tr>
+<tr>
+<td><code>tag_id</code></td>
+<td>integer</td>
+<td>yes</td>
+<td>ID of the custom tag to detach.</td>
+</tr>
+</tbody></table>
+<h3 id='response-7'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Success message or error message if <code>status</code> is false.</td>
+</tr>
+</tbody></table>
+<h2 id='colors'>Colors</h2>
+<table><thead>
+<tr>
+<th>Color</th>
+<th>Name</th>
+<th>Preview</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Blue</td>
+<td><code>primary</code></td>
+<td><span class="badge-pill" style="background-color: #4285f4;">Primary</span></td>
+</tr>
+<tr>
+<td>Purple</td>
+<td><code>secondary</code></td>
+<td><span class="badge-pill" style="background-color: #a6c;">Secondary</span></td>
+</tr>
+<tr>
+<td>Green</td>
+<td><code>success</code></td>
+<td><span class="badge-pill" style="background-color: #00c851;">Success</span></td>
+</tr>
+<tr>
+<td>Red</td>
+<td><code>danger</code></td>
+<td><span class="badge-pill" style="background-color: #ff3547;">Danger</span></td>
+</tr>
+<tr>
+<td>Yellow</td>
+<td><code>warning</code></td>
+<td><span class="badge-pill" style="background-color: #fb3;">Warning</span></td>
+</tr>
+<tr>
+<td>Turquoise</td>
+<td><code>info</code></td>
+<td><span class="badge-pill" style="background-color: #33b5e5;">Info</span></td>
+</tr>
+<tr>
+<td>Light grey</td>
+<td><code>light</code></td>
+<td><span class="badge-pill" style="background-color: #e0e0e0; color: #000 !important;">Light</span></td>
+</tr>
+<tr>
+<td>Dark</td>
+<td><code>dark</code></td>
+<td><span class="badge-pill" style="background-color: #212121;">Dark</span></td>
+</tr>
+</tbody></table>
 <h1 id='permissions'>Permissions</h1>
 <table><thead>
 <tr>
@@ -5413,6 +6210,10 @@ Please note that links with unlimited uses expire at the end of the day.</p>
 <tr>
 <td><code>SLICER_ORG_PROFILES</code></td>
 <td>&quot;Allow to create and edit organisation slicer profiles&quot;</td>
+</tr>
+<tr>
+<td><code>EDIT_TAGS</code></td>
+<td>&quot;Allow user to create, update and delete tags&quot;</td>
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>
