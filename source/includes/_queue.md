@@ -204,6 +204,7 @@ curl https://api.simplyprint.io/{id}/queue/GetItems?p=1234 \
         "id": 51293,
         "index": 1,
         "filename": "benchy.gcode",
+        "note": null,
         "model": false,
         "printable": true,
         "left": 1,
@@ -300,6 +301,7 @@ This endpoint returns the queue for the specified or all printers.
 | `queue.items[].id` | integer | The queue item id. |
 | `queue.items[].index` | integer | The queue item index. |
 | `queue.items[].filename` | string | The queue item filename. |
+| `queue.items[].note` | string|nullable | Optional note text. |
 | `queue.items[].model` | boolean | True if the queue item is a model. |
 | `queue.items[].printable` | boolean | True if the queue is printable. |
 | `queue.items[].left` | integer | The amount of prints left to print. |
