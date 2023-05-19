@@ -13,7 +13,9 @@ curl https://api.simplyprint.io/{id}/queue/AddItem \
 
 ```json
 {
-  "filesystem": "1a077dd6296417fe75555bf806b68089"
+  "filesystem": "1a077dd6296417fe75555bf806b68089",
+  "amount": 5,
+  "group": 0
 }
 ```
 
@@ -43,6 +45,7 @@ This endpoint adds a file to the queue. The file can either be a file on the fil
 | --------- | ---- | -------- | ----------- |
 | `filesystem` | string | no | The filesystem id of the file to add to the queue. |
 | `amount` | integer | no | The amount of prints to add to the queue.<br>**Default: 1** |
+| `group` | integer | no | If you have Queue Groups - ID of the group the item should be added to.<br>**Default: 0 - required if you have Queue Groups** |
 
 ### Response
 
@@ -202,9 +205,11 @@ curl https://api.simplyprint.io/{id}/queue/GetItems?p=1234 \
         "index": 1,
         "filename": "benchy.gcode",
         "model": false,
+        "printable": true,
         "left": 1,
         "printed": 0,
         "filesystem_id": "c00489ef361771ac098b5a60e6740757",
+        "group": 0,
         "for": {
           "printers": [
             1234
@@ -296,9 +301,11 @@ This endpoint returns the queue for the specified or all printers.
 | `queue.items[].index` | integer | The queue item index. |
 | `queue.items[].filename` | string | The queue item filename. |
 | `queue.items[].model` | boolean | True if the queue item is a model. |
+| `queue.items[].printable` | boolean | True if the queue is printable. |
 | `queue.items[].left` | integer | The amount of prints left to print. |
 | `queue.items[].printed` | integer | The amount of prints that have been printed. |
 | `queue.items[].filesystem_id` | string/null | File id if print is from SimplyPrint filesystem. | 
+| `queue.items[].group` | integer | Possible ID of Queue Group. |
 | `queue.items[].for` | object | For which printers, models and groups this queue item is for. |
 | `queue.items[].for.printers` | array | An array of printer ids. |
 | `queue.items[].for.models` | array | An array of printer model ids. |
@@ -318,6 +325,12 @@ This endpoint returns the queue for the specified or all printers.
 | `queue.items[].user` | string | The user name of who added the queue item. |
 | `queue.items[].user_id` | integer | The user id of who added the queue item. |
 | `queue.items[].tags` | object|nullable | Tags for queue item; custom tags, static material data & nozzle size |
+| `queue.done_items` | array | If `groups` GET is set, an array of done queue items, or ones where the last remaining item is being printed **includes all the same fields as queue items, with a few extra;**. |
+| `queue.done_items[]....` |  | *Fields inherited from regular queue items*. |
+| `queue.done_items[].size` | integer | Byte-size used by this item - 0 if the file is from the filesystem. |
+| `queue.done_items[].ongoing` | boolean | If the item is currently ongoing. |
+| `queue.done_items[].done` | UTC date|nullable | UTC date that the item was finished. |
+| `queue.done_items[].expires` | UTC date|nullable | UTC date that the item expires and is removed from the platform. |
 
 ## Update queue item
 
@@ -377,6 +390,7 @@ This endpoint updates the queue item with the specified id.
 | `for_models` | array | no | An array of printer model ids to assign the queue item to. |
 | `for_printers` | array | no | An array of printer ids to assign the queue item to. |
 | `amount` | integer | no | The new amount to set. |
+| `amount` | integer | no | Set amount of "printed". |
 
 ### Response
 
@@ -493,6 +507,10 @@ This endpoint empties the queue.
 ### Request
 
 `GET /{id}/queue/EmptyQueue`
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| `group` | integer | no | ID of Queue Group to empty.<br>**Default: 0 - required if you have Queue Groups |
 
 ### Response
 
