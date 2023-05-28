@@ -37,7 +37,9 @@ curl https://api.simplyprint.io/{id}/jobs/GetPaginatedPrintJobs \
         "filename": "Benchy.gcode",
         "startDate": "2023-02-28T21:05:50+00:00",
         "endDate": "2023-02-28T21:06:07+00:00",
-        "user": 5933,
+        "user": 1,
+        "autoprint": false,
+        "outsideSystem": false,
         "printer": 385,
         "filament": "{\"e0\": {\"usage\": 60}}",
         "filUsage": 60,
@@ -83,7 +85,9 @@ Get paginated data about ongoing or finished print jobs.
 | `data[].filename` | string | The job filename. |
 | `data[].startDate` | string | The job start date. |
 | `data[].endDate` | string/null | The job end date. Is null if the job is ongoing. |
-| `data[].user` | integer | The user id of the user who started the job. |
+| `data[].user` | integer|nullable | The user id of the user who started the job. |
+| `data[].autoprint` | boolean | If the job was started automatically using the Auto-print feature |
+| `data[].outsideSystem` | boolean | If the job was started outside SimplyPrint, via SD card, OctoPrint, Mailsail, Fluidd or else how |
 | `data[].printer` | integer | The printer id that was used to print the job. |
 | `data[].filament` | string | The filament usage. JSON encoded string with usage per extruder. |
 | `data[].filUsage` | integer | The filament usage in mm. |
