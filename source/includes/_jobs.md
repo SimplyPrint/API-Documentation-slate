@@ -64,7 +64,7 @@ Get paginated data about ongoing or finished print jobs.
 | `printer_types[]` | integer[] | no | Array of printer type ids to filter on. |
 | `printer_ids[]` | integer[] | no | Array of printer ids to filter on. |
 | `user_ids[]` | integer[] | no | Array of user ids to filter on. |
-| `accepted_statuses[]` | string[] | no | Array of job statuses to filter on. One of `ongoing`, `cancelled`, `failed`, `done`. |
+| `accepted_statuses[]` | string[] | no | Array of job statuses to filter on. One of `ongoing`, `cancelled`, `failed`, `finished`. |
 | `start_date` | string | no | The start date to filter on. In unix timestamp format. Can be set without `end_date`. |
 | `end_date` | string | no | The end date to filter on. In unix timestamp format. Can be set without `start_date`. |
 
@@ -77,7 +77,7 @@ Get paginated data about ongoing or finished print jobs.
 | `data` | array | The jobs. |
 | `data[].id` | integer | The job id. |
 | `data[].uid` | string | The job uid. |
-| `data[].status` | string | The job status. One of `ongoing`, `cancelled`, `failed`, `done`. |
+| `data[].status` | string | The job status. One of `ongoing`, `cancelled`, `failed`, `done`. Note that `done` is the same as `finished` |
 | `data[].cancelReasonType` | string | The job cancel reason type. |
 | `data[].rating` | integer | The job rating. |
 | `data[].filename` | string | The job filename. |
