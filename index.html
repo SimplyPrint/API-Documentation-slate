@@ -4477,7 +4477,7 @@ Also, folders cannot be moved into themselves.</p>
 <td><code>accepted_statuses[]</code></td>
 <td>string[]</td>
 <td>no</td>
-<td>Array of job statuses to filter on. One of <code>ongoing</code>, <code>cancelled</code>, <code>failed</code>, <code>done</code>.</td>
+<td>Array of job statuses to filter on. One of <code>ongoing</code>, <code>cancelled</code>, <code>failed</code>, <code>finished</code>.</td>
 </tr>
 <tr>
 <td><code>start_date</code></td>
@@ -4528,7 +4528,7 @@ Also, folders cannot be moved into themselves.</p>
 <tr>
 <td><code>data[].status</code></td>
 <td>string</td>
-<td>The job status. One of <code>ongoing</code>, <code>cancelled</code>, <code>failed</code>, <code>done</code>.</td>
+<td>The job status. One of <code>ongoing</code>, <code>cancelled</code>, <code>failed</code>, <code>done</code>. Note that <code>done</code> is the same as <code>finished</code></td>
 </tr>
 <tr>
 <td><code>data[].cancelReasonType</code></td>
