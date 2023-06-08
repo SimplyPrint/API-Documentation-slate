@@ -43,12 +43,6 @@ meta:
 
 # Getting Started
 
-<aside class="notice">
-  <b>The SimplyPrint API is under construction!</b>
-
-  This means this site is unfinished, and many endpoints are not yet documented. If you have any questions, please contact us via our <a href="https://help.simplyprint.io">helpdesk</a>.
-</aside>
-
 Welcome to the **SimplyPrint API**!
 
 This documentation goes through authenticating and how to use the API. To get started you'll need an API key.
