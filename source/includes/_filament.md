@@ -133,7 +133,6 @@ curl https://api.simplyprint.io/{id}/filament/Create \
   "bought_at": "2022-12-24",
   "filament_type": "rPLA",
   "cost": 23,
-  "currency": "USD",
   "custom_note": "This is a note",
   "prod_id": "",
   "brand": "lostboyslab",
@@ -199,8 +198,7 @@ To update existing filament, you need to provide a `fid` query parameter, which 
 | `density` | float | yes | Filament density. |
 | `bought_at` | string | no | Date of purchase.<br>**Format: `YYYY-MM-DD`** |
 | `filament_type` | string | yes | Filament type. |
-| `cost` | float | no | Cost of filament. |
-| `currency` | string | no | Currency of `cost`.<br>**Max 3 characters** |
+| `cost` | float | no | Cost of filament in your account-defined currency (changed in account settings). |
 | `custom_note` | string | no | Custom note.<br>**Max 1000 characters** |
 | `prod_id` | string | no | Filament product id. |
 | `brand` | string | yes | Filament brand. |
