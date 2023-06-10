@@ -38,7 +38,7 @@ curl https://api.simplyprint.io/{id}/files/GetFiles?f=123&search=benchy \
       "id": "e82ab9e1cc3c20850d94d5cf539390c0",
       "name": "3DBenchy",
       "ext": "gcode",
-      "type": "model",
+      "type": "printable",
       "size": 1285384,
       "created": "December 23, 2022, 18:00",
       "createdint": 1671813330,
@@ -69,6 +69,37 @@ curl https://api.simplyprint.io/{id}/files/GetFiles?f=123&search=benchy \
           }
         ],
         "custom": [1, 2, 3]
+      },
+      "cost": {
+        "estimate": false,
+        "total_cost": 150,
+        "lines":[
+            {
+              "id": 1,
+              "label": "Material usage (account default)",
+              "cost": 0.02
+            },
+            {
+              "id": 2,
+              "label":"Material markup",
+              "cost": null
+            },
+            {
+              "id": 3,
+              "label":"Machine run time cost",
+              "cost": null
+            },
+            {
+              "id": 4,
+              "label": "Energy cost",
+              "cost": null
+            },
+            {
+              "id": 5,
+              "label": "Labor cost",
+              "cost": 1000
+            }
+        ]
       }
     }
   ],
@@ -109,6 +140,7 @@ This endpoint returns a list of files and folders in a given folder. If no folde
 | `f` | integer | no | Folder ID to get files for. **Defaults to 0 (root folder)** |
 | `search` | string | no | Search string to filter files by. |
 | `global_search` | boolean | no | If true, search all files in the account, not just the folder specified by `f`. |
+| `pid` | integer | no | For print cost calculation, if you want the files to use the material of a printer, request with the ID of the printer - don't include the `pid` argument otherwise |
 
 ### Response
 

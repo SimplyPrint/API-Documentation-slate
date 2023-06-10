@@ -29,21 +29,52 @@ curl https://api.simplyprint.io/{id}/jobs/GetPaginatedPrintJobs \
   "message": null,
   "data": [
     {
-        "id": 549145,
-        "uid": "7df103aa-b12c-4b33-8305-b55f91c11a4d",
-        "status": "cancelled",
-        "cancelReasonType": "5",
-        "rating": -2,
-        "filename": "Benchy.gcode",
-        "startDate": "2023-02-28T21:05:50+00:00",
-        "endDate": "2023-02-28T21:06:07+00:00",
-        "user": 5933,
-        "printer": 385,
-        "filament": "{\"e0\": {\"usage\": 60}}",
-        "filUsage": 60,
-        "filUsageGram": 0,
-        "currentPercentage": 48,
-        "printTime": 17
+      "id": 549145,
+      "uid": "7df103aa-b12c-4b33-8305-b55f91c11a4d",
+      "status": "cancelled",
+      "cancelReasonType": "5",
+      "rating": -2,
+      "filename": "Benchy.gcode",
+      "startDate": "2023-02-28T21:05:50+00:00",
+      "endDate": "2023-02-28T21:06:07+00:00",
+      "user": 5933,
+      "printer": 385,
+      "filament": "{\"e0\": {\"usage\": 60}}",
+      "filUsage": 60,
+      "filUsageGram": 0,
+      "currentPercentage": 48,
+      "printTime": 17,
+      "cost": {
+        "estimate": false,
+        "total_cost": 150,
+        "lines": [
+            {
+              "id": 1,
+              "label": "Material usage (account default)",
+              "cost": 0.02
+            },
+            {
+              "id": 2,
+              "label":"Material markup",
+              "cost": null
+            },
+            {
+              "id": 3,
+              "label":"Machine run time cost",
+              "cost": null
+            },
+            {
+              "id": 4,
+              "label": "Energy cost",
+              "cost": null
+            },
+            {
+              "id": 5,
+              "label": "Labor cost",
+              "cost": 1000
+            }
+          ]
+        }
     },
     ...
   ],
@@ -82,11 +113,12 @@ Get paginated data about ongoing or finished print jobs.
 | `data[].rating` | integer | The job rating. |
 | `data[].filename` | string | The job filename. |
 | `data[].startDate` | string | The job start date. |
-| `data[].endDate` | string/null | The job end date. Is null if the job is ongoing. |
+| `data[].endDate` | string|nullable | The job end date. Is null if the job is ongoing. |
 | `data[].user` | integer | The user id of the user who started the job. |
 | `data[].printer` | integer | The printer id that was used to print the job. |
 | `data[].filament` | string | The filament usage. JSON encoded string with usage per extruder. |
 | `data[].filUsage` | integer | The filament usage in mm. |
 | `data[].filUsageGram` | integer | The filament usage in grams. |
 | `data[].currentPercentage` | integer | The current percentage of the job. |
+| `data[].cost` | object|nullable | Potential calculated cost of job. |
 | `page_amount` | integer | The total number of pages for the given parameters. |

@@ -280,7 +280,40 @@ curl https://api.simplyprint.io/{id}/printers/actions/CreateJob?pid=1234&filesys
         1234,
         1235        
       ],
-      "queued": false
+      "queued": false,
+      "cost": [
+        {
+          "estimate": false,
+          "total_cost": 1006.76,
+          "lines": [
+            {
+              "id": 1,
+              "label": "HIPS Material usage",
+              "cost": 0.05
+            },
+            {
+              "id": 2,
+              "label": "Material markup",
+              "cost": 0.03
+            },
+            {
+              "id": 3,
+              "label": "Machine run time cost",
+              "cost": 6.67
+            },
+            {
+              "id": 4,
+              "label": "Energy cost",
+              "cost": 0.01
+            },
+            {
+              "id": 5,
+              "label": "Labor cost",
+              "cost": 1000
+            }
+          ]
+        }
+      ]
     }
   ],
   "jobIds": [
@@ -329,6 +362,7 @@ You can specify these parameters if `next_queue_item` is `true`. Note that you c
 | `files[].analysis` | object | The analysis of the file. This has been documented in the [Get queue items endpoint](#get-queue-items). |
 | `files[].printers` | integer[] | The IDs of the printers that the print job was started on. |
 | `files[].queued` | boolean | Whether the print job was from print queue. |
+| `files[].cost` | object[]|nullable | Potential calculated cost of job. Potential of multiple costs if job is created for different printers with different material types assigned. |
 | `jobIds` | integer[] | The IDs of the print jobs that were started. |
 
 ## Pause print job
