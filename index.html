@@ -1126,6 +1126,10 @@
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
+<aside class="notice">
+  You cannot upload new files via the API yet - only files from your file system or print queue can be printed via the API
+</aside>
+
 <p>This endpoint can be used to create a print job for one or more printers. The printers have to be in the <code>operational</code> state.</p>
 <h3 id='request-2'>Request</h3>
 <p><code>POST /{id}/printers/actions/CreateJob</code></p>
@@ -2397,7 +2401,11 @@
 <td>Error message if <code>status</code> is false.</td>
 </tr>
 </tbody></table>
-<h1 id='files'>Files</h1><h2 id='list-files-and-folders'>List Files and Folders</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/files/GetFiles?f<span class="o">=</span>123&amp;search<span class="o">=</span>benchy <span class="se">\</span>
+<h1 id='files'>Files</h1>
+<aside class="notice">
+  You cannot upload new files via the API yet - this is coming soon
+</aside>
+<h2 id='list-files-and-folders'>List Files and Folders</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/files/GetFiles?f<span class="o">=</span>123&amp;search<span class="o">=</span>benchy <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
 </code></pre></div>
@@ -2854,6 +2862,10 @@ Also, folders cannot be moved into themselves.</p>
 </span></code></pre></div>
 <aside class="notice">
   This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+<aside class="notice">
+  You cannot upload new files via the API yet - this is coming soon
 </aside>
 
 <p>This endpoint adds a file to the queue. The file can either be a file on the filesystem or an uploaded stl/3mf/obj/gcode/gco/nc/npg file.</p>
