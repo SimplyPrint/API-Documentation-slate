@@ -33,6 +33,10 @@ curl https://api.simplyprint.io/{id}/queue/AddItem \
   This endpoint requires the <b>Print Farm</b> plan.
 </aside>
 
+<aside class="notice">
+  You cannot upload new files via the API yet - this is coming soon
+</aside>
+
 This endpoint adds a file to the queue. The file can either be a file on the filesystem or an uploaded stl/3mf/obj/gcode/gco/nc/npg file.
 
 **Note:** if you want to specify which printer/printer type/printer model the print job should be assigned, you can [edit the print job](#update-queue-item) after it has been added to the queue.

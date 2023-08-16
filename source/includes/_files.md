@@ -1,5 +1,9 @@
 # Files
 
+<aside class="notice">
+  You cannot upload new files via the API yet - this is coming soon
+</aside>
+
 ## List Files and Folders
 
 ```shell

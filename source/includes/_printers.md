@@ -323,6 +323,10 @@ curl https://api.simplyprint.io/{id}/printers/actions/CreateJob?pid=1234&filesys
 }
 ```
 
+<aside class="notice">
+  You cannot upload new files via the API yet - only files from your file system or print queue can be printed via the API
+</aside>
+
 This endpoint can be used to create a print job for one or more printers. The printers have to be in the `operational` state.
 
 ### Request
