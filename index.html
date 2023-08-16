@@ -339,7 +339,10 @@
             <a href="#getting-started" class="toc-h1 toc-link" data-title="Getting Started">Getting Started</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#getting-an-api-key" class="toc-h2 toc-link" data-title="Getting an API key">Getting an API key</a>
+                    <a href="#method-1-default-getting-an-api-key" class="toc-h2 toc-link" data-title="Method #1 (default): Getting an API key">Method #1 (default): Getting an API key</a>
+                  </li>
+                  <li>
+                    <a href="#method-2-oauth2-develop-integrations-for-simplyprint" class="toc-h2 toc-link" data-title="Method #2: OAuth2 - develop integrations for SimplyPrint">Method #2: OAuth2 - develop integrations for SimplyPrint</a>
                   </li>
                   <li>
                     <a href="#the-base-url" class="toc-h2 toc-link" data-title="The base URL">The base URL</a>
@@ -562,10 +565,18 @@
 <p>Welcome to the <strong>SimplyPrint API</strong>!</p>
 
 <p>This documentation goes through authenticating and how to use the API. To get started you&#39;ll need an API key.</p>
-<h2 id='getting-an-api-key'>Getting an API key</h2>
+<h2 id='method-1-default-getting-an-api-key'>Method #1 (default): Getting an API key</h2>
 <p>To get an API key you&#39;ll need a SimplyPrint account that is either a member of an organization or has at least the <a href="https://simplyprint.io/#pricing">SimplyPrint Pro plan</a>.</p>
 
 <p>To create your own API key you first need a SimplyPrint account, you can go to your <a href="https://simplyprint.io/panel/user_settings/api">account settings</a> and create a new API key.</p>
+<h2 id='method-2-oauth2-develop-integrations-for-simplyprint'>Method #2: OAuth2 - develop integrations for SimplyPrint</h2>
+<p>SimplyPrint supports OAuth2 logins for all users, regardless of their subscription, for approved integrations such as the <a href="https://simplyprint.io/integrations/cura">Cura slicer integration</a>.</p>
+
+<p>The OAuth2 method can be used to link a user&#39;s SimplyPrint account with a third party platform/software, and use the SimplyPrint API on behalf of the user.</p>
+
+<p>To obtain OAuth2 access, you must be added as an OAuth2 provider - contact us at <a href="mailto:contact@simplyprint.io">contact@simplyprint.io</a> to request access.</p>
+
+<p>The OAuth2 integration is quite new and not yet documented on this page - documentation will be sent on provider approval.</p>
 <h2 id='the-base-url'>The base URL</h2>
 <p>The base URL for the SimplyPrint API is <code>https://api.simplyprint.io/{id}/</code>.</p>
 
