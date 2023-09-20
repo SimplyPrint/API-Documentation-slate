@@ -4679,8 +4679,8 @@ Also, folders cannot be moved into themselves.</p>
 </tr>
 <tr>
 <td><code>data[].endDate</code></td>
-<td>string\</td>
-<td>nullable</td>
+<td>string/null</td>
+<td>The job end date. Is null if the job is ongoing.</td>
 </tr>
 <tr>
 <td><code>data[].user</code></td>
@@ -4714,13 +4714,13 @@ Also, folders cannot be moved into themselves.</p>
 </tr>
 <tr>
 <td><code>data[].cost</code></td>
-<td>object\</td>
-<td>nullable</td>
+<td>object/null</td>
+<td>Potential calculated cost of job.</td>
 </tr>
 <tr>
 <td><code>data[].queueItem</code></td>
-<td>object\</td>
-<td>nullable</td>
+<td>object/null</td>
+<td>The queue item that was used to start the job. Please note that this is only shown if you have access to view the Print Queue.</td>
 </tr>
 <tr>
 <td><code>data[].queueItem.id</code></td>
