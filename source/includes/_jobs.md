@@ -48,33 +48,38 @@ curl https://api.simplyprint.io/{id}/jobs/GetPaginatedPrintJobs \
         "estimate": false,
         "total_cost": 150,
         "lines": [
-            {
-              "id": 1,
-              "label": "Material usage (account default)",
-              "cost": 0.02
-            },
-            {
-              "id": 2,
-              "label":"Material markup",
-              "cost": null
-            },
-            {
-              "id": 3,
-              "label":"Machine run time cost",
-              "cost": null
-            },
-            {
-              "id": 4,
-              "label": "Energy cost",
-              "cost": null
-            },
-            {
-              "id": 5,
-              "label": "Labor cost",
-              "cost": 1000
-            }
-          ]
-        }
+          {
+            "id": 1,
+            "label": "Material usage (account default)",
+            "cost": 0.02
+          },
+          {
+            "id": 2,
+            "label":"Material markup",
+            "cost": null
+          },
+          {
+            "id": 3,
+            "label":"Machine run time cost",
+            "cost": null
+          },
+          {
+            "id": 4,
+            "label": "Energy cost",
+            "cost": null
+          },
+          {
+            "id": 5,
+            "label": "Labor cost",
+            "cost": 1000
+          }
+        ]
+      },
+      "queueItem": {
+        "id": 1234,
+        "user": 51,
+        "queueNum": 3
+      }
     },
     ...
   ],
@@ -121,4 +126,8 @@ Get paginated data about ongoing or finished print jobs.
 | `data[].filUsageGram` | integer | The filament usage in grams. |
 | `data[].currentPercentage` | integer | The current percentage of the job. |
 | `data[].cost` | object|nullable | Potential calculated cost of job. |
+| `data[].queueItem` | object|nullable | The queue item that was used to start the job. Please note that this is only shown if you have access to view the Print Queue. |
+| `data[].queueItem.id` | integer | The id of the queue item that was used to start the job. |
+| `data[].queueItem.user` | integer | The user id of the user who created the queue item. |
+| `data[].queueItem.queueNum` | integer | The queue number of the queue item. |
 | `page_amount` | integer | The total number of pages for the given parameters. |
