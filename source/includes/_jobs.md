@@ -118,15 +118,15 @@ Get paginated data about ongoing or finished print jobs.
 | `data[].rating` | integer | The job rating. |
 | `data[].filename` | string | The job filename. |
 | `data[].startDate` | string | The job start date. |
-| `data[].endDate` | string|nullable | The job end date. Is null if the job is ongoing. |
+| `data[].endDate` | string\|nullable | The job end date. Is null if the job is ongoing. |
 | `data[].user` | integer | The user id of the user who started the job. |
 | `data[].printer` | integer | The printer id that was used to print the job. |
 | `data[].filament` | string | The filament usage. JSON encoded string with usage per extruder. |
 | `data[].filUsage` | integer | The filament usage in mm. |
 | `data[].filUsageGram` | integer | The filament usage in grams. |
 | `data[].currentPercentage` | integer | The current percentage of the job. |
-| `data[].cost` | object|nullable | Potential calculated cost of job. |
-| `data[].queueItem` | object|nullable | The queue item that was used to start the job. Please note that this is only shown if you have access to view the Print Queue. |
+| `data[].cost` | object\|nullable | Potential calculated cost of job. |
+| `data[].queueItem` | object\|nullable | The queue item that was used to start the job. Please note that this is only shown if you have access to view the Print Queue. |
 | `data[].queueItem.id` | integer | The id of the queue item that was used to start the job. |
 | `data[].queueItem.user` | integer | The user id of the user who created the queue item. |
 | `data[].queueItem.queueNum` | integer | The queue number of the queue item. |
