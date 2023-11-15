@@ -49,7 +49,7 @@ This documentation goes through authenticating and how to use the API. To get st
 
 ## Method #1 (default): Getting an API key
 
-To get an API key you'll need a SimplyPrint account that is either a member of an organization or has at least the [SimplyPrint Pro plan](https://simplyprint.io/#pricing).
+To get an API key you'll need a SimplyPrint account that is either a member of an organization, or have at least the [SimplyPrint Pro plan](https://simplyprint.io/#pricing).
 
 To create your own API key you first need a SimplyPrint account, you can go to your [account settings](https://simplyprint.io/panel/user_settings/api) and create a new API key.
 
