@@ -214,7 +214,7 @@ curl https://api.simplyprint.io/{id}/queue/GetItems?p=1234 \
         "left": 1,
         "printed": 0,
         "filesystem_id": "c00489ef361771ac098b5a60e6740757",
-        "group": 0,
+        "group": 123,
         "for": {
           "printers": [
             1234
@@ -275,7 +275,21 @@ curl https://api.simplyprint.io/{id}/queue/GetItems?p=1234 \
         }
       }
     ]
-  }
+  },
+  "groups": [
+    {
+      "id": 123,
+      "name": "Group 1",
+      "virtual": false,
+      "extensions": [
+        "gcode",
+        "gco",
+        "stl",
+      ],
+      "sort_order": 0
+    },
+    ...
+  ]
 }
 ```
 
@@ -292,6 +306,7 @@ This endpoint returns the queue for the specified or all printers.
 | Parameter | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
 | `p` | integer | no | The printer id to get the queue for. If not specified, the queue for all printers will be returned. |
+| `groups` | boolean | no | Attaches a list of print queue groups to the response. Note: this argument does not take a value. |
 
 ### Response
 
@@ -335,8 +350,14 @@ This endpoint returns the queue for the specified or all printers.
 | `queue.done_items[]....` |  | *Fields inherited from regular queue items*. |
 | `queue.done_items[].size` | integer | Byte-size used by this item - 0 if the file is from the filesystem. |
 | `queue.done_items[].ongoing` | boolean | If the item is currently ongoing. |
-| `queue.done_items[].done` | UTC date|nullable | UTC date that the item was finished. |
-| `queue.done_items[].expires` | UTC date|nullable | UTC date that the item expires and is removed from the platform. |
+| `queue.done_items[].done` | UTC date/null | UTC date that the item was finished. |
+| `queue.done_items[].expires` | UTC date/null | UTC date that the item expires and is removed from the platform. |
+| `groups` | array | If `groups` GET is set, an array of print queue groups. |
+| `groups[].id` | integer | The group id. |
+| `groups[].name` | string | The group name. |
+| `groups[].virtual` | boolean | Whether the group is a virtual queue group. |
+| `groups[].extensions` | array/null | An array of file extensions that are allowed in the group. |
+| `groups[].sort_order` | integer | The sort index of the group. |
 
 ## Update queue item
 
