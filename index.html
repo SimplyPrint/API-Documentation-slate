@@ -339,16 +339,16 @@
             <a href="#getting-started" class="toc-h1 toc-link" data-title="Getting Started">Getting Started</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#method-1-default-getting-an-api-key" class="toc-h2 toc-link" data-title="Method #1 (default): Getting an API key">Method #1 (default): Getting an API key</a>
-                  </li>
-                  <li>
-                    <a href="#method-2-oauth2-develop-integrations-for-simplyprint" class="toc-h2 toc-link" data-title="Method #2: OAuth2 - develop integrations for SimplyPrint">Method #2: OAuth2 - develop integrations for SimplyPrint</a>
-                  </li>
-                  <li>
                     <a href="#the-base-url" class="toc-h2 toc-link" data-title="The base URL">The base URL</a>
                   </li>
                   <li>
-                    <a href="#test-your-api-key" class="toc-h2 toc-link" data-title="Test your API key">Test your API key</a>
+                    <a href="#gaining-access-to-the-api" class="toc-h2 toc-link" data-title="Gaining access to the API">Gaining access to the API</a>
+                  </li>
+                  <li>
+                    <a href="#using-an-api-key-recommended" class="toc-h2 toc-link" data-title="Using an API key (recommended)">Using an API key (recommended)</a>
+                  </li>
+                  <li>
+                    <a href="#using-oauth2" class="toc-h2 toc-link" data-title="Using OAuth2">Using OAuth2</a>
                   </li>
               </ul>
           </li>
@@ -542,7 +542,15 @@
               </ul>
           </li>
           <li>
-            <a href="#permissions" class="toc-h1 toc-link" data-title="Permissions">Permissions</a>
+            <a href="#permissions-and-scopes" class="toc-h1 toc-link" data-title="Permissions and Scopes">Permissions and Scopes</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#company-permissions" class="toc-h2 toc-link" data-title="Company permissions">Company permissions</a>
+                  </li>
+                  <li>
+                    <a href="#oauth2-scopes" class="toc-h2 toc-link" data-title="OAuth2 scopes">OAuth2 scopes</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
@@ -564,19 +572,7 @@
         <h1 id='getting-started'>Getting Started</h1>
 <p>Welcome to the <strong>SimplyPrint API</strong>!</p>
 
-<p>This documentation goes through authenticating and how to use the API. To get started you&#39;ll need an API key.</p>
-<h2 id='method-1-default-getting-an-api-key'>Method #1 (default): Getting an API key</h2>
-<p>To get an API key you&#39;ll need a SimplyPrint account that is either a member of an organization, or have at least the <a href="https://simplyprint.io/pricing">SimplyPrint Pro plan</a>.</p>
-
-<p>To create your own API key you first need a SimplyPrint account, you can go to your <a href="https://simplyprint.io/panel/user_settings/api">account settings</a> and create a new API key.</p>
-<h2 id='method-2-oauth2-develop-integrations-for-simplyprint'>Method #2: OAuth2 - develop integrations for SimplyPrint</h2>
-<p>SimplyPrint supports OAuth2 logins for all users, regardless of their subscription, for approved integrations such as the <a href="https://simplyprint.io/integrations/cura">Cura slicer integration</a>.</p>
-
-<p>The OAuth2 method can be used to link a user&#39;s SimplyPrint account with a third party platform/software, and use the SimplyPrint API on behalf of the user.</p>
-
-<p>To obtain OAuth2 access, you must be added as an OAuth2 provider - contact us at <a href="mailto:contact@simplyprint.io">contact@simplyprint.io</a> to request access.</p>
-
-<p>The OAuth2 integration is quite new and not yet documented on this page - documentation will be sent on provider approval.</p>
+<p>This documentation goes through authenticating and how to use the API.</p>
 <h2 id='the-base-url'>The base URL</h2>
 <p>The base URL for the SimplyPrint API is <code>https://api.simplyprint.io/{id}/</code>.</p>
 
@@ -600,7 +596,26 @@
     <li>Replace <code>{API_KEY}</code> with your API key</li>
   </ol>
 </aside>
-<h2 id='test-your-api-key'>Test your API key</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="o">{</span>base_url<span class="o">}</span>/account/Test <span class="se">\</span>
+<h2 id='gaining-access-to-the-api'>Gaining access to the API</h2>
+<p>There are two ways to gain access to the SimplyPrint API:</p>
+
+<ol>
+<li><a href="#using-an-api-key-recommended">Using an API key</a> (recommended)
+
+<ul>
+<li>This is the recommended method for most users. This method requires a SimplyPrint account and an API key.</li>
+</ul></li>
+<li><a href="#using-oauth2">Using OAuth2</a>
+
+<ul>
+<li>This method is only available for approved integrations. You can use OAuth2 to access SimplyPrint API endpoints on behalf of a user.</li>
+</ul></li>
+</ol>
+<h2 id='using-an-api-key-recommended'>Using an API key (recommended)</h2>
+<p>To get an API key you&#39;ll need a SimplyPrint account that is either a member of an organization, or have at least the <a href="https://simplyprint.io/pricing">SimplyPrint Pro plan</a>.</p>
+
+<p>To create your own API key you first need a SimplyPrint account, you can go to your <a href="https://simplyprint.io/panel/user_settings/api">account settings</a> and create a new API key.</p>
+<h3 id='using-the-api-key'>Using the API key</h3><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="o">{</span>base_url<span class="o">}</span>/account/Test <span class="se">\</span>
   <span class="nt">--header</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
 </code></pre></div>
 <blockquote>
@@ -640,6 +655,261 @@
 </ul>
 
 <p>If you are unable to resolve the issue after troubleshooting these potential issues, you may need to contact your organization administrator for further assistance. Otherwise, feel free to contact us via our <a href="https://help.simplyprint.io/">helpdesk</a>.</p>
+<h2 id='using-oauth2'>Using OAuth2</h2>
+<p>SimplyPrint supports OAuth2 logins for all users, regardless of their subscription, for approved integrations such as the <a href="https://simplyprint.io/integrations/cura">Cura slicer integration</a>.</p>
+
+<p>The OAuth2 method can be used to link a user&#39;s SimplyPrint account with a third party platform/software, and use the SimplyPrint API on behalf of the user.</p>
+
+<p>To obtain OAuth2 access, you must be added as an OAuth2 provider by SimplyPrint. To request this, please fill out the <a href="https://forms.gle/rC9AzWwNtwMmWXE68">OAuth2 Client Request Form</a>.</p>
+
+<p>Once you have been added as an OAuth2 provider, you can use the following documentation to implement OAuth2 in your application.</p>
+<h3 id='authorizing-your-application'>Authorizing your application</h3>
+<p>For users to grant your application access to their SimplyPrint account, you must first redirect them to the SimplyPrint OAuth2 authorization page. You can do this by redirecting the user to the following URL:</p>
+
+<p><code>https://api.simplyprint.io/oauth2/authorize?client_id={client_id}&amp;redirect_uri={redirect_uri}&amp;response_type=code&amp;scope={scope}</code></p>
+
+<p>The following parameters can be supplied as query parameters in the URL:</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>client_id</code></td>
+<td>string</td>
+<td>yes</td>
+<td>The client ID of your OAuth2 application</td>
+</tr>
+<tr>
+<td><code>redirect_uri</code></td>
+<td>string</td>
+<td>yes</td>
+<td>The redirect URI of your OAuth2 application</td>
+</tr>
+<tr>
+<td><code>scope</code></td>
+<td>string</td>
+<td>yes</td>
+<td>The <a href="#oauth2-scopes">scope</a> of the OAuth2 access token. This can be a <code>+</code>-separated list of scopes.</td>
+</tr>
+<tr>
+<td><code>response_type</code></td>
+<td>string</td>
+<td>yes</td>
+<td>This must be set to <code>code</code></td>
+</tr>
+<tr>
+<td><code>state</code></td>
+<td>string</td>
+<td>no</td>
+<td>The value of this parameter will be returned to your application when the user is redirected back</td>
+</tr>
+</tbody></table>
+
+<p>Once the user has granted access to your application, they will be redirected to <code>{redirect_uri}?code={code}&amp;state={state}</code>. The <code>code</code> parameter is the authorization code that you will use to obtain an access token. The <code>state</code> parameter will only be returned if you specified a <code>state</code> parameter in the authorization URL.</p>
+<h3 id='obtaining-an-access-token'>Obtaining an access token</h3>
+<blockquote>
+<p>Obtaining an access token</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/oauth2/Token <span class="se">\</span>
+  <span class="nt">-X</span> POST <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Request body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"grant_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"authorization_code"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{client_id}"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"client_secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{client_secret}"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{code}"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"redirect_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{redirect_uri}"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"token_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bearer"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"expires_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">3600</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{access_token}"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"refresh_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{refresh_token}"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Now that you have a <code>code</code> parameter, you can use it to obtain an access token. To do this, you must make a <code>POST</code> request to the following URL:</p>
+
+<p><code>https://api.simplyprint.io/oauth2/Token</code></p>
+
+<p>This will return an access token that you can use to make requests to the SimplyPrint API on behalf of the user.</p>
+
+<p>This access token will expire after 1 hour. Once it expires, you can use the <code>refresh_token</code> parameter to obtain a new access token. To do this, you must make a <code>POST</code> request to the same URL as above, but with the following request parameters:</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>grant_type</code></td>
+<td>string</td>
+<td>This must be set to <code>refresh_token</code></td>
+</tr>
+<tr>
+<td><code>client_id</code></td>
+<td>string</td>
+<td>The client ID of your application</td>
+</tr>
+<tr>
+<td><code>client_secret</code></td>
+<td>string</td>
+<td>The client secret of your application</td>
+</tr>
+<tr>
+<td><code>refresh_token</code></td>
+<td>string</td>
+<td>The refresh token that was returned when you obtained the access token</td>
+</tr>
+</tbody></table>
+
+<p>To refresh your access token, you can make a <code>POST</code> request to the same URL as above, but with the following request parameters:</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>grant_type</code></td>
+<td>string</td>
+<td>This must be set to <code>refresh_token</code></td>
+</tr>
+<tr>
+<td><code>client_id</code></td>
+<td>string</td>
+<td>The client ID of your application</td>
+</tr>
+<tr>
+<td><code>client_secret</code></td>
+<td>string</td>
+<td>The client secret of your application</td>
+</tr>
+<tr>
+<td><code>refresh_token</code></td>
+<td>string</td>
+<td>The refresh token that was returned when you obtained the access token</td>
+</tr>
+</tbody></table>
+
+<p>This will return a new access token that you can use to make requests to the SimplyPrint API on behalf of the user.</p>
+<h3 id='testing-your-access-token'>Testing your access token</h3>
+<blockquote>
+<p>Testing your access token</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/oauth2/TokenInfo <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: Bearer {access_token}'</span>
+</code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">112</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john@doe.com"</span><span class="p">,</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Company"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"scopes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"expires_at"</span><span class="p">:</span><span class="w"> </span><span class="mi">1706292803</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>To test your access token, you can make a <code>GET</code> request to the following URL:</p>
+
+<p><code>https://api.simplyprint.io/oauth2/TokenInfo</code></p>
+
+<p>This endpoint returns the following information:</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is false.</td>
+</tr>
+<tr>
+<td><code>user</code></td>
+<td>object</td>
+<td>User object.</td>
+</tr>
+<tr>
+<td><code>user.id</code></td>
+<td>integer</td>
+<td>User ID.</td>
+</tr>
+<tr>
+<td><code>user.name</code></td>
+<td>string</td>
+<td>User name. This is only returned if the <code>user.read</code> scope is included in the access token.</td>
+</tr>
+<tr>
+<td><code>user.email</code></td>
+<td>string</td>
+<td>User email. This is only returned if the <code>user.read</code> scope is included in the access token.</td>
+</tr>
+<tr>
+<td><code>company</code></td>
+<td>object</td>
+<td>Company object.</td>
+</tr>
+<tr>
+<td><code>company.id</code></td>
+<td>integer</td>
+<td>Company ID.</td>
+</tr>
+<tr>
+<td><code>company.name</code></td>
+<td>string</td>
+<td>Company name.</td>
+</tr>
+<tr>
+<td><code>scopes</code></td>
+<td>array</td>
+<td>Array of scopes that are included in the access token.</td>
+</tr>
+<tr>
+<td><code>expires_at</code></td>
+<td>integer</td>
+<td>The unix timestamp of when the access token expires.</td>
+</tr>
+</tbody></table>
+
+<p>The company id is especially important, as you will need to use this in the base URL for all requests to the SimplyPrint API.</p>
 <h1 id='printers'>Printers</h1><h2 id='get-printer-info'>Get printer info</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/printers/Get <span class="se">\</span>
   <span class="nt">-X</span> POST <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
@@ -1021,8 +1291,8 @@
 </tr>
 <tr>
 <td><code>data.*.tags</code></td>
-<td>object</td>
-<td>nullable</td>
+<td>object/null</td>
+<td>Tags for printer; custom tags, static material data &amp; nozzle size</td>
 </tr>
 </tbody></table>
 <h2 id='start-print-create-job'>Start print / create job</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/printers/actions/CreateJob?pid<span class="o">=</span>1234&amp;filesystem<span class="o">=</span>291 <span class="se">\</span>
@@ -2759,8 +3029,8 @@
 </tr>
 <tr>
 <td><code>folder.permissions</code></td>
-<td>object</td>
-<td>null</td>
+<td>object/null</td>
+<td>Folder permissions.</td>
 </tr>
 <tr>
 <td><code>folder.permissions.view</code></td>
@@ -3337,8 +3607,8 @@ Also, folders cannot be moved into themselves.</p>
 </tr>
 <tr>
 <td><code>queue.items[].note</code></td>
-<td>string</td>
-<td>nullable</td>
+<td>string/null</td>
+<td>Optional note text.</td>
 </tr>
 <tr>
 <td><code>queue.items[].model</code></td>
@@ -3462,8 +3732,8 @@ Also, folders cannot be moved into themselves.</p>
 </tr>
 <tr>
 <td><code>queue.items[].tags</code></td>
-<td>object</td>
-<td>nullable</td>
+<td>object/null</td>
+<td>Tags for queue item; custom tags, static material data &amp; nozzle size</td>
 </tr>
 <tr>
 <td><code>queue.done_items</code></td>
@@ -3860,6 +4130,10 @@ Also, folders cannot be moved into themselves.</p>
 </span></code></pre></div>
 <aside class="notice">
   This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+<aside class="notice">
+  This endpoint cannot be used with OAuth2.
 </aside>
 
 <table><thead>
@@ -6442,7 +6716,11 @@ Please note that links with unlimited uses expire at the end of the day.</p>
 <td><span class="badge-pill" style="background-color: #212121;">Dark</span></td>
 </tr>
 </tbody></table>
-<h1 id='permissions'>Permissions</h1>
+<h1 id='permissions-and-scopes'>Permissions and Scopes</h1><h2 id='company-permissions'>Company permissions</h2>
+<p>These permissions are used to control access within a company. The permissions are tied to the user groups within the company.</p>
+
+<p>The owner of a company has all permissions.</p>
+
 <table><thead>
 <tr>
 <th>Permission</th>
@@ -6488,6 +6766,84 @@ Please note that links with unlimited uses expire at the end of the day.</p>
 <tr>
 <td><code>EDIT_TAGS</code></td>
 <td>&quot;Allow user to create, update and delete tags&quot;</td>
+</tr>
+</tbody></table>
+<h2 id='oauth2-scopes'>OAuth2 scopes</h2>
+<p>These scopes are used to control access to the API. The scopes are tied to the OAuth2 access token.</p>
+
+<table><thead>
+<tr>
+<th>Scope</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>user.read</code></td>
+<td>View user details</td>
+</tr>
+<tr>
+<td><code>printers.read</code></td>
+<td>View printer details</td>
+</tr>
+<tr>
+<td><code>printers.write</code></td>
+<td>Manage details of printers</td>
+</tr>
+<tr>
+<td><code>printers.actions</code></td>
+<td>Perform actions on printers</td>
+</tr>
+<tr>
+<td><code>spools.read</code></td>
+<td>View filament spools</td>
+</tr>
+<tr>
+<td><code>spools.write</code></td>
+<td>Manage filament spools</td>
+</tr>
+<tr>
+<td><code>files.read</code></td>
+<td>View file and folder details and contents</td>
+</tr>
+<tr>
+<td><code>files.write</code></td>
+<td>Manage files and folders</td>
+</tr>
+<tr>
+<td><code>files.temp_upload</code></td>
+<td>Upload temporary files</td>
+</tr>
+<tr>
+<td><code>queue.read</code></td>
+<td>View print queue</td>
+</tr>
+<tr>
+<td><code>queue.write</code></td>
+<td>Manage print queue</td>
+</tr>
+<tr>
+<td><code>statistics.read</code></td>
+<td>View printing statistics</td>
+</tr>
+<tr>
+<td><code>print_history.read</code></td>
+<td>View print history</td>
+</tr>
+<tr>
+<td><code>slicer.read</code></td>
+<td>View slicer profiles</td>
+</tr>
+<tr>
+<td><code>slicer.write</code></td>
+<td>Manage slicer profiles</td>
+</tr>
+<tr>
+<td><code>tags.read</code></td>
+<td>View tags</td>
+</tr>
+<tr>
+<td><code>tags.write</code></td>
+<td>Manage tags</td>
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>
@@ -6566,7 +6922,7 @@ Please note that links with unlimited uses expire at the end of the day.</p>
 <tr>
 <td>message</td>
 <td>A message describing the error</td>
-<td>String</td>
+<td>String/null</td>
 </tr>
 </tbody></table>
 
