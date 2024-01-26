@@ -1,0 +1,8 @@
+services:
+  slate-dev:
+    image: slatedocs/slate:latest
+    ports:
+      - 127.0.0.1:4567:4567
+    volumes:
+      - ./source:/srv/slate/source:ro
+    command: serve

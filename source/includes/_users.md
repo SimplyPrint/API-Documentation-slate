@@ -54,52 +54,52 @@ curl https://api.simplyprint.io/{id}/users/GetPaginatedUsers \
 
 | Required permissions |
 | -------------------- |
-| `VIEW_USERS` |
+| `VIEW_USERS`         |
 
 ### Request
 
 `POST /{id}/users/GetPaginatedUsers`
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `page` | integer | yes | The page number to retrieve. |
-| `page_size` | integer | yes | The number of users to retrieve per page. |
-| `approved` | boolean | no | If true, only approved users will be returned. If false, only pending users will be returned.<br>**Defaults to true** |
-| `search` | string | no | A search string to filter the users by. Searches for name, email and phone number. |
-| `sort_id` | integer | no | Which field to sort by. See [Sort IDs](#sort-ids). |
-| `sort_dir` | string | no | The sort direction. Either `asc` or `desc`. |
+| Parameter   | Type    | Required | Description                                                                                                           |
+| ----------- | ------- | -------- | --------------------------------------------------------------------------------------------------------------------- |
+| `page`      | integer | yes      | The page number to retrieve.                                                                                          |
+| `page_size` | integer | yes      | The number of users to retrieve per page.                                                                             |
+| `approved`  | boolean | no       | If true, only approved users will be returned. If false, only pending users will be returned.<br>**Defaults to true** |
+| `search`    | string  | no       | A search string to filter the users by. Searches for name, email and phone number.                                    |
+| `sort_id`   | integer | no       | Which field to sort by. See [Sort IDs](#sort-ids).                                                                    |
+| `sort_dir`  | string  | no       | The sort direction. Either `asc` or `desc`.                                                                           |
 
 #### Sort IDs
 
-| ID | Field |
-|----|-------|
-| 0 | Name |
-| 1 | Email |
-| 2 | Rank id |
-| 3 | Last online |
-| 4 | Join date |
-| 5 | Amount of prints |
+| ID  | Field            |
+| --- | ---------------- |
+| 0   | Name             |
+| 1   | Email            |
+| 2   | Rank id          |
+| 3   | Last online      |
+| 4   | Join date        |
+| 5   | Amount of prints |
 
 ### Response
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
-| `data` | array | An array of users. |
-| `data[].id` | integer | The id of the user. |
-| `data[].relation_id` | integer | The id of the user-company relation. |
-| `data[].name` | string | The name of the user. |
-| `data[].email_confirmed` | boolean | True if the user has confirmed their email address. |
-| `data[].email` | string | The email address of the user. |
-| `data[].phone` | string | The phone number of the user. |
-| `data[].relation_created_at` | string | The date and time the user joined the company. |
-| `data[].last_online` | string | The date and time the user was last online. Only present if user is approved |
-| `data[].approved_at` | string | The date and time the user was approved. Only present if user is approved |
-| `data[].org_account` | boolean | True if the user is an organization account. Only present if user is approved |
-| `data[].total_prints` | integer | The total number of prints the user has made on this company. Only present if user is approved |
-| `data[].rank` | integer | The id of the rank of the user. Only present if user is approved |
-| `page_amount` | integer | The total number of pages. |
+| Parameter                    | Type    | Description                                                                                    |
+| ---------------------------- | ------- | ---------------------------------------------------------------------------------------------- |
+| `status`                     | boolean | True if the request was successful.                                                            |
+| `message`                    | string  | Error message if `status` is false.                                                            |
+| `data`                       | array   | An array of users.                                                                             |
+| `data[].id`                  | integer | The id of the user.                                                                            |
+| `data[].relation_id`         | integer | The id of the user-company relation.                                                           |
+| `data[].name`                | string  | The name of the user.                                                                          |
+| `data[].email_confirmed`     | boolean | True if the user has confirmed their email address.                                            |
+| `data[].email`               | string  | The email address of the user.                                                                 |
+| `data[].phone`               | string  | The phone number of the user.                                                                  |
+| `data[].relation_created_at` | string  | The date and time the user joined the company.                                                 |
+| `data[].last_online`         | string  | The date and time the user was last online. Only present if user is approved                   |
+| `data[].approved_at`         | string  | The date and time the user was approved. Only present if user is approved                      |
+| `data[].org_account`         | boolean | True if the user is an organization account. Only present if user is approved                  |
+| `data[].total_prints`        | integer | The total number of prints the user has made on this company. Only present if user is approved |
+| `data[].rank`                | integer | The id of the rank of the user. Only present if user is approved                               |
+| `page_amount`                | integer | The total number of pages.                                                                     |
 
 ## Create Invitation Link
 
@@ -134,7 +134,7 @@ curl https://api.simplyprint.io/{id}/users/CreateInvitationLink \
 
 | Required permissions |
 | -------------------- |
-| `INVITE_USERS` |
+| `INVITE_USERS`       |
 
 This endpoint creates an invitation link that can be used to invite new users to the company.
 Please note that links with unlimited uses expire at the end of the day.
@@ -143,17 +143,17 @@ Please note that links with unlimited uses expire at the end of the day.
 
 `POST /{id}/users/CreateInvitationLink`
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `maxUses` | integer | no | The maximum number of times the link can be used. Specify 0 for unlimited uses. |
+| Parameter | Type    | Required | Description                                                                     |
+| --------- | ------- | -------- | ------------------------------------------------------------------------------- |
+| `maxUses` | integer | no       | The maximum number of times the link can be used. Specify 0 for unlimited uses. |
 
 ### Response
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
-| `link` | string | The invitation link. |
+| Parameter | Type    | Description                         |
+| --------- | ------- | ----------------------------------- |
+| `status`  | boolean | True if the request was successful. |
+| `message` | string  | Error message if `status` is false. |
+| `link`    | string  | The invitation link.                |
 
 ## Invite Users By Email
 
@@ -192,7 +192,7 @@ curl https://api.simplyprint.io/{id}/users/InviteSpecificUser \
 
 | Required permissions |
 | -------------------- |
-| `INVITE_USERS` |
+| `INVITE_USERS`       |
 
 This endpoint invites one or more users to the company by email.
 
@@ -200,17 +200,17 @@ This endpoint invites one or more users to the company by email.
 
 `POST /{id}/users/InviteSpecificUser`
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `emails` | string[] | yes | The emails of the users to invite. |
-| `rank` | integer | no | The rank id that the users should be assigned. |
+| Parameter | Type     | Required | Description                                    |
+| --------- | -------- | -------- | ---------------------------------------------- |
+| `emails`  | string[] | yes      | The emails of the users to invite.             |
+| `rank`    | integer  | no       | The rank id that the users should be assigned. |
 
 ### Response
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
+| Parameter | Type    | Description                         |
+| --------- | ------- | ----------------------------------- |
+| `status`  | boolean | True if the request was successful. |
+| `message` | string  | Error message if `status` is false. |
 
 ## Accept or Deny Pending User
 
@@ -246,24 +246,24 @@ curl https://api.simplyprint.io/{id}/users/SetPendingUserState \
 
 | Required permissions |
 | -------------------- |
-| `INVITE_USERS` |
+| `INVITE_USERS`       |
 
 ### Request
 
 `POST /{id}/users/SetPendingUserState`
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `relation_id` | integer | yes | The id of the pending user-company relation. |
-| `approve` | boolean | yes | True to approve the user, false to deny. |
-| `notify` | boolean | yes | True to notify the user of the decision. Will send an email if the user has an email address. |
+| Parameter     | Type    | Required | Description                                                                                   |
+| ------------- | ------- | -------- | --------------------------------------------------------------------------------------------- |
+| `relation_id` | integer | yes      | The id of the pending user-company relation.                                                  |
+| `approve`     | boolean | yes      | True to approve the user, false to deny.                                                      |
+| `notify`      | boolean | yes      | True to notify the user of the decision. Will send an email if the user has an email address. |
 
 ### Response
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
+| Parameter | Type    | Description                         |
+| --------- | ------- | ----------------------------------- |
+| `status`  | boolean | True if the request was successful. |
+| `message` | string  | Error message if `status` is false. |
 
 ## Change User Rank
 
@@ -296,17 +296,17 @@ curl https://api.simplyprint.io/{id}/users/ChangeUserRank \
 
 `POST /{id}/users/ChangeUserRank`
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `relation_id` | integer | yes | The id of the user-company relation. |
-| `rank_id` | integer | yes | The id of the rank to assign to the user. |
+| Parameter     | Type    | Required | Description                               |
+| ------------- | ------- | -------- | ----------------------------------------- |
+| `relation_id` | integer | yes      | The id of the user-company relation.      |
+| `rank_id`     | integer | yes      | The id of the rank to assign to the user. |
 
 ### Response
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
+| Parameter | Type    | Description                         |
+| --------- | ------- | ----------------------------------- |
+| `status`  | boolean | True if the request was successful. |
+| `message` | string  | Error message if `status` is false. |
 
 ## Delete User
 
@@ -340,7 +340,7 @@ curl https://api.simplyprint.io/{id}/users/DeleteUser \
 
 | Required permissions |
 | -------------------- |
-| `DELETE_USER` |
+| `DELETE_USER`        |
 
 This endpoint deletes a user from the company. Use this endpoint with caution.
 
@@ -348,13 +348,13 @@ This endpoint deletes a user from the company. Use this endpoint with caution.
 
 `POST /{id}/users/DeleteUser`
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `user_id` | integer | yes | The id of the user to delete. |
+| Parameter | Type    | Required | Description                   |
+| --------- | ------- | -------- | ----------------------------- |
+| `user_id` | integer | yes      | The id of the user to delete. |
 
 ### Response
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
+| Parameter | Type    | Description                         |
+| --------- | ------- | ----------------------------------- |
+| `status`  | boolean | True if the request was successful. |
+| `message` | string  | Error message if `status` is false. |

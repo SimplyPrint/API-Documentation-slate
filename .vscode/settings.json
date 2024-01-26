@@ -1,0 +1,19 @@
+{
+  "markdownlint.config": {
+    "no-inline-html": {
+      "allowed_elements": [
+        "aside",
+        "b",
+        "br",
+        "span",
+        "code",
+        "ul",
+        "ol",
+        "li",
+      ],
+    },
+    "link-fragments": false,
+    "no-duplicate-heading": false,
+    "single-h1": false,
+  }
+}

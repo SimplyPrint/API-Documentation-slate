@@ -45,19 +45,19 @@ This endpoint adds a file to the queue. The file can either be a file on the fil
 
 `POST /{id}/queue/AddItem`
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `filesystem` | string | no | The filesystem id of the file to add to the queue. |
-| `amount` | integer | no | The amount of prints to add to the queue.<br>**Default: 1** |
-| `group` | integer | no | If you have Queue Groups - ID of the group the item should be added to.<br>**Default: 0 - required if you have Queue Groups** |
+| Parameter    | Type    | Required | Description                                                                                                                   |
+| ------------ | ------- | -------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `filesystem` | string  | no       | The filesystem id of the file to add to the queue.                                                                            |
+| `amount`     | integer | no       | The amount of prints to add to the queue.<br>**Default: 1**                                                                   |
+| `group`      | integer | no       | If you have Queue Groups - ID of the group the item should be added to.<br>**Default: 0 - required if you have Queue Groups** |
 
 ### Response
 
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Success message or error message if `status` is false. |
-| `created_id` | integer | The id of the created queue item |
+| Parameter    | Type    | Description                                            |
+| ------------ | ------- | ------------------------------------------------------ |
+| `status`     | boolean | True if the request was successful.                    |
+| `message`    | string  | Success message or error message if `status` is false. |
+| `created_id` | integer | The id of the created queue item                       |
 
 ## Get next queue item
 
@@ -151,41 +151,41 @@ This endpoint gets the next item in the queue for the specified printer. The nex
 
 #### Request parameters
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| p | integer[] | yes | Comma separated list of printer ids to get the next items for. |
+| Parameter | Type      | Required | Description                                                    |
+| --------- | --------- | -------- | -------------------------------------------------------------- |
+| p         | integer[] | yes      | Comma separated list of printer ids to get the next items for. |
 
 #### Request body
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `settings` | object | no | Conditions that must be met for the next item. |
-| `settings.filament` | boolean | no | Must have enough filament.<br>**Default: true** |
-| `settings.filamentTemps` | boolean | no | Printer's filament temperature must match filament temperature of file.<br>**Default: true** |
-| `settings.fit` | boolean | no | Print must fit printer's bed.<br>**Default: true** |
-| `settings.gcodeAnalysis` | boolean | no | Must have gcode analysis.<br>**Default: true** |
-| `settings.printerTemps` | boolean | no | File must have a max temperature that is lower than the printer's max temperature.<br>**Default: true** |
-| `settings.tags` | boolean | no | Printer must match possible queue item tags (nozzle size, material data & custom tags).<br>**Default: true** |
+| Parameter                | Type    | Required | Description                                                                                                  |
+| ------------------------ | ------- | -------- | ------------------------------------------------------------------------------------------------------------ |
+| `settings`               | object  | no       | Conditions that must be met for the next item.                                                               |
+| `settings.filament`      | boolean | no       | Must have enough filament.<br>**Default: true**                                                              |
+| `settings.filamentTemps` | boolean | no       | Printer's filament temperature must match filament temperature of file.<br>**Default: true**                 |
+| `settings.fit`           | boolean | no       | Print must fit printer's bed.<br>**Default: true**                                                           |
+| `settings.gcodeAnalysis` | boolean | no       | Must have gcode analysis.<br>**Default: true**                                                               |
+| `settings.printerTemps`  | boolean | no       | File must have a max temperature that is lower than the printer's max temperature.<br>**Default: true**      |
+| `settings.tags`          | boolean | no       | Printer must match possible queue item tags (nozzle size, material data & custom tags).<br>**Default: true** |
 
 ### Response
 
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Success message or error message if `status` is false. |
-| `queue` | object | The queue object. |
-| `queue.total` | integer | The total amount of items in the queue. |
-| `queue.printers` | integer[] | The printer ids that were requested. |
-| `queue.matches` | array | The next items for each printer. |
-| `queue.matches[].id` | integer | The id of the next item. Only present if `match` is true. |
-| `queue.matches[].index` | integer | The index of the item in the queue. Only present if `match` is true. |
-| `queue.matches[].printer` | integer | The id of the printer that the item is for. |
-| `queue.matches[].match` | boolean | True if a match was found. |
-| `queue.matches[].issues` | string[] | The issues that are present in the item. Can also have values if an item was matched but would have been catched by other settings. |
-| `queue.matches[].missed` | integer | The amount of items that were skipped. |
-| `queue.matches[].name` | string | The name of the item. Only present if `match` is true. |
-| `queue.matches[].printed` | integer | The amount of completed prints of this item (from print queue). Only present if `match` is true. |
-| `queue.matches[].left` | integer | The amount of prints left (from print queue). Only present if `match` is true. |
+| Parameter                 | Type      | Description                                                                                                                         |
+| ------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `status`                  | boolean   | True if the request was successful.                                                                                                 |
+| `message`                 | string    | Success message or error message if `status` is false.                                                                              |
+| `queue`                   | object    | The queue object.                                                                                                                   |
+| `queue.total`             | integer   | The total amount of items in the queue.                                                                                             |
+| `queue.printers`          | integer[] | The printer ids that were requested.                                                                                                |
+| `queue.matches`           | array     | The next items for each printer.                                                                                                    |
+| `queue.matches[].id`      | integer   | The id of the next item. Only present if `match` is true.                                                                           |
+| `queue.matches[].index`   | integer   | The index of the item in the queue. Only present if `match` is true.                                                                |
+| `queue.matches[].printer` | integer   | The id of the printer that the item is for.                                                                                         |
+| `queue.matches[].match`   | boolean   | True if a match was found.                                                                                                          |
+| `queue.matches[].issues`  | string[]  | The issues that are present in the item. Can also have values if an item was matched but would have been catched by other settings. |
+| `queue.matches[].missed`  | integer   | The amount of items that were skipped.                                                                                              |
+| `queue.matches[].name`    | string    | The name of the item. Only present if `match` is true.                                                                              |
+| `queue.matches[].printed` | integer   | The amount of completed prints of this item (from print queue). Only present if `match` is true.                                    |
+| `queue.matches[].left`    | integer   | The amount of prints left (from print queue). Only present if `match` is true.                                                      |
 
 ## Get queue items
 
@@ -303,61 +303,61 @@ This endpoint returns the queue for the specified or all printers.
 
 `GET /{id}/queue/GetItems`
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `p` | integer | no | The printer id to get the queue for. If not specified, the queue for all printers will be returned. |
-| `groups` | boolean | no | Attaches a list of print queue groups to the response. Note: this argument does not take a value. |
+| Parameter | Type    | Required | Description                                                                                         |
+| --------- | ------- | -------- | --------------------------------------------------------------------------------------------------- |
+| `p`       | integer | no       | The printer id to get the queue for. If not specified, the queue for all printers will be returned. |
+| `groups`  | boolean | no       | Attaches a list of print queue groups to the response. Note: this argument does not take a value.   |
 
 ### Response
 
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Success message or error message if `status` is false. |
-| `queue` | object | The queue object. |
-| `queue.fits` | boolean | Whether any items in the queue can be printed on the printer. (due to space, temperature) |
-| `queue.items` | array | An array of queue item objects. |
-| `queue.items[].id` | integer | The queue item id. |
-| `queue.items[].index` | integer | The queue item index. |
-| `queue.items[].filename` | string | The queue item filename. |
-| `queue.items[].note` | string|nullable | Optional note text. |
-| `queue.items[].model` | boolean | True if the queue item is a model. |
-| `queue.items[].printable` | boolean | True if the queue is printable. |
-| `queue.items[].left` | integer | The amount of prints left to print. |
-| `queue.items[].printed` | integer | The amount of prints that have been printed. |
-| `queue.items[].filesystem_id` | string/null | File id if print is from SimplyPrint filesystem. | 
-| `queue.items[].group` | integer | Possible ID of Queue Group. |
-| `queue.items[].for` | object | For which printers, models and groups this queue item is for. |
-| `queue.items[].for.printers` | array | An array of printer ids. |
-| `queue.items[].for.models` | array | An array of printer model ids. |
-| `queue.items[].for.groups` | array | An array of group ids. |
-| `queue.items[].analysis` | object | The analysis object. |
-| `queue.items[].analysis.slicer` | string | The slicer used to slice the file. |
-| `queue.items[].analysis.filament` | array | An array of filament lengths. |
-| `queue.items[].analysis.estimate` | integer | The estimated print time in seconds. |
-| `queue.items[].analysis.movement` | object | The movement object. |
-| `queue.items[].analysis.temps` | object | The temperatures object. |
-| `queue.items[].analysis.temps.tool` | object | Temperature for each tool (extruder). |
-| `queue.items[].analysis.temps.bed` | integer | Temperature for the bed. |
-| `queue.items[].analysis.modelSize` | object | The model size object. Represented as `x`, `y` and `z` values in millimeters. |
-| `queue.items[].analysis.printArea` | object | The print area object. Represented as `maxX`, `minX`, `maxY`, `minY`, `maxZ` and `minZ` values in millimeters. |
-| `queue.items[].analysis.minDeltaRadius` | float | Minimum radius for delta printers. |
-| `queue.items[].analysis.v` | integer | The analysis version. |
-| `queue.items[].user` | string | The user name of who added the queue item. |
-| `queue.items[].user_id` | integer | The user id of who added the queue item. |
-| `queue.items[].tags` | object|nullable | Tags for queue item; custom tags, static material data & nozzle size |
-| `queue.done_items` | array | If `groups` GET is set, an array of done queue items, or ones where the last remaining item is being printed **includes all the same fields as queue items, with a few extra;**. |
-| `queue.done_items[]....` |  | *Fields inherited from regular queue items*. |
-| `queue.done_items[].size` | integer | Byte-size used by this item - 0 if the file is from the filesystem. |
-| `queue.done_items[].ongoing` | boolean | If the item is currently ongoing. |
-| `queue.done_items[].done` | UTC date/null | UTC date that the item was finished. |
-| `queue.done_items[].expires` | UTC date/null | UTC date that the item expires and is removed from the platform. |
-| `groups` | array | If `groups` GET is set, an array of print queue groups. |
-| `groups[].id` | integer | The group id. |
-| `groups[].name` | string | The group name. |
-| `groups[].virtual` | boolean | Whether the group is a virtual queue group. |
-| `groups[].extensions` | array/null | An array of file extensions that are allowed in the group. |
-| `groups[].sort_order` | integer | The sort index of the group. |
+| Parameter                               | Type          | Description                                                                                                                                                                      |
+| --------------------------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `status`                                | boolean       | True if the request was successful.                                                                                                                                              |
+| `message`                               | string        | Success message or error message if `status` is false.                                                                                                                           |
+| `queue`                                 | object        | The queue object.                                                                                                                                                                |
+| `queue.fits`                            | boolean       | Whether any items in the queue can be printed on the printer. (due to space, temperature)                                                                                        |
+| `queue.items`                           | array         | An array of queue item objects.                                                                                                                                                  |
+| `queue.items[].id`                      | integer       | The queue item id.                                                                                                                                                               |
+| `queue.items[].index`                   | integer       | The queue item index.                                                                                                                                                            |
+| `queue.items[].filename`                | string        | The queue item filename.                                                                                                                                                         |
+| `queue.items[].note`                    | string/null   | Optional note text.                                                                                                                                                              |
+| `queue.items[].model`                   | boolean       | True if the queue item is a model.                                                                                                                                               |
+| `queue.items[].printable`               | boolean       | True if the queue is printable.                                                                                                                                                  |
+| `queue.items[].left`                    | integer       | The amount of prints left to print.                                                                                                                                              |
+| `queue.items[].printed`                 | integer       | The amount of prints that have been printed.                                                                                                                                     |
+| `queue.items[].filesystem_id`           | string/null   | File id if print is from SimplyPrint filesystem.                                                                                                                                 |
+| `queue.items[].group`                   | integer       | Possible ID of Queue Group.                                                                                                                                                      |
+| `queue.items[].for`                     | object        | For which printers, models and groups this queue item is for.                                                                                                                    |
+| `queue.items[].for.printers`            | array         | An array of printer ids.                                                                                                                                                         |
+| `queue.items[].for.models`              | array         | An array of printer model ids.                                                                                                                                                   |
+| `queue.items[].for.groups`              | array         | An array of group ids.                                                                                                                                                           |
+| `queue.items[].analysis`                | object        | The analysis object.                                                                                                                                                             |
+| `queue.items[].analysis.slicer`         | string        | The slicer used to slice the file.                                                                                                                                               |
+| `queue.items[].analysis.filament`       | array         | An array of filament lengths.                                                                                                                                                    |
+| `queue.items[].analysis.estimate`       | integer       | The estimated print time in seconds.                                                                                                                                             |
+| `queue.items[].analysis.movement`       | object        | The movement object.                                                                                                                                                             |
+| `queue.items[].analysis.temps`          | object        | The temperatures object.                                                                                                                                                         |
+| `queue.items[].analysis.temps.tool`     | object        | Temperature for each tool (extruder).                                                                                                                                            |
+| `queue.items[].analysis.temps.bed`      | integer       | Temperature for the bed.                                                                                                                                                         |
+| `queue.items[].analysis.modelSize`      | object        | The model size object. Represented as `x`, `y` and `z` values in millimeters.                                                                                                    |
+| `queue.items[].analysis.printArea`      | object        | The print area object. Represented as `maxX`, `minX`, `maxY`, `minY`, `maxZ` and `minZ` values in millimeters.                                                                   |
+| `queue.items[].analysis.minDeltaRadius` | float         | Minimum radius for delta printers.                                                                                                                                               |
+| `queue.items[].analysis.v`              | integer       | The analysis version.                                                                                                                                                            |
+| `queue.items[].user`                    | string        | The user name of who added the queue item.                                                                                                                                       |
+| `queue.items[].user_id`                 | integer       | The user id of who added the queue item.                                                                                                                                         |
+| `queue.items[].tags`                    | object/null   | Tags for queue item; custom tags, static material data & nozzle size                                                                                                             |
+| `queue.done_items`                      | array         | If `groups` GET is set, an array of done queue items, or ones where the last remaining item is being printed **includes all the same fields as queue items, with a few extra;**. |
+| `queue.done_items[]....`                |               | *Fields inherited from regular queue items*.                                                                                                                                     |
+| `queue.done_items[].size`               | integer       | Byte-size used by this item - 0 if the file is from the filesystem.                                                                                                              |
+| `queue.done_items[].ongoing`            | boolean       | If the item is currently ongoing.                                                                                                                                                |
+| `queue.done_items[].done`               | UTC date/null | UTC date that the item was finished.                                                                                                                                             |
+| `queue.done_items[].expires`            | UTC date/null | UTC date that the item expires and is removed from the platform.                                                                                                                 |
+| `groups`                                | array         | If `groups` GET is set, an array of print queue groups.                                                                                                                          |
+| `groups[].id`                           | integer       | The group id.                                                                                                                                                                    |
+| `groups[].name`                         | string        | The group name.                                                                                                                                                                  |
+| `groups[].virtual`                      | boolean       | Whether the group is a virtual queue group.                                                                                                                                      |
+| `groups[].extensions`                   | array/null    | An array of file extensions that are allowed in the group.                                                                                                                       |
+| `groups[].sort_order`                   | integer       | The sort index of the group.                                                                                                                                                     |
 
 ## Update queue item
 
@@ -405,26 +405,26 @@ This endpoint updates the queue item with the specified id.
 
 #### Query parameters
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `job` | integer | yes | The queue item id to update. |
+| Parameter | Type    | Required | Description                  |
+| --------- | ------- | -------- | ---------------------------- |
+| `job`     | integer | yes      | The queue item id to update. |
 
 #### Request body
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `for_groups` | array | no | An array of group ids to assign the queue item to. |
-| `for_models` | array | no | An array of printer model ids to assign the queue item to. |
-| `for_printers` | array | no | An array of printer ids to assign the queue item to. |
-| `amount` | integer | no | The new amount to set. |
-| `amount` | integer | no | Set amount of "printed". |
+| Parameter      | Type    | Required | Description                                                |
+| -------------- | ------- | -------- | ---------------------------------------------------------- |
+| `for_groups`   | array   | no       | An array of group ids to assign the queue item to.         |
+| `for_models`   | array   | no       | An array of printer model ids to assign the queue item to. |
+| `for_printers` | array   | no       | An array of printer ids to assign the queue item to.       |
+| `amount`       | integer | no       | The new amount to set.                                     |
+| `amount`       | integer | no       | Set amount of "printed".                                   |
 
 ### Response
 
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Success message or error message if `status` is false. |
+| Parameter | Type    | Description                                            |
+| --------- | ------- | ------------------------------------------------------ |
+| `status`  | boolean | True if the request was successful.                    |
+| `message` | string  | Success message or error message if `status` is false. |
 
 ## Delete queue item
 
@@ -453,16 +453,16 @@ This endpoint deletes the queue item with the specified id.
 
 `? /{id}/queue/DeleteItem`
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `job` | integer | yes | The queue item id to delete. |
+| Parameter | Type    | Required | Description                  |
+| --------- | ------- | -------- | ---------------------------- |
+| `job`     | integer | yes      | The queue item id to delete. |
 
 ### Response
 
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Success message or error message if `status` is false. |
+| Parameter | Type    | Description                                            |
+| --------- | ------- | ------------------------------------------------------ |
+| `status`  | boolean | True if the request was successful.                    |
+| `message` | string  | Success message or error message if `status` is false. |
 
 ## Change queue order
 
@@ -491,18 +491,18 @@ This endpoint changes the order of the queue items by moving the queue item with
 
 `GET /{id}/queue/SetOrder`
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `job` | integer | yes | The queue item id to move. |
-| `from` | integer | yes | The current position of the queue item. |
-| `to` | integer | yes | The new position of the queue item. |
+| Parameter | Type    | Required | Description                             |
+| --------- | ------- | -------- | --------------------------------------- |
+| `job`     | integer | yes      | The queue item id to move.              |
+| `from`    | integer | yes      | The current position of the queue item. |
+| `to`      | integer | yes      | The new position of the queue item.     |
 
 ### Response
 
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| `success` | boolean | True if the request was successful. |
-| `message` | string | Success message or error message if `success` is false. |
+| Parameter | Type    | Description                                             |
+| --------- | ------- | ------------------------------------------------------- |
+| `success` | boolean | True if the request was successful.                     |
+| `message` | string  | Success message or error message if `success` is false. |
 
 ## Empty queue
 
@@ -525,8 +525,8 @@ curl https://api.simplyprint.io/{id}/queue/EmptyQueue \
   This endpoint requires the <b>Print Farm</b> plan.
 </aside>
 
-| Required Permissions |
-| -------------------- |
+| Required Permissions     |
+| ------------------------ |
 | `PRINT_QUEUE_REMOVE_ALL` |
 
 This endpoint empties the queue.
@@ -535,13 +535,13 @@ This endpoint empties the queue.
 
 `GET /{id}/queue/EmptyQueue`
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `group` | integer | no | ID of Queue Group to empty.<br>**Default: 0 - required if you have Queue Groups |
+| Parameter | Type    | Required | Description                                                                     |
+| --------- | ------- | -------- | ------------------------------------------------------------------------------- |
+| `group`   | integer | no       | ID of Queue Group to empty.<br>**Default: 0 - required if you have Queue Groups |
 
 ### Response
 
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Success message or error message if `status` is false. |
+| Parameter | Type    | Description                                            |
+| --------- | ------- | ------------------------------------------------------ |
+| `status`  | boolean | True if the request was successful.                    |
+| `message` | string  | Success message or error message if `status` is false. |

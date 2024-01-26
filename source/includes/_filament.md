@@ -71,46 +71,46 @@ This endpoint returns a list of all filaments as well as filament types and bran
 
 ### Response
 
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
-| `showid` | boolean | Whether to show filament id. (Frontend data) |
-| `is_kg` | boolean | Whether to show filament in kg. (Frontend data) |
-| `brands` | object | Filament brands. |
-| `brands.{brand}` | integer | Number of filaments with `{brand}`. |
-| `types` | object | Filament types such as PLA, ABS, PETG, etc. |
-| `types.{type}` | integer | Number of filaments with `{type}`. |
-| `filament` | object | Filament data where each key is a filament id. |
-| `filament.{id}` | object | Filament data. |
-| `filament.{id}.id` | integer | Filament id. (same as `{id}`) |
-| `filament.{id}.uid` | string | Four character code that is used to identify the filament. Refered to as filament id in the frontend. |
-| `filament.{id}.type` | object | Filament type. |
-| `filament.{id}.type.id` | integer | Filament type id. |
-| `filament.{id}.type.name` | string | Filament type name. |
-| `filament.{id}.brand` | string | Filament brand. |
-| `filament.{id}.colorName` | string | Filament color name. |
-| `filament.{id}.colorHex` | string | Filament color hex code. |
-| `filament.{id}.dia` | float | Filament diameter. |
-| `filament.{id}.density` | float | Filament density. |
-| `filament.{id}.temps` | object | Filament temperatures. |
-| `filament.{id}.temps.nozzle` | integer | Filament nozzle temperature. |
-| `filament.{id}.temps.bed` | integer | Filament bed temperature. |
-| `filament.{id}.temps.flNozzle` | integer | Filament first layer nozzle temperature. |
-| `filament.{id}.temps.flBed` | integer | Filament first layer bed temperature. |
-| `filament.{id}.slicing` | object | Filament slicing settings. |
-| `filament.{id}.slicing.printSpeed` | integer | Filament print speed. |
-| `filament.{id}.slicing.finishRate` | float | Filament finish rate. |
-| `filament.{id}.slicing.minSpeed` | integer | Filament minimum speed. |
-| `filament.{id}.total` | integer | Total filament length in mm. |
-| `filament.{id}.left` | integer | Left filament length in mm. |
-| `filament.{id}.extruder` | integer | Which extruder the filament is assigned to. |
-| `filament.{id}.bought` | integer | Timestamp of when the filament was bought. |
-| `filament.{id}.created` | integer | Timestamp of when the filament was created. |
-| `filament.{id}.printer` | integer | Which printer the filament is assigned to. |
-| `filament.{id}.nfc` | integer | Whether the filament has NFC. |
-| `filament.{id}.qr` | integer | Whether the filament has QR. |
-| `filament.{id}.prodId` | string | Filament product id. |
+| Parameter                          | Type    | Description                                                                                           |
+| ---------------------------------- | ------- | ----------------------------------------------------------------------------------------------------- |
+| `status`                           | boolean | True if the request was successful.                                                                   |
+| `message`                          | string  | Error message if `status` is false.                                                                   |
+| `showid`                           | boolean | Whether to show filament id. (Frontend data)                                                          |
+| `is_kg`                            | boolean | Whether to show filament in kg. (Frontend data)                                                       |
+| `brands`                           | object  | Filament brands.                                                                                      |
+| `brands.{brand}`                   | integer | Number of filaments with `{brand}`.                                                                   |
+| `types`                            | object  | Filament types such as PLA, ABS, PETG, etc.                                                           |
+| `types.{type}`                     | integer | Number of filaments with `{type}`.                                                                    |
+| `filament`                         | object  | Filament data where each key is a filament id.                                                        |
+| `filament.{id}`                    | object  | Filament data.                                                                                        |
+| `filament.{id}.id`                 | integer | Filament id. (same as `{id}`)                                                                         |
+| `filament.{id}.uid`                | string  | Four character code that is used to identify the filament. Refered to as filament id in the frontend. |
+| `filament.{id}.type`               | object  | Filament type.                                                                                        |
+| `filament.{id}.type.id`            | integer | Filament type id.                                                                                     |
+| `filament.{id}.type.name`          | string  | Filament type name.                                                                                   |
+| `filament.{id}.brand`              | string  | Filament brand.                                                                                       |
+| `filament.{id}.colorName`          | string  | Filament color name.                                                                                  |
+| `filament.{id}.colorHex`           | string  | Filament color hex code.                                                                              |
+| `filament.{id}.dia`                | float   | Filament diameter.                                                                                    |
+| `filament.{id}.density`            | float   | Filament density.                                                                                     |
+| `filament.{id}.temps`              | object  | Filament temperatures.                                                                                |
+| `filament.{id}.temps.nozzle`       | integer | Filament nozzle temperature.                                                                          |
+| `filament.{id}.temps.bed`          | integer | Filament bed temperature.                                                                             |
+| `filament.{id}.temps.flNozzle`     | integer | Filament first layer nozzle temperature.                                                              |
+| `filament.{id}.temps.flBed`        | integer | Filament first layer bed temperature.                                                                 |
+| `filament.{id}.slicing`            | object  | Filament slicing settings.                                                                            |
+| `filament.{id}.slicing.printSpeed` | integer | Filament print speed.                                                                                 |
+| `filament.{id}.slicing.finishRate` | float   | Filament finish rate.                                                                                 |
+| `filament.{id}.slicing.minSpeed`   | integer | Filament minimum speed.                                                                               |
+| `filament.{id}.total`              | integer | Total filament length in mm.                                                                          |
+| `filament.{id}.left`               | integer | Left filament length in mm.                                                                           |
+| `filament.{id}.extruder`           | integer | Which extruder the filament is assigned to.                                                           |
+| `filament.{id}.bought`             | integer | Timestamp of when the filament was bought.                                                            |
+| `filament.{id}.created`            | integer | Timestamp of when the filament was created.                                                           |
+| `filament.{id}.printer`            | integer | Which printer the filament is assigned to.                                                            |
+| `filament.{id}.nfc`                | integer | Whether the filament has NFC.                                                                         |
+| `filament.{id}.qr`                 | integer | Whether the filament has QR.                                                                          |
+| `filament.{id}.prodId`             | string  | Filament product id.                                                                                  |
 
 ## Create or Update Existing Filament
 
@@ -175,7 +175,7 @@ To update existing filament, you need to provide a `fid` query parameter, which 
 
 | Required permissions |
 | -------------------- |
-| `CREATE_FILAMENT` |
+| `CREATE_FILAMENT`    |
 
 ### Request
 
@@ -183,50 +183,50 @@ To update existing filament, you need to provide a `fid` query parameter, which 
 
 #### Query Parameters
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `fid` | string | no | Filament id of the filament you want to update. |
+| Parameter | Type   | Required | Description                                     |
+| --------- | ------ | -------- | ----------------------------------------------- |
+| `fid`     | string | no       | Filament id of the filament you want to update. |
 
 #### Request Body
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `color_name` | string | yes | Filament color name.<br>**Max 64 characters** |
-| `color_hex` | string | yes | Filament color hex code. |
-| `color_standard` | string | no | Filament color standard. |
-| `width` | float (enum) | yes | Filament width.<br>**Value has to be one of `[1.75, 2.85, 3.00]`** |
-| `density` | float | yes | Filament density. |
-| `bought_at` | string | no | Date of purchase.<br>**Format: `YYYY-MM-DD`** |
-| `filament_type` | string | yes | Filament type. |
-| `cost` | float | no | Cost of filament in your account-defined currency (changed in account settings). |
-| `custom_note` | string | no | Custom note.<br>**Max 1000 characters** |
-| `prod_id` | string | no | Filament product id. |
-| `brand` | string | yes | Filament brand. |
-| `brand_id` | integer | no | Filament brand id. |
-| `filgroup_id` | integer | no | Target SimplyPrint filament group id to insert filament into. |
-| `spool_id` | integer | no | Filament spool id. |
-| `slicing_settings` | object | yes | Slicing settings. |
-| `slicing_settings.nozzle_temp` | integer | yes | Nozzle temperature. |
-| `slicing_settings.nozzle_fl_temp` | integer | yes | Nozzle first layer temperature. |
-| `slicing_settings.bed_temp` | integer | yes | Bed temperature. |
-| `slicing_settings.bed_fl_temp` | integer | yes | Bed first layer temperature. |
-| `slicing_settings.print_speed` | integer | yes | Print speed. |
-| `slicing_settings.finish_rate` | float | yes | Finish rate. |
-| `slicing_settings.min_speed` | integer | yes | Minimum speed. |
-| `amount` | integer | yes | Amount of filament. |
-| `total_length_type` | string | yes | Total length type. |
-| `left_length_type` | string | yes | Left length type. |
-| `total_length` | float | yes | Total length. |
-| `length_used` | float | yes | Length used. |
+| Parameter                         | Type         | Required | Description                                                                      |
+| --------------------------------- | ------------ | -------- | -------------------------------------------------------------------------------- |
+| `color_name`                      | string       | yes      | Filament color name.<br>**Max 64 characters**                                    |
+| `color_hex`                       | string       | yes      | Filament color hex code.                                                         |
+| `color_standard`                  | string       | no       | Filament color standard.                                                         |
+| `width`                           | float (enum) | yes      | Filament width.<br>**Value has to be one of `[1.75, 2.85, 3.00]`**               |
+| `density`                         | float        | yes      | Filament density.                                                                |
+| `bought_at`                       | string       | no       | Date of purchase.<br>**Format: `YYYY-MM-DD`**                                    |
+| `filament_type`                   | string       | yes      | Filament type.                                                                   |
+| `cost`                            | float        | no       | Cost of filament in your account-defined currency (changed in account settings). |
+| `custom_note`                     | string       | no       | Custom note.<br>**Max 1000 characters**                                          |
+| `prod_id`                         | string       | no       | Filament product id.                                                             |
+| `brand`                           | string       | yes      | Filament brand.                                                                  |
+| `brand_id`                        | integer      | no       | Filament brand id.                                                               |
+| `filgroup_id`                     | integer      | no       | Target SimplyPrint filament group id to insert filament into.                    |
+| `spool_id`                        | integer      | no       | Filament spool id.                                                               |
+| `slicing_settings`                | object       | yes      | Slicing settings.                                                                |
+| `slicing_settings.nozzle_temp`    | integer      | yes      | Nozzle temperature.                                                              |
+| `slicing_settings.nozzle_fl_temp` | integer      | yes      | Nozzle first layer temperature.                                                  |
+| `slicing_settings.bed_temp`       | integer      | yes      | Bed temperature.                                                                 |
+| `slicing_settings.bed_fl_temp`    | integer      | yes      | Bed first layer temperature.                                                     |
+| `slicing_settings.print_speed`    | integer      | yes      | Print speed.                                                                     |
+| `slicing_settings.finish_rate`    | float        | yes      | Finish rate.                                                                     |
+| `slicing_settings.min_speed`      | integer      | yes      | Minimum speed.                                                                   |
+| `amount`                          | integer      | yes      | Amount of filament.                                                              |
+| `total_length_type`               | string       | yes      | Total length type.                                                               |
+| `left_length_type`                | string       | yes      | Left length type.                                                                |
+| `total_length`                    | float        | yes      | Total length.                                                                    |
+| `length_used`                     | float        | yes      | Length used.                                                                     |
 
 ### Response
 
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
-| `filament_ids` | array | Array of filament ids. |
-| `qr_gen` | integer | Used for frontend, not important. |
+| Parameter      | Type    | Description                         |
+| -------------- | ------- | ----------------------------------- |
+| `status`       | boolean | True if the request was successful. |
+| `message`      | string  | Error message if `status` is false. |
+| `filament_ids` | array   | Array of filament ids.              |
+| `qr_gen`       | integer | Used for frontend, not important.   |
 
 ## Delete Filament
 
@@ -249,22 +249,22 @@ This endpoint deletes a filament specified by the `fid` parameter.
 
 | Required permissions |
 | -------------------- |
-| `CREATE_FILAMENT` |
+| `CREATE_FILAMENT`    |
 
 ### Request
 
 `GET /{id}/filament/Delete`
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| fid | integer | yes | Filament id |
+| Parameter | Type    | Required | Description |
+| --------- | ------- | -------- | ----------- |
+| fid       | integer | yes      | Filament id |
 
 ### Response
 
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
+| Parameter | Type    | Description                         |
+| --------- | ------- | ----------------------------------- |
+| `status`  | boolean | True if the request was successful. |
+| `message` | string  | Error message if `status` is false. |
 
 ## Assign Filament(s) To Printer
 
@@ -299,7 +299,7 @@ This endpoint assigns filament(s) to a printer.
 
 | Required permissions |
 | -------------------- |
-| `CHANGE_FILAMENT` |
+| `CHANGE_FILAMENT`    |
 
 ### Request
 
@@ -309,24 +309,24 @@ The request has both query parameters and a request body.
 
 #### Query parameters
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `pid` | integer | yes | Printer id. |
-| `fid` | integer | yes | Filament id(s), comma separated. |
+| Parameter | Type    | Required | Description                      |
+| --------- | ------- | -------- | -------------------------------- |
+| `pid`     | integer | yes      | Printer id.                      |
+| `fid`     | integer | yes      | Filament id(s), comma separated. |
 
 #### Request body
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `extruder` | object | yes | Which filament to assign to which extruder. |
-| `extruder.{fid}` | integer | yes | Which extruder id to assign `{fid}` to. |
+| Parameter        | Type    | Required | Description                                 |
+| ---------------- | ------- | -------- | ------------------------------------------- |
+| `extruder`       | object  | yes      | Which filament to assign to which extruder. |
+| `extruder.{fid}` | integer | yes      | Which extruder id to assign `{fid}` to.     |
 
 ### Response
 
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
+| Parameter | Type    | Description                         |
+| --------- | ------- | ----------------------------------- |
+| `status`  | boolean | True if the request was successful. |
+| `message` | string  | Error message if `status` is false. |
 
 ## Unassign Filament From Printer
 
@@ -349,19 +349,19 @@ This endpoint unassigns a filament from a printer by filament id.
 
 | Required permissions |
 | -------------------- |
-| `CHANGE_FILAMENT` |
+| `CHANGE_FILAMENT`    |
 
 ### Request
 
 `GET /{id}/filament/Unassign`
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `fid` | integer | yes | Filament id to unassign. |
+| Parameter | Type    | Required | Description              |
+| --------- | ------- | -------- | ------------------------ |
+| `fid`     | integer | yes      | Filament id to unassign. |
 
 ### Response
 
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
+| Parameter | Type    | Description                         |
+| --------- | ------- | ----------------------------------- |
+| `status`  | boolean | True if the request was successful. |
+| `message` | string  | Error message if `status` is false. |

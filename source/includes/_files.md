@@ -139,25 +139,25 @@ This endpoint returns a list of files and folders in a given folder. If no folde
 
 `GET /{id}/files/GetFiles`
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `f` | integer | no | Folder ID to get files for. **Defaults to 0 (root folder)** |
-| `search` | string | no | Search string to filter files by. |
-| `global_search` | boolean | no | If true, search all files in the account, not just the folder specified by `f`. |
-| `pid` | integer | no | For print cost calculation, if you want the files to use the material of a printer, request with the ID of the printer - don't include the `pid` argument otherwise |
+| Parameter       | Type    | Required | Description                                                                                                                                                         |
+| --------------- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `f`             | integer | no       | Folder ID to get files for. **Defaults to 0 (root folder)**                                                                                                         |
+| `search`        | string  | no       | Search string to filter files by.                                                                                                                                   |
+| `global_search` | boolean | no       | If true, search all files in the account, not just the folder specified by `f`.                                                                                     |
+| `pid`           | integer | no       | For print cost calculation, if you want the files to use the material of a printer, request with the ID of the printer - don't include the `pid` argument otherwise |
 
 ### Response
 
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
-| `files` | array | Array of file objects. |
-| `folders` | array | Array of folder objects. |
-| `path` | array | Array of arrays containing the path to the current folder. |
-| `sort_type` | string | Sort type from user's settings. |
-| `space` | integer | The total space available in bytes. |
-| `space_used` | integer | The total space used in bytes. |
+| Parameter    | Type    | Description                                                |
+| ------------ | ------- | ---------------------------------------------------------- |
+| `status`     | boolean | True if the request was successful.                        |
+| `message`    | string  | Error message if `status` is false.                        |
+| `files`      | array   | Array of file objects.                                     |
+| `folders`    | array   | Array of folder objects.                                   |
+| `path`       | array   | Array of arrays containing the path to the current folder. |
+| `sort_type`  | string  | Sort type from user's settings.                            |
+| `space`      | integer | The total space available in bytes.                        |
+| `space_used` | integer | The total space used in bytes.                             |
 
 ## Move File(s) to Folder
 
@@ -182,17 +182,17 @@ This endpoint moves one or more files to a given folder.
 
 `GET /{id}/files/MoveFiles`
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `files` | array | yes | Array of file IDs to move. Separate multiple IDs with a comma. |
-| `folder` | integer | yes | Folder ID to move files to. |
+| Parameter | Type    | Required | Description                                                    |
+| --------- | ------- | -------- | -------------------------------------------------------------- |
+| `files`   | array   | yes      | Array of file IDs to move. Separate multiple IDs with a comma. |
+| `folder`  | integer | yes      | Folder ID to move files to.                                    |
 
 ### Response
 
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Success message or error message if `status` is false. |
+| Parameter | Type    | Description                                            |
+| --------- | ------- | ------------------------------------------------------ |
+| `status`  | boolean | True if the request was successful.                    |
+| `message` | string  | Success message or error message if `status` is false. |
 
 ## Get Folder Details
 
@@ -234,24 +234,24 @@ This endpoint returns details about a given folder.
 
 `GET /{id}/files/GetFolder`
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `id` | integer | yes | Folder ID to get details for. |
+| Parameter | Type    | Required | Description                   |
+| --------- | ------- | -------- | ----------------------------- |
+| `id`      | integer | yes      | Folder ID to get details for. |
 
 ### Response
 
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
-| `folder` | object | Folder object. |
-| `folder.id` | integer | Folder ID. |
-| `folder.name` | string | Folder name. |
-| `folder.org` | boolean | True if the folder is an organization folder.<br>**Requires Print Farm plan** |
-| `folder.permissions` | object|null | Folder permissions. |
-| `folder.permissions.view` | array | Array of [group IDs](#get-company-groups) that can view the folder. |
-| `folder.permissions.upload` | array | Array of [group IDs](#get-company-groups) that can upload files to the folder. |
-| `folder.permissions.modify` | array | Array of [group IDs](#get-company-groups) that can modify the folder. |
+| Parameter                   | Type        | Description                                                                    |
+| --------------------------- | ----------- | ------------------------------------------------------------------------------ |
+| `status`                    | boolean     | True if the request was successful.                                            |
+| `message`                   | string      | Error message if `status` is false.                                            |
+| `folder`                    | object      | Folder object.                                                                 |
+| `folder.id`                 | integer     | Folder ID.                                                                     |
+| `folder.name`               | string      | Folder name.                                                                   |
+| `folder.org`                | boolean     | True if the folder is an organization folder.<br>**Requires Print Farm plan**  |
+| `folder.permissions`        | object/null | Folder permissions.                                                            |
+| `folder.permissions.view`   | array       | Array of [group IDs](#get-company-groups) that can view the folder.            |
+| `folder.permissions.upload` | array       | Array of [group IDs](#get-company-groups) that can upload files to the folder. |
+| `folder.permissions.modify` | array       | Array of [group IDs](#get-company-groups) that can modify the folder.          |
 
 ## Move Folder
 
@@ -279,14 +279,14 @@ Also, folders cannot be moved into themselves.
 
 `GET /{id}/files/MoveFolder`
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `folder` | integer | yes | Folder ID to move. |
-| `target` | integer | yes | Folder ID to move to. |
+| Parameter | Type    | Required | Description           |
+| --------- | ------- | -------- | --------------------- |
+| `folder`  | integer | yes      | Folder ID to move.    |
+| `target`  | integer | yes      | Folder ID to move to. |
 
 ### Response
 
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Success message or error message if `status` is false. |
+| Parameter | Type    | Description                                            |
+| --------- | ------- | ------------------------------------------------------ |
+| `status`  | boolean | True if the request was successful.                    |
+| `message` | string  | Success message or error message if `status` is false. |

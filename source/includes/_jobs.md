@@ -93,41 +93,41 @@ Get paginated data about ongoing or finished print jobs.
 
 `POST /{id}/jobs/GetPaginatedPrintJobs`
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `page` | integer | yes | The page number to get. |
-| `page_size` | integer | yes | The number of items per page. (Between 1 and 100) |
-| `printer_types[]` | integer[] | no | Array of printer type ids to filter on. |
-| `printer_ids[]` | integer[] | no | Array of printer ids to filter on. |
-| `user_ids[]` | integer[] | no | Array of user ids to filter on. |
-| `accepted_statuses[]` | string[] | no | Array of job statuses to filter on. One of `ongoing`, `cancelled`, `failed`, `finished`. |
-| `start_date` | string | no | The start date to filter on. In unix timestamp format. Can be set without `end_date`. |
-| `end_date` | string | no | The end date to filter on. In unix timestamp format. Can be set without `start_date`. |
+| Parameter             | Type      | Required | Description                                                                              |
+| --------------------- | --------- | -------- | ---------------------------------------------------------------------------------------- |
+| `page`                | integer   | yes      | The page number to get.                                                                  |
+| `page_size`           | integer   | yes      | The number of items per page. (Between 1 and 100)                                        |
+| `printer_types[]`     | integer[] | no       | Array of printer type ids to filter on.                                                  |
+| `printer_ids[]`       | integer[] | no       | Array of printer ids to filter on.                                                       |
+| `user_ids[]`          | integer[] | no       | Array of user ids to filter on.                                                          |
+| `accepted_statuses[]` | string[]  | no       | Array of job statuses to filter on. One of `ongoing`, `cancelled`, `failed`, `finished`. |
+| `start_date`          | string    | no       | The start date to filter on. In unix timestamp format. Can be set without `end_date`.    |
+| `end_date`            | string    | no       | The end date to filter on. In unix timestamp format. Can be set without `start_date`.    |
 
 ### Response
 
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
-| `data` | array | The jobs. |
-| `data[].id` | integer | The job id. |
-| `data[].uid` | string | The job uid. |
-| `data[].status` | string | The job status. One of `ongoing`, `cancelled`, `failed`, `done`. Note that `done` is the same as `finished` |
-| `data[].cancelReasonType` | string | The job cancel reason type. |
-| `data[].rating` | integer | The job rating. |
-| `data[].filename` | string | The job filename. |
-| `data[].startDate` | string | The job start date. |
-| `data[].endDate` | string/null | The job end date. Is null if the job is ongoing. |
-| `data[].user` | integer | The user id of the user who started the job. |
-| `data[].printer` | integer | The printer id that was used to print the job. |
-| `data[].filament` | string | The filament usage. JSON encoded string with usage per extruder. |
-| `data[].filUsage` | integer | The filament usage in mm. |
-| `data[].filUsageGram` | integer | The filament usage in grams. |
-| `data[].currentPercentage` | integer | The current percentage of the job. |
-| `data[].cost` | object/null | Potential calculated cost of job. |
-| `data[].queueItem` | object/null | The queue item that was used to start the job. Please note that this is only shown if you have access to view the Print Queue. |
-| `data[].queueItem.id` | integer | The id of the queue item that was used to start the job. |
-| `data[].queueItem.user` | integer | The user id of the user who created the queue item. |
-| `data[].queueItem.queueNum` | integer | The queue number of the queue item. |
-| `page_amount` | integer | The total number of pages for the given parameters. |
+| Parameter                   | Type        | Description                                                                                                                    |
+| --------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `status`                    | boolean     | True if the request was successful.                                                                                            |
+| `message`                   | string      | Error message if `status` is false.                                                                                            |
+| `data`                      | array       | The jobs.                                                                                                                      |
+| `data[].id`                 | integer     | The job id.                                                                                                                    |
+| `data[].uid`                | string      | The job uid.                                                                                                                   |
+| `data[].status`             | string      | The job status. One of `ongoing`, `cancelled`, `failed`, `done`. Note that `done` is the same as `finished`                    |
+| `data[].cancelReasonType`   | string      | The job cancel reason type.                                                                                                    |
+| `data[].rating`             | integer     | The job rating.                                                                                                                |
+| `data[].filename`           | string      | The job filename.                                                                                                              |
+| `data[].startDate`          | string      | The job start date.                                                                                                            |
+| `data[].endDate`            | string/null | The job end date. Is null if the job is ongoing.                                                                               |
+| `data[].user`               | integer     | The user id of the user who started the job.                                                                                   |
+| `data[].printer`            | integer     | The printer id that was used to print the job.                                                                                 |
+| `data[].filament`           | string      | The filament usage. JSON encoded string with usage per extruder.                                                               |
+| `data[].filUsage`           | integer     | The filament usage in mm.                                                                                                      |
+| `data[].filUsageGram`       | integer     | The filament usage in grams.                                                                                                   |
+| `data[].currentPercentage`  | integer     | The current percentage of the job.                                                                                             |
+| `data[].cost`               | object/null | Potential calculated cost of job.                                                                                              |
+| `data[].queueItem`          | object/null | The queue item that was used to start the job. Please note that this is only shown if you have access to view the Print Queue. |
+| `data[].queueItem.id`       | integer     | The id of the queue item that was used to start the job.                                                                       |
+| `data[].queueItem.user`     | integer     | The user id of the user who created the queue item.                                                                            |
+| `data[].queueItem.queueNum` | integer     | The queue number of the queue item.                                                                                            |
+| `page_amount`               | integer     | The total number of pages for the given parameters.                                                                            |

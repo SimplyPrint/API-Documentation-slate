@@ -161,60 +161,60 @@ This endpoint returns a list of printers based on the given parameters.
 
 #### Query parameters
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `pid` | integer | no | Optional printer ID if you want to get info for a single printer. |
+| Parameter | Type    | Required | Description                                                       |
+| --------- | ------- | -------- | ----------------------------------------------------------------- |
+| `pid`     | integer | no       | Optional printer ID if you want to get info for a single printer. |
 
 #### Request body
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `page` | integer | no | Page number to get. Leave empty for page 1. |
-| `page_size` | integer | no | Number of printers per page. (Between 1 and 100)<br>Default: 10 |
-| `search` | string | no | Search string to filter printers by. |
+| Parameter   | Type    | Required | Description                                                     |
+| ----------- | ------- | -------- | --------------------------------------------------------------- |
+| `page`      | integer | no       | Page number to get. Leave empty for page 1.                     |
+| `page_size` | integer | no       | Number of printers per page. (Between 1 and 100)<br>Default: 10 |
+| `search`    | string  | no       | Search string to filter printers by.                            |
 
 ### Response
 
 Note that `data` will be an object if `pid` is specified, otherwise it will be an array.
 
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
-| `data` | object or array | Printer object(s). |
-| `data.*.id` | integer | Printer ID. |
-| `data.*.sort_order` | integer | The printer's sort index. |
-| `data.*.printer` | object | Printer object. |
-| `data.*.printer.name` | string | Printer's name. |
-| `data.*.printer.state` | string | Printer's state. |
-| `data.*.printer.group` | integer | Printer's group ID. |
-| `data.*.printer.position` | integer | Printer's position in the group. |
-| `data.*.printer.api` | string | Printer's API type. |
-| `data.*.printer.ui` | string | Printer's UI type. |
-| `data.*.printer.ip` | string | Printer's local IP address. |
-| `data.*.printer.public` | boolean | Whether the printer is shown on the company hub. |
-| `data.*.printer.machine` | string | Printer's machine type. |
-| `data.*.printer.online` | boolean | Whether the printer is online. |
-| `data.*.printer.region` | string | What region the printer is online in. |
-| `data.*.printer.firmware` | string | Printer's firmware version. |
-| `data.*.printer.spVersion` | string | Printer's SimplyPrint version. |
-| `data.*.printer.temps` | object | Printer's current temperatures. |
-| `data.*.printer.hasPSU` | boolean | Whether the printer has a SimplyPrint connected PSU. |
-| `data.*.printer.psuOn` | boolean | Whether the printer's PSU is on. |
-| `data.*.printer.hasFilSensor` | boolean | Whether the printer has a filament sensor. |
-| `data.*.printer.filamentRetraction` | integer | Printer's filament retraction distance. |
-| `data.*.printer.model` | string | Printer's model. |
-| `data.*.printer.hasCam` | boolean | Whether the printer has a camera. |
-| `data.*.printer.hasQueue` | object | Data about the printer's queue. Null if the printer doesn't have a queue. |
-| `data.*.printer.hasQueue.items` | integer | Number of items in the printer's queue. |
-| `data.*.printer.hasQueue.fits` | boolean | Whether the printer can physically fit any items in its queue. |
-| `data.*.printer.health` | object | Printer's health data. (CPU usage, temperature, memory usage) |
-| `data.*.printer.unsupported` | boolean | Whether the printer is unsupported. |
-| `data.*.printer.latency` | integer | Printer's latency. |
-| `data.*.printer.outOfOrder` | boolean | Whether the printer is out of order. |
-| `data.*.filament` | object | Printer's filament data. |
-| `data.*.job` | object | Printer's current job data. See [Get Print Jobs](#get-print-jobs) for more info. |
-| `data.*.tags` | object|nullable | Tags for printer; custom tags, static material data & nozzle size |
+| Parameter                           | Type            | Description                                                                      |
+| ----------------------------------- | --------------- | -------------------------------------------------------------------------------- |
+| `status`                            | boolean         | True if the request was successful.                                              |
+| `message`                           | string          | Error message if `status` is false.                                              |
+| `data`                              | object or array | Printer object(s).                                                               |
+| `data.*.id`                         | integer         | Printer ID.                                                                      |
+| `data.*.sort_order`                 | integer         | The printer's sort index.                                                        |
+| `data.*.printer`                    | object          | Printer object.                                                                  |
+| `data.*.printer.name`               | string          | Printer's name.                                                                  |
+| `data.*.printer.state`              | string          | Printer's state.                                                                 |
+| `data.*.printer.group`              | integer         | Printer's group ID.                                                              |
+| `data.*.printer.position`           | integer         | Printer's position in the group.                                                 |
+| `data.*.printer.api`                | string          | Printer's API type.                                                              |
+| `data.*.printer.ui`                 | string          | Printer's UI type.                                                               |
+| `data.*.printer.ip`                 | string          | Printer's local IP address.                                                      |
+| `data.*.printer.public`             | boolean         | Whether the printer is shown on the company hub.                                 |
+| `data.*.printer.machine`            | string          | Printer's machine type.                                                          |
+| `data.*.printer.online`             | boolean         | Whether the printer is online.                                                   |
+| `data.*.printer.region`             | string          | What region the printer is online in.                                            |
+| `data.*.printer.firmware`           | string          | Printer's firmware version.                                                      |
+| `data.*.printer.spVersion`          | string          | Printer's SimplyPrint version.                                                   |
+| `data.*.printer.temps`              | object          | Printer's current temperatures.                                                  |
+| `data.*.printer.hasPSU`             | boolean         | Whether the printer has a SimplyPrint connected PSU.                             |
+| `data.*.printer.psuOn`              | boolean         | Whether the printer's PSU is on.                                                 |
+| `data.*.printer.hasFilSensor`       | boolean         | Whether the printer has a filament sensor.                                       |
+| `data.*.printer.filamentRetraction` | integer         | Printer's filament retraction distance.                                          |
+| `data.*.printer.model`              | string          | Printer's model.                                                                 |
+| `data.*.printer.hasCam`             | boolean         | Whether the printer has a camera.                                                |
+| `data.*.printer.hasQueue`           | object          | Data about the printer's queue. Null if the printer doesn't have a queue.        |
+| `data.*.printer.hasQueue.items`     | integer         | Number of items in the printer's queue.                                          |
+| `data.*.printer.hasQueue.fits`      | boolean         | Whether the printer can physically fit any items in its queue.                   |
+| `data.*.printer.health`             | object          | Printer's health data. (CPU usage, temperature, memory usage)                    |
+| `data.*.printer.unsupported`        | boolean         | Whether the printer is unsupported.                                              |
+| `data.*.printer.latency`            | integer         | Printer's latency.                                                               |
+| `data.*.printer.outOfOrder`         | boolean         | Whether the printer is out of order.                                             |
+| `data.*.filament`                   | object          | Printer's filament data.                                                         |
+| `data.*.job`                        | object          | Printer's current job data. See [Get Print Jobs](#get-print-jobs) for more info. |
+| `data.*.tags`                       | object/null     | Tags for printer; custom tags, static material data & nozzle size                |
 
 ## Start print / create job
 
@@ -335,39 +335,38 @@ This endpoint can be used to create a print job for one or more printers. The pr
 
 To start a print job you must either specify a `filesystem` ID, a `queue_file` ID file or set `next_queue_item` to true.
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `pid` | integer or integer[] | yes | The ID(s) of the printer to create the job for. |
-| `filesystem` | string | no | The filesystem ID of the file to print. |
-| `queue_file` | integer | no | The queue ID of the queue item to print. |
-| `next_queue_item` | boolean | no | If true, the next queue item will be printed.<br>**This requires the Print Farm plan** |
+| Parameter         | Type                 | Required | Description                                                                            |
+| ----------------- | -------------------- | -------- | -------------------------------------------------------------------------------------- |
+| `pid`             | integer or integer[] | yes      | The ID(s) of the printer to create the job for.                                        |
+| `filesystem`      | string               | no       | The filesystem ID of the file to print.                                                |
+| `queue_file`      | integer              | no       | The queue ID of the queue item to print.                                               |
+| `next_queue_item` | boolean              | no       | If true, the next queue item will be printed.<br>**This requires the Print Farm plan** |
 
 #### Extra settings for `next_queue_item`
 
 You can specify these parameters if `next_queue_item` is `true`. Note that you can specify more/all of the below parameters.
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `analysis_strict` | boolean | no | Match the next item that has a valid gcode analysis.<br>**Defaults to true** |
-| `fit_strict` | boolean | no | Match the next item if it fits on the printers print area.<br>**Defaults to true** |
-| `temps_strict` | boolean | no | Match the next item where the printer can reach the temperatures specified in the gcode.<br>**Defaults to true** |
-| `filament_strict` | boolean | no | Match the next item that was sliced for the same filament type that the printer is assigned to in SimplyPrint.<br>**Defaults to false** | 
-| `filament_temps_strict` | boolean | no | Match the next item that has the same filament temperatures as the printer has in SimplyPrint.<br>**Defaults to false** |
-
+| Parameter               | Type    | Required | Description                                                                                                                             |
+| ----------------------- | ------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `analysis_strict`       | boolean | no       | Match the next item that has a valid gcode analysis.<br>**Defaults to true**                                                            |
+| `fit_strict`            | boolean | no       | Match the next item if it fits on the printers print area.<br>**Defaults to true**                                                      |
+| `temps_strict`          | boolean | no       | Match the next item where the printer can reach the temperatures specified in the gcode.<br>**Defaults to true**                        |
+| `filament_strict`       | boolean | no       | Match the next item that was sliced for the same filament type that the printer is assigned to in SimplyPrint.<br>**Defaults to false** |
+| `filament_temps_strict` | boolean | no       | Match the next item that has the same filament temperatures as the printer has in SimplyPrint.<br>**Defaults to false**                 |
 
 ### Response
 
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
-| `files` | array | Array of started print job objects. |
-| `files[].name` | string | The name of the file. |
-| `files[].analysis` | object | The analysis of the file. This has been documented in the [Get queue items endpoint](#get-queue-items). |
-| `files[].printers` | integer[] | The IDs of the printers that the print job was started on. |
-| `files[].queued` | boolean | Whether the print job was from print queue. |
-| `files[].cost` | object[]|nullable | Potential calculated cost of job. Potential of multiple costs if job is created for different printers with different material types assigned. |
-| `jobIds` | integer[] | The IDs of the print jobs that were started. |
+| Field              | Type      | Description                                                                                             |
+| ------------------ | --------- | ------------------------------------------------------------------------------------------------------- |
+| `status`           | boolean   | True if the request was successful.                                                                     |
+| `message`          | string    | Error message if `status` is false.                                                                     |
+| `files`            | array     | Array of started print job objects.                                                                     |
+| `files[].name`     | string    | The name of the file.                                                                                   |
+| `files[].analysis` | object    | The analysis of the file. This has been documented in the [Get queue items endpoint](#get-queue-items). |
+| `files[].printers` | integer[] | The IDs of the printers that the print job was started on.                                              |
+| `files[].queued`   | boolean   | Whether the print job was from print queue.                                                             |
+| `files[].cost`     | object[]  | nullable                                                                                                | Potential calculated cost of job. Potential of multiple costs if job is created for different printers with different material types assigned. |
+| `jobIds`           | integer[] | The IDs of the print jobs that were started.                                                            |
 
 ## Pause print job
 
@@ -395,16 +394,16 @@ This endpoint can be used to pause one or multiple print jobs. The printers have
 
 #### Query parameters
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `pid` | integer or integer[] | yes | The ID(s) of the printer to pause. Pause multiple printers by comma separating printer ids.<br>**Printer must be in `PRINTING` state** |
+| Parameter | Type                 | Required | Description                                                                                                                            |
+| --------- | -------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `pid`     | integer or integer[] | yes      | The ID(s) of the printer to pause. Pause multiple printers by comma separating printer ids.<br>**Printer must be in `PRINTING` state** |
 
 #### Response
 
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
+| Field     | Type    | Description                         |
+| --------- | ------- | ----------------------------------- |
+| `status`  | boolean | True if the request was successful. |
+| `message` | string  | Error message if `status` is false. |
 
 ## Resume print job
 
@@ -430,16 +429,16 @@ curl https://api.simplyprint.io/{id}/printers/actions/Resume?pid=1234 \
 
 #### Query parameters
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `pid` | integer or integer[] | yes | The ID(s) of the printer to resume. Resume multiple printers by comma separating printer ids.<br>**Printer must be in `PRINTER_PAUSED` state** |
+| Parameter | Type                 | Required | Description                                                                                                                                    |
+| --------- | -------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pid`     | integer or integer[] | yes      | The ID(s) of the printer to resume. Resume multiple printers by comma separating printer ids.<br>**Printer must be in `PRINTER_PAUSED` state** |
 
 #### Response
 
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
+| Field     | Type    | Description                         |
+| --------- | ------- | ----------------------------------- |
+| `status`  | boolean | True if the request was successful. |
+| `message` | string  | Error message if `status` is false. |
 
 ## Cancel print job
 
@@ -468,8 +467,8 @@ curl https://api.simplyprint.io/{id}/printers/actions/Cancel?pid=1234 \
 }
 ```
 
-| Required permission | Description |
-| ------------------- | ----------- |
+| Required permission    | Description                                                                                 |
+| ---------------------- | ------------------------------------------------------------------------------------------- |
 | `CANCEL_OTHERS_PRINTS` | Need permission to cancel other users' prints if the print job was started by another user. |
 
 This endpoint can be used to cancel one or multiple print jobs. The printers have to be in the `PRINTING`, `PAUSED` or `PAUSING` state.
@@ -480,23 +479,23 @@ This endpoint can be used to cancel one or multiple print jobs. The printers hav
 
 #### Query parameters
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `pid` | integer or integer[] | yes | The ID(s) of the printer to cancel. Cancel multiple printers by comma separating printer ids.<br>**Printer must be in `PRINTING`, `PAUSED` or `PAUSING` state** |
+| Parameter | Type                 | Required | Description                                                                                                                                                     |
+| --------- | -------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pid`     | integer or integer[] | yes      | The ID(s) of the printer to cancel. Cancel multiple printers by comma separating printer ids.<br>**Printer must be in `PRINTING`, `PAUSED` or `PAUSING` state** |
 
 #### Request body
 
-| Field | Type | Required | Description |
-| ----- | ---- | -------- | ----------- |
-| `reason` | integer | no | The reason for cancelling the print job. See [Cancel reasons](#cancel-reasons). Depending on the `require_cancel_reason` organization setting, this field may be required. |
-| `comment` | string | no | A comment for the cancel reason. Depending on the `require_comment` organization setting, this field may be required.<br>**Max length: 500 characters** |
+| Field     | Type    | Required | Description                                                                                                                                                                |
+| --------- | ------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `reason`  | integer | no       | The reason for cancelling the print job. See [Cancel reasons](#cancel-reasons). Depending on the `require_cancel_reason` organization setting, this field may be required. |
+| `comment` | string  | no       | A comment for the cancel reason. Depending on the `require_comment` organization setting, this field may be required.<br>**Max length: 500 characters**                    |
 
 ### Response
 
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
+| Field     | Type    | Description                         |
+| --------- | ------- | ----------------------------------- |
+| `status`  | boolean | True if the request was successful. |
+| `message` | string  | Error message if `status` is false. |
 
 ## Clear print bed
 
@@ -533,23 +532,23 @@ This endpoint can be used to clear the print bed of a printer.
 
 #### Query parameters
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `pid` | integer | yes | The ID(s) of the printer to clear, comma separated. These printers have to be in either the `operational` or `offline` states. |
+| Parameter | Type    | Required | Description                                                                                                                    |
+| --------- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `pid`     | integer | yes      | The ID(s) of the printer to clear, comma separated. These printers have to be in either the `operational` or `offline` states. |
 
 #### Request body
 
-| Field | Type | Required | Description |
-| ----- | ---- | -------- | ----------- |
-| `success` | boolean | no | True if the print was successful.<br>**Default: false** |
-| `rating` | integer | no | The rating of the print. Don't send this field if you do not want to rate the print. |
+| Field     | Type    | Required | Description                                                                          |
+| --------- | ------- | -------- | ------------------------------------------------------------------------------------ |
+| `success` | boolean | no       | True if the print was successful.<br>**Default: false**                              |
+| `rating`  | integer | no       | The rating of the print. Don't send this field if you do not want to rate the print. |
 
 ### Response
 
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
+| Field     | Type    | Description                         |
+| --------- | ------- | ----------------------------------- |
+| `status`  | boolean | True if the request was successful. |
+| `message` | string  | Error message if `status` is false. |
 
 ## Delete / disconnect printer
 
@@ -570,7 +569,7 @@ curl https://api.simplyprint.io/{id}/printers/Delete?pid=1234&just_connection=1 
 
 | Required permissions |
 | -------------------- |
-| `PRINTER_EDIT` |
+| `PRINTER_EDIT`       |
 
 This endpoint can be used to delete a printer from the database, or to disconnect a pi from a printer. This is useful if you want to change the printer that is connected to a pi.
 
@@ -578,25 +577,25 @@ This endpoint can be used to delete a printer from the database, or to disconnec
 
 `GET /{id}/printers/Delete`
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `pid` | integer | yes | The ID of the printer to delete. |
-| `just_connection` | integer | no | If set to 1, only the Pi connection will be deleted. Otherwise, the printer will be permanently deleted.<br>**Default: 0** |
+| Parameter         | Type    | Required | Description                                                                                                                |
+| ----------------- | ------- | -------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `pid`             | integer | yes      | The ID of the printer to delete.                                                                                           |
+| `just_connection` | integer | no       | If set to 1, only the Pi connection will be deleted. Otherwise, the printer will be permanently deleted.<br>**Default: 0** |
 
 ### Response
 
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
+| Field     | Type    | Description                         |
+| --------- | ------- | ----------------------------------- |
+| `status`  | boolean | True if the request was successful. |
+| `message` | string  | Error message if `status` is false. |
 
 ## Cancel reasons
 
-| ID | Description |
-| -- | ----------- |
-| 1 | Print failed |
-| 2 | Regretted print |
-| 3 | No filament extruded / nozzle clog |
-| 4 | Fell of the plate |
-| 5 | Not enough filament |
-| 6 | Other |
+| ID  | Description                        |
+| --- | ---------------------------------- |
+| 1   | Print failed                       |
+| 2   | Regretted print                    |
+| 3   | No filament extruded / nozzle clog |
+| 4   | Fell of the plate                  |
+| 5   | Not enough filament                |
+| 6   | Other                              |

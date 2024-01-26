@@ -48,8 +48,12 @@ curl https://api.simplyprint.io/{id}/account/settings/groups/Create \
   This endpoint requires the <b>Print Farm</b> plan.
 </aside>
 
-| Required permissions |
-| -------------------- |
+<aside class="notice">
+  This endpoint cannot be used with OAuth2.
+</aside>
+
+| Required permissions  |
+| --------------------- |
 | `ORG_RANK_MANAGEMENT` |
 
 This endpoint creates a new group in the company.
@@ -58,21 +62,21 @@ This endpoint creates a new group in the company.
 
 `POST /{id}/account/settings/groups/Create`
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `ranks` | array | yes | Array of groups to create. |
-| `ranks[].title` | string | yes | The name of the group. |
-| `ranks[].description` | string | no | The description of the group. |
-| `ranks[].sort_order` | integer | yes | The sort index of the group. |
-| `ranks[].permissions` | string | yes | JSON string of the permissions of the group. For more information, see [Permissions](#permissions). |
+| Parameter             | Type    | Required | Description                                                                                         |
+| --------------------- | ------- | -------- | --------------------------------------------------------------------------------------------------- |
+| `ranks`               | array   | yes      | Array of groups to create.                                                                          |
+| `ranks[].title`       | string  | yes      | The name of the group.                                                                              |
+| `ranks[].description` | string  | no       | The description of the group.                                                                       |
+| `ranks[].sort_order`  | integer | yes      | The sort index of the group.                                                                        |
+| `ranks[].permissions` | string  | yes      | JSON string of the permissions of the group. For more information, see [Permissions](#permissions). |
 
 ### Response
 
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
-| `data` | array | Array of the created groups. |
+| Parameter | Type    | Description                         |
+| --------- | ------- | ----------------------------------- |
+| `status`  | boolean | True if the request was successful. |
+| `message` | string  | Error message if `status` is false. |
+| `data`    | array   | Array of the created groups.        |
 
 ## Update company groups
 
@@ -124,8 +128,8 @@ curl https://api.simplyprint.io/{id}/account/settings/groups/Update \
   This endpoint requires the <b>Print Farm</b> plan.
 </aside>
 
-| Required permissions |
-| -------------------- |
+| Required permissions  |
+| --------------------- |
 | `ORG_RANK_MANAGEMENT` |
 
 This endpoint updates the groups in the company.
@@ -134,30 +138,30 @@ This endpoint updates the groups in the company.
 
 `POST /{id}/account/settings/groups/Update`
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `ranks` | array | yes | Array of groups to update. |
-| `ranks[].id` | integer | yes | The id of the group to update. |
-| `ranks[].title` | string | no | The name of the group. |
-| `ranks[].description` | string | no | The description of the group. |
-| `ranks[].permissions` | string | no | JSON string of the permissions of the group. For more information, see [Permissions](#permissions). |
-| `ranks[].sort_order` | integer | no | The sort index of the group. |
+| Parameter             | Type    | Required | Description                                                                                         |
+| --------------------- | ------- | -------- | --------------------------------------------------------------------------------------------------- |
+| `ranks`               | array   | yes      | Array of groups to update.                                                                          |
+| `ranks[].id`          | integer | yes      | The id of the group to update.                                                                      |
+| `ranks[].title`       | string  | no       | The name of the group.                                                                              |
+| `ranks[].description` | string  | no       | The description of the group.                                                                       |
+| `ranks[].permissions` | string  | no       | JSON string of the permissions of the group. For more information, see [Permissions](#permissions). |
+| `ranks[].sort_order`  | integer | no       | The sort index of the group.                                                                        |
 
 ### Response
 
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
-| `data` | array | Array of the updated groups. |
-| `data[].id` | integer | The id of the group. |
-| `data[].title` | string | The name of the group. |
-| `data[].description` | string | The description of the group. |
-| `data[].company_id` | integer | The id of the company. |
-| `data[].company_type` | integer | The type of the company. |
-| `data[].permissions` | string | JSON string of the permissions of the group. For more information, see [Permissions](#permissions). |
-| `data[].sort_order` | integer | The sort order of the group. |
-| `data[].created` | string | The date and time the group was created. |
+| Parameter             | Type    | Description                                                                                         |
+| --------------------- | ------- | --------------------------------------------------------------------------------------------------- |
+| `status`              | boolean | True if the request was successful.                                                                 |
+| `message`             | string  | Error message if `status` is false.                                                                 |
+| `data`                | array   | Array of the updated groups.                                                                        |
+| `data[].id`           | integer | The id of the group.                                                                                |
+| `data[].title`        | string  | The name of the group.                                                                              |
+| `data[].description`  | string  | The description of the group.                                                                       |
+| `data[].company_id`   | integer | The id of the company.                                                                              |
+| `data[].company_type` | integer | The type of the company.                                                                            |
+| `data[].permissions`  | string  | JSON string of the permissions of the group. For more information, see [Permissions](#permissions). |
+| `data[].sort_order`   | integer | The sort order of the group.                                                                        |
+| `data[].created`      | string  | The date and time the group was created.                                                            |
 
 ## Get company groups
 
@@ -195,8 +199,8 @@ curl https://api.simplyprint.io/{id}/account/GetGroups \
   This endpoint requires the <b>Print Farm</b> plan.
 </aside>
 
-| Required permissions |
-| -------------------- |
+| Required permissions  |
+| --------------------- |
 | `ORG_RANK_MANAGEMENT` |
 
 This endpoint returns a list of groups that exist in the company.
@@ -207,13 +211,13 @@ This endpoint returns a list of groups that exist in the company.
 
 ### Response
 
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
-| `groups` | array | Array of group objects. |
-| `groups[].id` | integer | Group ID. |
-| `groups[].name` | string | Group name. |
+| Parameter       | Type    | Description                         |
+| --------------- | ------- | ----------------------------------- |
+| `status`        | boolean | True if the request was successful. |
+| `message`       | string  | Error message if `status` is false. |
+| `groups`        | array   | Array of group objects.             |
+| `groups[].id`   | integer | Group ID.                           |
+| `groups[].name` | string  | Group name.                         |
 
 ## Delete company group
 
@@ -246,25 +250,25 @@ curl https://api.simplyprint.io/{id}/account/settings/groups/Delete \
   This endpoint requires the <b>Print Farm</b> plan.
 </aside>
 
-| Required permissions |
-| -------------------- |
+| Required permissions  |
+| --------------------- |
 | `ORG_RANK_MANAGEMENT` |
 
 ### Request
 
 `POST /{id}/account/settings/groups/Delete`
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `id` | integer | yes | The id of the group to delete. |
-| `replacementRankId` | integer | maybe | The id of the group to replace the deleted group with.<br>This is only required if the group has users. |
+| Parameter           | Type    | Required | Description                                                                                             |
+| ------------------- | ------- | -------- | ------------------------------------------------------------------------------------------------------- |
+| `id`                | integer | yes      | The id of the group to delete.                                                                          |
+| `replacementRankId` | integer | maybe    | The id of the group to replace the deleted group with.<br>This is only required if the group has users. |
 
 ### Response
 
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
+| Parameter | Type    | Description                         |
+| --------- | ------- | ----------------------------------- |
+| `status`  | boolean | True if the request was successful. |
+| `message` | string  | Error message if `status` is false. |
 
 ## Get statistics
 
@@ -343,45 +347,45 @@ This endpoint returns statistics for the user / company.
 
 `POST /{id}/account/GetStatistics`
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `users` | array | no | Array of user ids to get statistics for. Don't include this parameter to get statistics for all users. |
-| `printers` | array | no | Array of printer ids to get statistics for. Don't include this parameter to get statistics for all printers. |
-| `start_date` | string | no | The start date of the statistics. Provide a unix timestamp in seconds. |
-| `end_date` | string | no | The end date of the statistics. Provide a unix timestamp in seconds. |
+| Parameter    | Type   | Required | Description                                                                                                  |
+| ------------ | ------ | -------- | ------------------------------------------------------------------------------------------------------------ |
+| `users`      | array  | no       | Array of user ids to get statistics for. Don't include this parameter to get statistics for all users.       |
+| `printers`   | array  | no       | Array of printer ids to get statistics for. Don't include this parameter to get statistics for all printers. |
+| `start_date` | string | no       | The start date of the statistics. Provide a unix timestamp in seconds.                                       |
+| `end_date`   | string | no       | The end date of the statistics. Provide a unix timestamp in seconds.                                         |
 
 ### Response
 
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
-| `data` | object | Statistics object. |
-| `data.total_print_seconds` | integer | Total print seconds. |
-| `data.total_filament_usage_gram` | float | Total filament usage in grams. |
-| `data.print_job_count` | integer | Total print job count. |
-| `data.regretted_print_jobs` | integer | Total regretted print job count. |
-| `data.failed_print_jobs` | integer | Total failed print job count. |
-| `data.printer_error_print_jobs` | integer | Total printer error print job count. |
-| `data.done_print_jobs` | integer | Total successful print job count. |
-| `data.date_range` | object | Date range object. |
-| `data.date_range.from` | string | Start date of the statistics. |
-| `data.date_range.to` | string | End date of the statistics. |
-| `data.date_range.general` | boolean | True if the date range is general. |
-| `data.printers` | object | Object of printer statistics. |
-| `data.printers.{id}` | object | Printer statistics object. |
-| `data.printers.{id}.name` | string | Printer name. |
-| `data.printers.{id}.done` | integer | Successful print job count. |
-| `data.printers.{id}.failed` | integer | Failed print job count. |
-| `data.printers.{id}.printer_error` | integer | Printer error print job count. |
-| `data.printers.{id}.regretted` | integer | Regretted print job count. |
-| `data.printers.{id}.filament_usage_gram` | float | Filament usage in grams. |
-| `data.print_jobs` | array | Array of print job statistics. |
-| `data.print_jobs[].date` | string | Date of the print job. |
-| `data.print_jobs[].started` | string | Start time of the print job. |
-| `data.print_jobs[].ended` | string | End time of the print job. |
-| `data.print_jobs[].cancelled` | integer | True if the print job was cancelled. |
-| `data.print_jobs[].failed` | integer | True if the print job failed. |
-| `data.print_jobs[].cancel_reason_type` | integer | The reason for cancelling the print job. |
-| `data.print_jobs[].print_seconds` | integer | Print seconds. |
-| `data.print_jobs[].filament_usage_gram` | float | Filament usage in grams. |
+| Parameter                                | Type    | Description                              |
+| ---------------------------------------- | ------- | ---------------------------------------- |
+| `status`                                 | boolean | True if the request was successful.      |
+| `message`                                | string  | Error message if `status` is false.      |
+| `data`                                   | object  | Statistics object.                       |
+| `data.total_print_seconds`               | integer | Total print seconds.                     |
+| `data.total_filament_usage_gram`         | float   | Total filament usage in grams.           |
+| `data.print_job_count`                   | integer | Total print job count.                   |
+| `data.regretted_print_jobs`              | integer | Total regretted print job count.         |
+| `data.failed_print_jobs`                 | integer | Total failed print job count.            |
+| `data.printer_error_print_jobs`          | integer | Total printer error print job count.     |
+| `data.done_print_jobs`                   | integer | Total successful print job count.        |
+| `data.date_range`                        | object  | Date range object.                       |
+| `data.date_range.from`                   | string  | Start date of the statistics.            |
+| `data.date_range.to`                     | string  | End date of the statistics.              |
+| `data.date_range.general`                | boolean | True if the date range is general.       |
+| `data.printers`                          | object  | Object of printer statistics.            |
+| `data.printers.{id}`                     | object  | Printer statistics object.               |
+| `data.printers.{id}.name`                | string  | Printer name.                            |
+| `data.printers.{id}.done`                | integer | Successful print job count.              |
+| `data.printers.{id}.failed`              | integer | Failed print job count.                  |
+| `data.printers.{id}.printer_error`       | integer | Printer error print job count.           |
+| `data.printers.{id}.regretted`           | integer | Regretted print job count.               |
+| `data.printers.{id}.filament_usage_gram` | float   | Filament usage in grams.                 |
+| `data.print_jobs`                        | array   | Array of print job statistics.           |
+| `data.print_jobs[].date`                 | string  | Date of the print job.                   |
+| `data.print_jobs[].started`              | string  | Start time of the print job.             |
+| `data.print_jobs[].ended`                | string  | End time of the print job.               |
+| `data.print_jobs[].cancelled`            | integer | True if the print job was cancelled.     |
+| `data.print_jobs[].failed`               | integer | True if the print job failed.            |
+| `data.print_jobs[].cancel_reason_type`   | integer | The reason for cancelling the print job. |
+| `data.print_jobs[].print_seconds`        | integer | Print seconds.                           |
+| `data.print_jobs[].filament_usage_gram`  | float   | Filament usage in grams.                 |

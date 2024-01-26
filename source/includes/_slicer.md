@@ -33,15 +33,15 @@ This endpoint returns a list overview of slicer profiles that the user has acces
 
 ### Response
 
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
-| `profiles` | array | An array of profile objects. |
-| `profiles.*.id` | integer | The ID of the profile. |
-| `profiles.*.name` | string | The name of the profile. |
-| `profiles.*.for_printers` | array | The printers ids that this profile is made for. |
-| `profiles.*.org` | boolean | True if this profile is owned by the company, and not by the user. |
+| Field                     | Type    | Description                                                        |
+| ------------------------- | ------- | ------------------------------------------------------------------ |
+| `status`                  | boolean | True if the request was successful.                                |
+| `message`                 | string  | Error message if `status` is false.                                |
+| `profiles`                | array   | An array of profile objects.                                       |
+| `profiles.*.id`           | integer | The ID of the profile.                                             |
+| `profiles.*.name`         | string  | The name of the profile.                                           |
+| `profiles.*.for_printers` | array   | The printers ids that this profile is made for.                    |
+| `profiles.*.org`          | boolean | True if this profile is owned by the company, and not by the user. |
 
 ## Get Slicer Profile
 
@@ -129,22 +129,22 @@ This endpoint can be used to get a slicer profile by its ID. This includes the s
 
 `GET /{id}/printers/Delete`
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `id` | integer | yes | The id of the profile to fetch. |
+| Parameter | Type    | Required | Description                     |
+| --------- | ------- | -------- | ------------------------------- |
+| `id`      | integer | yes      | The id of the profile to fetch. |
 
 ### Response
 
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
-| `profile` | object | The profile object. |
-| `profile.id` | integer | The ID of the profile. |
-| `profile.name` | string | The name of the profile. |
-| `profile.settings` | object | The settings of the profile. |
-| `profile.for_printers` | array | The printers ids that this profile is made for. |
-| `profile.org` | boolean | True if this profile is owned by the company, and not by the user. |
+| Field                  | Type    | Description                                                        |
+| ---------------------- | ------- | ------------------------------------------------------------------ |
+| `status`               | boolean | True if the request was successful.                                |
+| `message`              | string  | Error message if `status` is false.                                |
+| `profile`              | object  | The profile object.                                                |
+| `profile.id`           | integer | The ID of the profile.                                             |
+| `profile.name`         | string  | The name of the profile.                                           |
+| `profile.settings`     | object  | The settings of the profile.                                       |
+| `profile.for_printers` | array   | The printers ids that this profile is made for.                    |
+| `profile.org`          | boolean | True if this profile is owned by the company, and not by the user. |
 
 ## Save or Create Slicer Profile
 
@@ -173,8 +173,8 @@ curl -X GET https://api.simplyprint.io/{id}/slicer/DeleteProfile?id=1234 \
 }
 ```
 
-| Required permissions | Description |
-| -------------------- | ----------- |
+| Required permissions  | Description                             |
+| --------------------- | --------------------------------------- |
 | `SLICER_ORG_PROFILES` | If the profile is owned by the company. |
 
 This endpoint can be used to delete a slicer profile by its ID.
@@ -183,13 +183,13 @@ This endpoint can be used to delete a slicer profile by its ID.
 
 `GET /{id}/printers/Delete`
 
-| Parameter | Type | Required | Description |
-| --------- | ---- | -------- | ----------- |
-| `id` | integer | yes | The id of the profile to delete. |
+| Parameter | Type    | Required | Description                      |
+| --------- | ------- | -------- | -------------------------------- |
+| `id`      | integer | yes      | The id of the profile to delete. |
 
 ### Response
 
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| `status` | boolean | True if the request was successful. |
-| `message` | string | Error message if `status` is false. |
+| Field     | Type    | Description                         |
+| --------- | ------- | ----------------------------------- |
+| `status`  | boolean | True if the request was successful. |
+| `message` | string  | Error message if `status` is false. |
