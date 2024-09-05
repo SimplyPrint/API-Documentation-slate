@@ -4,6 +4,10 @@ The base URL for the SimplyPrint Files API is `https://files.simplyprint.io/{id}
 
 ## Upload a file using the API
 
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
 `POST {id}/files/Upload`
 
 > Example request to upload a file less than 100MB
