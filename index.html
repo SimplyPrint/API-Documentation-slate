@@ -405,6 +405,9 @@
             <a href="#files" class="toc-h1 toc-link" data-title="Files">Files</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#add-an-api-file-to-files" class="toc-h2 toc-link" data-title="Add an API File to files">Add an API File to files</a>
+                  </li>
+                  <li>
                     <a href="#list-files-and-folders" class="toc-h2 toc-link" data-title="List Files and Folders">List Files and Folders</a>
                   </li>
                   <li>
@@ -415,6 +418,14 @@
                   </li>
                   <li>
                     <a href="#move-folder" class="toc-h2 toc-link" data-title="Move Folder">Move Folder</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#api-files" class="toc-h1 toc-link" data-title="API Files">API Files</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#upload-a-file-using-the-api" class="toc-h2 toc-link" data-title="Upload a file using the API">Upload a file using the API</a>
                   </li>
               </ul>
           </li>
@@ -1397,7 +1408,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <aside class="notice">
-  You cannot upload new files via the API yet - only files from your file system or print queue can be printed via the API
+  You can only upload files through the API using <a href="#api-files">API Files</a>
 </aside>
 
 <p>This endpoint can be used to create a print job for one or more printers. The printers have to be in the <code>operational</code> state.</p>
@@ -1437,6 +1448,12 @@
 <td>boolean</td>
 <td>no</td>
 <td>If true, the next queue item will be printed.<br><strong>This requires the Print Farm plan</strong></td>
+</tr>
+<tr>
+<td><code>file_id</code></td>
+<td>string</td>
+<td>no</td>
+<td>File ID from <a href="#api-files">API Files</a> - used to start a file without adding it as a queue item or user file.</td>
 </tr>
 </tbody></table>
 <h4 id='extra-settings-for-next_queue_item'>Extra settings for <code>next_queue_item</code></h4>
@@ -2673,9 +2690,70 @@
 </tbody></table>
 <h1 id='files'>Files</h1>
 <aside class="notice">
-  You cannot upload new files via the API yet - this is coming soon
+  You can only upload files through the API using <a href="#api-files">API Files</a>
 </aside>
-<h2 id='list-files-and-folders'>List Files and Folders</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/files/GetFiles?f<span class="o">=</span>123&amp;search<span class="o">=</span>benchy <span class="se">\</span>
+<h2 id='add-an-api-file-to-files'>Add an API File to files</h2>
+<p><code>POST {id}/files/Upload?folder={folder}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>folder</code> (GET)</td>
+<td>integer</td>
+<td>no</td>
+<td>Folder ID to get files for. <strong>Defaults to 0 (root folder)</strong></td>
+</tr>
+<tr>
+<td><code>fileId</code> (POST)</td>
+<td>string</td>
+<td>yes</td>
+<td>File ID from <a href="#api-files">API Files</a></td>
+</tr>
+</tbody></table>
+<h3 id='response'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is false.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td>string</td>
+<td>User file ID of newly added file</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/files/Upload?folder<span class="o">=</span>5290 <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span> <span class="se">\</span>
+  <span class="nt">-F</span> <span class="s1">'fileId=43aaad56548c959f655d0524027b726a7514493ec8436f4942f876bb07eab731'</span>
+</code></pre></div>
+<blockquote>
+<p>Success Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="s2">"6f7d79212f384c6b8eae2811c37d9338"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='list-files-and-folders'>List Files and Folders</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/files/GetFiles?f<span class="o">=</span>123&amp;search<span class="o">=</span>benchy <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
 </code></pre></div>
@@ -2836,7 +2914,7 @@
 <td>For print cost calculation, if you want the files to use the material of a printer, request with the ID of the printer - don&#39;t include the <code>pid</code> argument otherwise</td>
 </tr>
 </tbody></table>
-<h3 id='response'>Response</h3>
+<h3 id='response-2'>Response</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2922,7 +3000,7 @@
 <td>Folder ID to move files to.</td>
 </tr>
 </tbody></table>
-<h3 id='response-2'>Response</h3>
+<h3 id='response-3'>Response</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2989,7 +3067,7 @@
 <td>Folder ID to get details for.</td>
 </tr>
 </tbody></table>
-<h3 id='response-3'>Response</h3>
+<h3 id='response-4'>Response</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3088,7 +3166,7 @@ Also, folders cannot be moved into themselves.</p>
 <td>Folder ID to move to.</td>
 </tr>
 </tbody></table>
-<h3 id='response-4'>Response</h3>
+<h3 id='response-5'>Response</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -3105,6 +3183,143 @@ Also, folders cannot be moved into themselves.</p>
 <td><code>message</code></td>
 <td>string</td>
 <td>Success message or error message if <code>status</code> is false.</td>
+</tr>
+</tbody></table>
+<h1 id='api-files'>API Files</h1>
+<p>The base URL for the SimplyPrint Files API is <code>https://files.simplyprint.io/{id}/</code>. Use the exact same authentication as the normal api endpoint. It is very important you ensure you send files with the correct file extension. The API will not be able to determine the file type based on the content.</p>
+<h2 id='upload-a-file-using-the-api'>Upload a file using the API</h2>
+<p><code>POST {id}/files/Upload</code></p>
+
+<blockquote>
+<p>Example request to upload a file less than 100MB</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://files.simplyprint.io/{id}/files/Upload"</span> <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"X-API-KEY: {API_KEY}"</span> <span class="se">\</span>
+    <span class="nt">-F</span> <span class="s2">"file=@/path/to/file.gcode"</span>
+</code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f568ead4bbc2d881efc8a9a05f3bd585334cd8c662347ba2dfad7250176b0abd"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"file.gcode"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">13439</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Multiple parts for a single file larger than 100MB. The first filename is the filename of the entire file.</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://files.simplyprint.io/{id}/files/Upload"</span> <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"X-API-KEY: {API_KEY}"</span> <span class="se">\</span>
+    <span class="nt">-F</span> <span class="s2">"file=@/path/to/part1.3mf"</span>
+    <span class="nt">-F</span> <span class="s2">"totalSize=3352316"</span>
+</code></pre></div>
+<blockquote>
+<p>Success response with continueToken</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"continueToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzM4NCJ9.eyJ0eXBlIjoiYWN0ao9uX3Rva2VuIiwiYWN0aW9uIjoiZmlsZV9jb250aW51ZV91cGxvYWQiLCJ1c2VyIjo2OTc2LCJjb21wYW55IjoyLCJkYXRhIja7ImJ1Y2tldEhhc2giOiI0MGQ2MzgwNmQwYWUxODhkNjc5YzY0NjA0M2RiYjUxMTc0NTViNTc1NjNlODEzZDc2MGRjMTJkMzVaYjdmY2Y0IiwidG90YWxTaXplIjoxNjc2MTU4NH0sImlhdCI6MTcyNTU2MjEzMywiZXhwIjoxNzI1NjQ4NTMzfQ.9qyNyx9A4Ox_6GrFSxXpxlpLcAKaSr8ln84X3yuWdhT_2O3L8-lGWaXAbQk9VvR-3pu1-a9p40amnt6Fghy49InjzCfNMRp-6-Ft_uMRf6PbmcCCrksvRxNP38ImoXy6"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Continue uploading the file (send next part with only the continueToken)</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://files.simplyprint.io/{id}/files/Upload"</span> <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"X-API-KEY: {API_KEY}"</span> <span class="se">\</span>
+    <span class="nt">-F</span> <span class="s2">"continueToken=eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzM4NCJ9.eyJ0eXBlIjoiYWN0ao9uX3Rva2VuIiwiYWN0aW9uIjoiZmlsZV9jb250aW51ZV91cGxvYWQiLCJ1c2VyIjo2OTc2LCJjb21wYW55IjoyLCJkYXRhIja7ImJ1Y2tldEhhc2giOiI0MGQ2MzgwNmQwYWUxODhkNjc5YzY0NjA0M2RiYjUxMTc0NTViNTc1NjNlODEzZDc2MGRjMTJkMzVaYjdmY2Y0IiwidG90YWxTaXplIjoxNjc2MTU4NH0sImlhdCI6MTcyNTU2MjEzMywiZXhwIjoxNzI1NjQ4NTMzfQ.9qyNyx9A4Ox_6GrFSxXpxlpLcAKaSr8ln84X3yuWdhT_2O3L8-lGWaXAbQk9VvR-3pu1-a9p40amnt6Fghy49InjzCfNMRp-6-Ft_uMRf6PbmcCCrksvRxNP38ImoXy6"</span> <span class="se">\</span>
+    <span class="nt">-F</span> <span class="s2">"file=@/path/to/part2.3mf"</span>
+</code></pre></div>
+<blockquote>
+<p>Sucessful final response as we ensured to only send exactly the total size of the file.</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f568ead4bbc2d881efc8a9a05f3bd585334cd8c662347ba2dfad7250176b0abd"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"part1.3mf"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">3352316</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='request'>Request</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>file</code></td>
+<td>file</td>
+<td>yes</td>
+<td>Uploaded file (Max 100mb)</td>
+</tr>
+<tr>
+<td><code>continueToken</code></td>
+<td>string</td>
+<td>no</td>
+<td>Optional token you&#39;ll get if you need to continue the upload for files greater than 100MB.</td>
+</tr>
+<tr>
+<td><code>totalSize</code></td>
+<td>integer</td>
+<td>no</td>
+<td>Send this if you want a continueToken, by providing the total size of the entire file you want to upload</td>
+</tr>
+</tbody></table>
+<h3 id='response'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td>True if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is false.</td>
+</tr>
+<tr>
+<td><code>continueToken</code></td>
+<td>string</td>
+<td>For every subsequent request that still has some pending size based on the total size this will be returned instead of the file.</td>
+</tr>
+<tr>
+<td><code>file.*</code></td>
+<td>object</td>
+<td>Final file object after entire file has been uploaded</td>
+</tr>
+<tr>
+<td><code>file.id</code></td>
+<td>string</td>
+<td>The API File ID you&#39;ll need to use other SimplyPrint APIs</td>
+</tr>
+<tr>
+<td><code>file.name</code></td>
+<td>string</td>
+<td>Name used to reference the file</td>
+</tr>
+<tr>
+<td><code>file.size</code></td>
+<td>int</td>
+<td>Total size of uploaded file</td>
 </tr>
 </tbody></table>
 <h1 id='queue'>Queue</h1><h2 id='add-item-to-queue'>Add item to queue</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/queue/AddItem <span class="se">\</span>
@@ -3135,7 +3350,7 @@ Also, folders cannot be moved into themselves.</p>
 </aside>
 
 <aside class="notice">
-  You cannot upload new files via the API yet - this is coming soon
+  You can only upload files through the API using <a href="#api-files">API Files</a>
 </aside>
 
 <p>This endpoint adds a file to the queue. The file can either be a file on the filesystem or an uploaded stl/3mf/obj/gcode/gco/nc/npg file.</p>
@@ -3156,7 +3371,7 @@ Also, folders cannot be moved into themselves.</p>
 <td><code>filesystem</code></td>
 <td>string</td>
 <td>no</td>
-<td>The filesystem id of the file to add to the queue.</td>
+<td>The <a href="#files">filesystem</a> id of the file to add to the queue.</td>
 </tr>
 <tr>
 <td><code>amount</code></td>
@@ -3169,6 +3384,12 @@ Also, folders cannot be moved into themselves.</p>
 <td>integer</td>
 <td>no</td>
 <td>If you have Queue Groups - ID of the group the item should be added to.<br><strong>Default: 0 - required if you have Queue Groups</strong></td>
+</tr>
+<tr>
+<td><code>fileId</code></td>
+<td>string</td>
+<td>no</td>
+<td>Optional File ID from <a href="#api-files">API File</a> - use this to add a file uploaded via the API.</td>
 </tr>
 </tbody></table>
 <h3 id='response'>Response</h3>
