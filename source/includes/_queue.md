@@ -34,7 +34,7 @@ curl https://api.simplyprint.io/{id}/queue/AddItem \
 </aside>
 
 <aside class="notice">
-  You cannot upload new files via the API yet - this is coming soon
+  You can only upload files through the API using <a href="#api-files">API Files</a>
 </aside>
 
 This endpoint adds a file to the queue. The file can either be a file on the filesystem or an uploaded stl/3mf/obj/gcode/gco/nc/npg file.
@@ -47,9 +47,10 @@ This endpoint adds a file to the queue. The file can either be a file on the fil
 
 | Parameter    | Type    | Required | Description                                                                                                                   |
 | ------------ | ------- | -------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `filesystem` | string  | no       | The filesystem id of the file to add to the queue.                                                                            |
+| `filesystem` | string  | no       | The [filesystem](#files) id of the file to add to the queue.                                                                            |
 | `amount`     | integer | no       | The amount of prints to add to the queue.<br>**Default: 1**                                                                   |
 | `group`      | integer | no       | If you have Queue Groups - ID of the group the item should be added to.<br>**Default: 0 - required if you have Queue Groups** |
+| `fileId`     | string  | no       | Optional File ID from [API File](#api-files) - use this to add a file uploaded via the API.  |
 
 ### Response
 

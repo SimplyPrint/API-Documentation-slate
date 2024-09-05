@@ -324,7 +324,7 @@ curl https://api.simplyprint.io/{id}/printers/actions/CreateJob?pid=1234&filesys
 ```
 
 <aside class="notice">
-  You cannot upload new files via the API yet - only files from your file system or print queue can be printed via the API
+  You can only upload files through the API using <a href="#api-files">API Files</a>
 </aside>
 
 This endpoint can be used to create a print job for one or more printers. The printers have to be in the `operational` state.
@@ -341,6 +341,7 @@ To start a print job you must either specify a `filesystem` ID, a `queue_file` I
 | `filesystem`      | string               | no       | The filesystem ID of the file to print.                                                |
 | `queue_file`      | integer              | no       | The queue ID of the queue item to print.                                               |
 | `next_queue_item` | boolean              | no       | If true, the next queue item will be printed.<br>**This requires the Print Farm plan** |
+| `file_id` | string              | no       | File ID from [API Files](#api-files) - used to start a file without adding it as a queue item or user file.
 
 #### Extra settings for `next_queue_item`
 

@@ -12,6 +12,7 @@ includes:
   - printers
   - filament
   - files
+  - api_files
   - queue
   - account
   - jobs

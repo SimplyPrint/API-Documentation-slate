@@ -1,8 +1,44 @@
 # Files
 
 <aside class="notice">
-  You cannot upload new files via the API yet - this is coming soon
+  You can only upload files through the API using <a href="#api-files">API Files</a>
 </aside>
+
+## Add an API File to files
+
+`POST {id}/files/Upload?folder={folder}`
+
+
+| Parameter       | Type    | Required | Description                                                                                                                                                         |
+| --------------- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `folder` (GET)  | integer | no       | Folder ID to get files for. **Defaults to 0 (root folder)**                                                                                                         |
+| `fileId` (POST) | string  | yes       | File ID from [API Files](#api-files)                                                                                           
+
+### Response
+
+| Parameter    | Type    | Description                                                |
+| ------------ | ------- | ---------------------------------------------------------- |
+| `status`     | boolean | True if the request was successful.                        |
+| `message`    | string  | Error message if `status` is false.                        |
+| `id`      | string   | User file ID of newly added file                             |
+
+
+```shell
+curl -X POST https://api.simplyprint.io/{id}/files/Upload?folder=5290 \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}' \
+  -F 'fileId=43aaad56548c959f655d0524027b726a7514493ec8436f4942f876bb07eab731'
+```
+
+> Success Response
+
+```json
+{
+  "status":true,
+  "message":null,
+  "id":"6f7d79212f384c6b8eae2811c37d9338"
+}
+```
 
 ## List Files and Folders
 
