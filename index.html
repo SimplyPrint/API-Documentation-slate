@@ -3188,6 +3188,10 @@ Also, folders cannot be moved into themselves.</p>
 <h1 id='api-files'>API Files</h1>
 <p>The base URL for the SimplyPrint Files API is <code>https://files.simplyprint.io/{id}/</code>. Use the exact same authentication as the normal api endpoint. It is very important you ensure you send files with the correct file extension. The API will not be able to determine the file type based on the content.</p>
 <h2 id='upload-a-file-using-the-api'>Upload a file using the API</h2>
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
 <p><code>POST {id}/files/Upload</code></p>
 
 <blockquote>
