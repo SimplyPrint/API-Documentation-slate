@@ -217,9 +217,41 @@ curl https://api.simplyprint.io/{id}custom_fields/Delete?ids=123,124,125 \
 | `status`  | boolean | True if the request was successful. |
 | `message` | string  | Error message if `status` is false. |
 
+## Custom field submission
+
+`POST /{id}/custom_fields/SubmitValues`
+
+> Example request
+
+```shell
+curl -X POST https://api.simplyprint.io/{id}/custom_fields/SubmitValues \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -H 'X-API-KEY: {API_KEY}' \
+  -d '{"category": "printer", "subCategory": "print_job", entityIds: [1234], "values": [{customFieldId: "student_id", value: {"string": "1234567890"}}]}'
+```
+
+> Example response
+
+```json
+{
+  "status": true,
+  "message": null
+}
+```
+
+### Request
+
+| Parameter     | Type   | Required | Description                                                                                                      |
+|---------------|--------|----------|------------------------------------------------------------------------------------------------------------------|
+| `category`    | string | yes      | One of `print`, `user`, `printer`, `filament`                                                                    |
+| `subCategory` | string | yes      | One of `print_queue`, `print_job`, `user_file`                                                                   |
+| `entityIds`   | array  | yes      | Array of entity IDs to submit values for                                                                         |
+| `values`      | array  | yes      | Array of custom field values to submit. Each value looks like `{customFieldId: string, value: CustomFieldValue}` |
+
 ## Custom field submission value
 
-The value of a custom field when submitted via the API is an object with a key corresponding to the field type. 
+The value of a custom field when submitted via the API is an object with a key corresponding to the field type.
 See the examples to the right for the different field types.
 
 > A text field would have a value like this:
@@ -258,6 +290,9 @@ See the examples to the right for the different field types.
 
 ```json
 {
-  "options": ["Option 1", "Option 2"]
+  "options": [
+    "Option 1",
+    "Option 2"
+  ]
 }
 ```
