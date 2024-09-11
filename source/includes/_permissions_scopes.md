@@ -2,12 +2,13 @@
 
 ## Company permissions
 
-These permissions are used to control access within a company. The permissions are tied to the user groups within the company.
+These permissions are used to control access within a company. The permissions are tied to the user groups within the
+company.
 
 The owner of a company has all permissions.
 
 | Permission               | Description                                                     |
-| ------------------------ | --------------------------------------------------------------- |
+|--------------------------|-----------------------------------------------------------------|
 | `PRINTER_EDIT`           | "Allow to create, edit and delete printers"                     |
 | `CREATE_FILAMENT`        | "Allow creating, editing and deleting filament spools"          |
 | `CHANGE_FILAMENT`        | "Allow change of filament"                                      |
@@ -24,7 +25,7 @@ The owner of a company has all permissions.
 These scopes are used to control access to the API. The scopes are tied to the OAuth2 access token.
 
 | Scope                | Description                               |
-| -------------------- | ----------------------------------------- |
+|----------------------|-------------------------------------------|
 | `user.read`          | View user details                         |
 | `printers.read`      | View printer details                      |
 | `printers.write`     | Manage details of printers                |

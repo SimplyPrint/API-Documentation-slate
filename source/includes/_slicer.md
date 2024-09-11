@@ -3,7 +3,7 @@
 ## List Slicer Profiles
 
 ```shell
-curl -X GET https://api.simplyprint.io/{id}/slicer/ListProfiles \
+curl https://api.simplyprint.io/{id}/slicer/ListProfiles \
   -H 'accept: application/json' \
   -H 'X-API-KEY: {API_KEY}'
 ```
@@ -159,7 +159,7 @@ TODO
 ## Delete Slicer Profile
 
 ```shell
-curl -X GET https://api.simplyprint.io/{id}/slicer/DeleteProfile?id=1234 \
+curl https://api.simplyprint.io/{id}/slicer/DeleteProfile?id=1234 \
   -H 'accept: application/json' \
   -H 'X-API-KEY: {API_KEY}'
 ```

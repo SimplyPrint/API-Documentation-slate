@@ -55,12 +55,12 @@ curl https://api.simplyprint.io/{id}/jobs/GetPaginatedPrintJobs \
           },
           {
             "id": 2,
-            "label":"Material markup",
+            "label": "Material markup",
             "cost": null
           },
           {
             "id": 3,
-            "label":"Machine run time cost",
+            "label": "Machine run time cost",
             "cost": null
           },
           {
@@ -79,7 +79,15 @@ curl https://api.simplyprint.io/{id}/jobs/GetPaginatedPrintJobs \
         "id": 1234,
         "user": 51,
         "queueNum": 3
-      }
+      },
+      "customFields": [
+        {
+          "id": "student_id",
+          "value": {
+            "string": "1234567890"
+          }
+        }
+      ]
     },
     ...
   ],

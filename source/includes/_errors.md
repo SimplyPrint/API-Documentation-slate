@@ -3,7 +3,7 @@
 The SimplyPrint API uses the following HTTP error codes:
 
 | Error Code | Meaning                                                                                   |
-| ---------- | ----------------------------------------------------------------------------------------- |
+|------------|-------------------------------------------------------------------------------------------|
 | 400        | Bad Request -- Your request is invalid.                                                   |
 | 401        | Unauthorized -- Your API key is wrong.                                                    |
 | 403        | Forbidden -- Request not allowed.                                                         |
@@ -29,6 +29,6 @@ The SimplyPrint API uses the following HTTP error codes:
 When an error occurs, the API will return a JSON object with the following fields:
 
 | Field   | Description                    | Type        |
-| ------- | ------------------------------ | ----------- |
+|---------|--------------------------------|-------------|
 | status  | The status of the request      | Boolean     |
 | message | A message describing the error | String/null |

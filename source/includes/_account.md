@@ -167,7 +167,6 @@ This endpoint updates the groups in the company.
 
 ```shell
 curl https://api.simplyprint.io/{id}/account/GetGroups \
-  -X GET \
   -H 'accept: application/json' \
   -H 'X-API-KEY: {API_KEY}'
 ```

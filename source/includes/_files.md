@@ -72,7 +72,7 @@ curl https://api.simplyprint.io/{id}/files/GetFiles?f=123&search=benchy \
       "user_id": 123,
       "thumbnail": 1,
       "folder": 0,
-      "user": 123,
+      "user": 123
     },
     {
       "id": "e82ab9e1cc3c20850d94d5cf539390c0",
@@ -105,41 +105,53 @@ curl https://api.simplyprint.io/{id}/files/GetFiles?f=123&search=benchy \
             "ext": 0,
             "type": 123,
             "color": "Green",
-            "hex":"#4CAF50"
+            "hex": "#4CAF50"
           }
         ],
-        "custom": [1, 2, 3]
+        "custom": [
+          1,
+          2,
+          3
+        ]
       },
       "cost": {
         "estimate": false,
         "total_cost": 150,
-        "lines":[
-            {
-              "id": 1,
-              "label": "Material usage (account default)",
-              "cost": 0.02
-            },
-            {
-              "id": 2,
-              "label":"Material markup",
-              "cost": null
-            },
-            {
-              "id": 3,
-              "label":"Machine run time cost",
-              "cost": null
-            },
-            {
-              "id": 4,
-              "label": "Energy cost",
-              "cost": null
-            },
-            {
-              "id": 5,
-              "label": "Labor cost",
-              "cost": 1000
-            }
+        "lines": [
+          {
+            "id": 1,
+            "label": "Material usage (account default)",
+            "cost": 0.02
+          },
+          {
+            "id": 2,
+            "label": "Material markup",
+            "cost": null
+          },
+          {
+            "id": 3,
+            "label": "Machine run time cost",
+            "cost": null
+          },
+          {
+            "id": 4,
+            "label": "Energy cost",
+            "cost": null
+          },
+          {
+            "id": 5,
+            "label": "Labor cost",
+            "cost": 1000
+          }
         ]
+      }
+    }
+  ],
+  "customFields": [
+    {
+      "id": "student_id",
+      "value": {
+        "string": "1234567890"
       }
     }
   ],
