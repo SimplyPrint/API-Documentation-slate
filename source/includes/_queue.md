@@ -691,6 +691,10 @@ This endpoint empties the queue.
 
 ## Revive item
 
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
 ```shell
 curl https://api.simplyprint.io/{id}/queue/ReviveItem?job=1234 \
   -H 'accept: application/json' \

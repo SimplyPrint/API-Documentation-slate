@@ -10,6 +10,10 @@ Custom Fields allow you to add your own data-fields inside SimplyPrint.
 
 ## List custom fields
 
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
 `POST /{id}/custom_fields/Get`
 
 > Example request
@@ -87,6 +91,10 @@ curl -X POST https://api.simplyprint.io/{id}/custom_fields/Get \
 
 ## Create or update a custom field
 
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
 `POST /{id}/custom_fields/Save`
 
 > Example request
@@ -139,6 +147,10 @@ curl -X POST https://api.simplyprint.io/{id}/custom_fields/Save \
 
 ## Enable or disable a custom field
 
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
 `POST /{id}/custom_fields/SetEnabled`
 
 > Example request
@@ -175,6 +187,10 @@ curl -X POST https://api.simplyprint.io/{id}/custom_fields/SetEnabled \
 | `message` | string  | Error message if `status` is false. |
 
 ## Delete custom fields
+
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
 
 `GET /{id}/custom_fields/Delete`
 
@@ -219,6 +235,10 @@ curl https://api.simplyprint.io/{id}custom_fields/Delete?ids=123,124,125 \
 
 ## Custom field submission
 
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
 `POST /{id}/custom_fields/SubmitValues`
 
 > Example request
@@ -250,6 +270,10 @@ curl -X POST https://api.simplyprint.io/{id}/custom_fields/SubmitValues \
 | `values`      | array  | yes      | Array of custom field values to submit. Each value looks like `{customFieldId: string, value: CustomFieldValue}` |
 
 ## Custom field submission value
+
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
 
 The value of a custom field when submitted via the API is an object with a key corresponding to the field type.
 See the examples to the right for the different field types.

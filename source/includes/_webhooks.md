@@ -9,6 +9,10 @@ When one of those events is triggered, we'll send an HTTP POST payload to the we
 
 ## List webhooks
 
+<aside class="notice">
+  This endpoint is only available on the <b>Print Farm</b> plan.
+</aside>
+
 `GET /{id}/webhooks/Get`
 
 > Example request
@@ -64,6 +68,10 @@ curl "https://api.simplyprint.io/{id}/webhooks/Get" \
 | `data`    | array   | Array of webhooks.                  |
 
 ## Create or update a webhook
+
+<aside class="notice">
+  This endpoint is only available on the <b>Print Farm</b> plan.
+</aside>
 
 `POST /{id}/webhooks/Create`
 
@@ -123,6 +131,10 @@ https://api.simplyprint.io/{id}/webhooks/Create \
 
 ## Delete a webhook
 
+<aside class="notice">
+  This endpoint is only available on the <b>Print Farm</b> plan.
+</aside>
+
 `POST /{id}/webhooks/Delete`
 
 > Example request
@@ -159,6 +171,10 @@ https://api.simplyprint.io/{id}/webhooks/Delete \
 | `message` | string  | Error message if `status` is false. |
 
 ## Enable or disable a webhook
+
+<aside class="notice">
+  This endpoint is only available on the <b>Print Farm</b> plan.
+</aside>
 
 `POST /{id}/webhooks/SetEnabled`
 
@@ -197,6 +213,10 @@ https://api.simplyprint.io/{id}/webhooks/SetEnabled \
 | `message` | string  | Error message if `status` is false. |
 
 ## Manually trigger webhook
+
+<aside class="notice">
+  This endpoint is only available on the <b>Print Farm</b> plan.
+</aside>
 
 The event type will be `test`.
 

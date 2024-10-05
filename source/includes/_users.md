@@ -43,7 +43,10 @@ curl https://api.simplyprint.io/{id}/users/GetPaginatedUsers \
       "total_prints": 68,
       "rank": 185,
       "teacher": false,
-      "classes": [1234, 5678]
+      "classes": [
+        1234,
+        5678
+      ]
     }
   ],
   "page_amount": 1
@@ -356,6 +359,10 @@ This endpoint deletes a user from the company. Use this endpoint with caution.
 | `message` | string  | Error message if `status` is false. |
 
 ## Set Teacher
+
+<aside class="notice">
+  This endpoint is only available on the <b>School</b> plan.
+</aside>
 
 `POST /{id}/users/SetIsTeacher`
 

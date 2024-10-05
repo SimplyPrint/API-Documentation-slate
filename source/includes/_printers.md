@@ -606,6 +606,10 @@ you want to change the printer that is connected to a pi.
 
 ## List one-click printers
 
+<aside class="notice">
+  This endpoint requires the <b>Pro</b> plan.
+</aside>
+
 ```shell
 curl https://api.simplyprint.io/{id}/printers/OneClickPrint?pIds=1234,1235 \
   -H 'accept: application/json' \
@@ -659,7 +663,7 @@ curl https://api.simplyprint.io/{id}/printers/OneClickPrint?pIds=1234,1235 \
 ## AutoPrint enable / disable
 
 <aside class="notice">
-  AutoPrint requires the <b>Print Farm</b> plan.
+  This endpoint requires the <b>Print Farm</b> plan.
 </aside>
 
 ```shell
@@ -698,10 +702,14 @@ curl https://api.simplyprint.io/{id}/printers/autoprint/SetEnabled \
 
 ## AutoPrint check state
 
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
 ```shell
 curl https://api.simplyprint.io/{id}/printers/autoprint/CheckState \
   -H 'accept: application/json' \
-  -H 'X-API-KEY: {API_KEY}' \
+  -H 'X-API-KEY: {API_KEY}'
 ```
 
 > Success response
@@ -740,6 +748,10 @@ curl https://api.simplyprint.io/{id}/printers/autoprint/CheckState \
 | `printers[].nextItem`                        | object/null | The next queue item formatted for the printer.                         |
 
 ## AutoPrint get settings
+
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
 
 ```shell
 curl https://api.simplyprint.io/{id}/printers/autoprint/GetAutoPrintSettings \
@@ -786,6 +798,10 @@ curl https://api.simplyprint.io/{id}/printers/autoprint/GetAutoPrintSettings \
 | `can_macro`            | boolean | `true` if the user has permission to manage G-code profiles for the company. |
 
 ## AutoPrint save settings
+
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
 
 ```shell
 curl https://api.simplyprint.io/{id}/printers/autoprint/SaveAutoPrintSettings \
@@ -835,6 +851,10 @@ curl https://api.simplyprint.io/{id}/printers/autoprint/SaveAutoPrintSettings \
 | `message` | string  | Error message if `status` is `false`. |
 
 ## AutoPrint get gcode templates
+
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
 
 ```shell
 curl https://api.simplyprint.io/{id}/printers/autoprint/GetGcodeTemplates \
@@ -886,6 +906,10 @@ curl https://api.simplyprint.io/{id}/printers/autoprint/GetGcodeTemplates \
 | `methods[].gcode` | string  | G-code template for the method.                  |
 
 ## AutoPrint set cleared beds amount
+
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
 
 ```shell
 curl https://api.simplyprint.io/{id}/printers/autoprint/SetClearedBedsAmount \

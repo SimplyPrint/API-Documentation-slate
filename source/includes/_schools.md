@@ -2,6 +2,10 @@
 
 ## List classes
 
+<aside class="notice">
+  This endpoint is only available on the <b>School</b> plan.
+</aside>
+
 `GET /{id}/account/settings/school/classes/GetClasses`
 
 > Example request
@@ -74,6 +78,10 @@ curl https://api.simplyprint.io/{id}/account/settings/school/classes/GetClasses 
 | `objects.settings.userCanAddClasses`        | boolean | Whether the user has permission to add new classes.           |
 
 ## Create or update a class
+
+<aside class="notice">
+  This endpoint is only available on the <b>School</b> plan.
+</aside>
 
 `POST /{id}/account/settings/school/classes/SaveClass`
 
