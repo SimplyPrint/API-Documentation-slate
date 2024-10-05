@@ -13,6 +13,7 @@ includes:
   - filament
   - jobs
   - queue
+  - printer_groups
   - files
   - api_files
   - account
