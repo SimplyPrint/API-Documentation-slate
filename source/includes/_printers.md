@@ -656,9 +656,11 @@ curl https://api.simplyprint.io/{id}/printers/OneClickPrint?pIds=1234,1235 \
 | `custom_fields`     | array   | Array of custom fields for the print queue.     |
 | `queue`             | array   | Array of next items in the print queue.         |
 
-```
-
 ## AutoPrint enable / disable
+
+<aside class="notice">
+  AutoPrint requires the <b>Print Farm</b> plan.
+</aside>
 
 ```shell
 curl https://api.simplyprint.io/{id}/printers/autoprint/SetEnabled \

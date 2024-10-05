@@ -723,6 +723,10 @@ curl https://api.simplyprint.io/{id}/queue/ReviveItem?job=1234 \
 
 ## Get groups
 
+<aside class="notice">
+  Print Queue Groups require the <b>Pro</b> plan.
+</aside>
+
 ```shell
 curl https://api.simplyprint.io/{id}/queue/groups/Get \
   -H 'accept: application/json' \
