@@ -1,6 +1,6 @@
 # Print Jobs
 
-## Get Print Jobs
+## Get print jobs
 
 ```shell
 curl https://api.simplyprint.io/{id}/jobs/GetPaginatedPrintJobs \
@@ -148,3 +148,124 @@ Get paginated data about ongoing or finished print jobs.
 | `data[].queueItem.user`     | integer      | The user id of the user who created the queue item.                                                                            |
 | `data[].queueItem.queueNum` | integer      | The queue number of the queue item.                                                                                            |
 | `page_amount`               | integer      | The total number of pages for the given parameters.                                                                            |
+
+## Get details
+
+```shell
+curl https://api.simplyprint.io/{id}/jobs/GetDetails \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}' \
+  -d '{
+    "id": "job_id"
+  }'
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null,
+  "job": {
+    "id": 123,
+    "filament": [
+      ...
+    ],
+    "pauses": [
+      ...
+    ],
+    "currentTime": 1697040000,
+    "pictures": [
+      ...
+    ],
+    "notificationsSent": [
+      ...
+    ],
+    "cost": 12.34,
+    "customFields": {
+      ...
+    },
+    "ended": 3600,
+    "failedReason": "string",
+    "cancelInfo": {
+      "reason": "string",
+      "comment": "string",
+      "by": "string",
+      "byOther": 1
+    },
+    "analysis": {
+      ...
+    },
+    "notifications": {
+      ...
+    },
+    "outsideSystem": true,
+    "rating": 5,
+    "started": 7200,
+    "created": 10800,
+    "state": "string",
+    "file": "filename.gcode",
+    "percentage": 50,
+    "time": 1800,
+    "canPreview": true,
+    "layer": 10,
+    "ai": [
+      0.1,
+      0.2,
+      0.3
+    ],
+    "printer": {
+      "id": 456,
+      "name": "Printer Name",
+      "extruders": 2,
+      "image": "https://cdn.simplyprint.io/prints/images/printer_image.jpg",
+      "deleted": 1
+    },
+    "spools": [
+      ...
+    ]
+  }
+}
+```
+
+`GET /{id}/jobs/GetDetails?id={job_id}`
+
+### Request Body
+
+| Parameter | Type   | Description  |
+|-----------|--------|--------------|
+| `id`      | string | The job UID. |
+
+### Response
+
+| Parameter               | Type    | Description                              |
+|-------------------------|---------|------------------------------------------|
+| `status`                | boolean | `true` if the request was successful.    |
+| `message`               | string  | Error message if `status` is `false`.    |
+| `job`                   | object  | Details about the print job.             |
+| `job.id`                | integer | Unique identifier for the job.           |
+| `job.filament`          | array   | Array of filament data.                  |
+| `job.pauses`            | array   | Array of pause history.                  |
+| `job.currentTime`       | integer | Current timestamp.                       |
+| `job.pictures`          | array   | Array of pictures related to the job.    |
+| `job.notificationsSent` | array   | Array of notifications sent.             |
+| `job.cost`              | float   | Cost of the print job.                   |
+| `job.customFields`      | object  | Custom fields for the job.               |
+| `job.ended`             | integer | Time since the job ended.                |
+| `job.failedReason`      | string  | Reason for job failure, if any.          |
+| `job.cancelInfo`        | object  | Information about job cancellation.      |
+| `job.analysis`          | object  | G-code analysis data.                    |
+| `job.notifications`     | object  | Notification data.                       |
+| `job.outsideSystem`     | boolean | `true` if the job is outside the system. |
+| `job.rating`            | integer | Rating of the job.                       |
+| `job.started`           | integer | Time since the job started.              |
+| `job.created`           | integer | Time since the job was created.          |
+| `job.state`             | string  | Current state of the job.                |
+| `job.file`              | string  | Original filename of the job.            |
+| `job.percentage`        | integer | Current completion percentage.           |
+| `job.time`              | integer | Time left or time since the job ended.   |
+| `job.canPreview`        | boolean | `true` if the job can be previewed.      |
+| `job.layer`             | integer | Current layer of the print.              |
+| `job.ai`                | array   | Array of AI detection values.            |
+| `job.printer`           | object  | Details about the printer.               |
+| `job.spools`            | array   | Array of spool data.                     |
