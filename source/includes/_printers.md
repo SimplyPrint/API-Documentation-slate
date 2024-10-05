@@ -604,6 +604,323 @@ you want to change the printer that is connected to a pi.
 | `status`  | boolean | True if the request was successful. |
 | `message` | string  | Error message if `status` is false. |
 
+## List one-click printers
+
+```shell
+curl https://api.simplyprint.io/{id}/printers/OneClickPrint?pIds=1234,1235 \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null,
+  "bedsMustBeCleared": true,
+  "autoAddAvailable": true,
+  "settings": {
+    ...
+  },
+  "canEditSettings": true,
+  "hasQueue": true,
+  "custom_fields": [
+    ...
+  ],
+  "queue": [
+    ...
+  ]
+}
+```
+
+`GET /{id}/printers/OneClickPrint?pid=1234,1235`
+
+#### Query parameters
+
+| Parameter | Type      | Required | Description                              |
+|-----------|-----------|----------|------------------------------------------|
+| `pid`     | integer[] | yes      | Printers you want to retrieve data about |
+
+### Response
+
+| Parameter           | Type    | Description                                     |
+|---------------------|---------|-------------------------------------------------|
+| `status`            | boolean | `true` if the request was successful.           |
+| `message`           | string  | Error message if `status` is `false`.           |
+| `bedsMustBeCleared` | boolean | `true` if beds must be cleared before printing. |
+| `autoAddAvailable`  | boolean | `true` if auto-discover printers is available.  |
+| `settings`          | object  | Queue auto-start settings.                      |
+| `canEditSettings`   | boolean | `true` if the user can edit settings.           |
+| `hasQueue`          | boolean | `true` if the company has a print queue.        |
+| `custom_fields`     | array   | Array of custom fields for the print queue.     |
+| `queue`             | array   | Array of next items in the print queue.         |
+
+```
+
+## AutoPrint enable / disable
+
+```shell
+curl https://api.simplyprint.io/{id}/printers/autoprint/SetEnabled \
+  -X POST \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}' \
+  -d '{
+    "on": true
+  }'
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null
+}
+```
+
+`POST /{id}/printers/autoprint/SetEnabled`
+
+#### Request body
+
+| Parameter | Type    | Required | Description                                                  |
+|-----------|---------|----------|--------------------------------------------------------------|
+| `on`      | boolean | yes      | Set to `true` to enable autoprint, or `false` to disable it. |
+
+### Response
+
+| Parameter | Type    | Description                           |
+|-----------|---------|---------------------------------------|
+| `status`  | boolean | `true` if the request was successful. |
+| `message` | string  | Error message if `status` is `false`. |
+
+## AutoPrint check state
+
+```shell
+curl https://api.simplyprint.io/{id}/printers/autoprint/CheckState \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}' \
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null,
+  "printers": [
+    {
+      ...
+    }
+  ]
+}
+```
+
+`GET /{id}/printers/autoprint/CheckState`
+
+### Response
+
+| Parameter                                    | Type        | Description                                                            |
+|----------------------------------------------|-------------|------------------------------------------------------------------------|
+| `status`                                     | boolean     | `true` if the request was successful.                                  |
+| `message`                                    | string      | Error message if `status` is `false`.                                  |
+| `printers`                                   | array       | Array of printers along with their AutoPrint status.                   |
+| `printers[].printer`                         | integer     | The printer id.                                                        |
+| `printers[].ready`                           | boolean     | Whether the printer is ready.                                          |
+| `printers[].issues`                          | array       | An array of issues with the printer.                                   |
+| `printers[].state`                           | object      | The state of the printer.                                              |
+| `printers[].state.awaitingBedCool`           | boolean     | True if the printer is awaiting the bed to cool down.                  |
+| `printers[].state.awaitingSecondsPass`       | boolean     | True if the printer is awaiting a specified number of seconds to pass. |
+| `printers[].state.awaitingManualClear`       | boolean     | True if the printer is awaiting manual clearance.                      |
+| `printers[].state.maxCyclesReached`          | boolean     | True if the printer has reached the maximum number of print cycles.    |
+| `printers[].state.waitingForSystem`          | boolean     | True if the printer is waiting for the system.                         |
+| `printers[].state.awaitingMatchingQueueItem` | boolean     | True if the printer is awaiting a matching queue item.                 |
+| `printers[].nextItem`                        | object/null | The next queue item formatted for the printer.                         |
+
+## AutoPrint get settings
+
+```shell
+curl https://api.simplyprint.io/{id}/printers/autoprint/GetAutoPrintSettings \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null,
+  "gcode": "...",
+  "printer_settings": {
+    ...
+  },
+  "printer_has_settings": true,
+  "account_settings": {
+    ...
+  },
+  "account_has_settings": true,
+  "queue_match_settings": {
+    ...
+  },
+  "can_macro": true
+}
+```
+
+`GET /{id}/printers/autoprint/GetAutoPrintSettings`
+
+### Response
+
+| Parameter              | Type    | Description                                                                  |
+|------------------------|---------|------------------------------------------------------------------------------|
+| `status`               | boolean | `true` if the request was successful.                                        |
+| `message`              | string  | Error message if `status` is `false`.                                        |
+| `gcode`                | string  | G-code for clearing the auto print settings.                                 |
+| `printer_settings`     | object  | The auto print settings for the printer.                                     |
+| `printer_has_settings` | boolean | `true` if the printer has auto print settings.                               |
+| `account_settings`     | object  | The auto print settings for the account.                                     |
+| `account_has_settings` | boolean | `true` if the account has auto print settings.                               |
+| `queue_match_settings` | object  | The queue match criteria settings for the account.                           |
+| `can_macro`            | boolean | `true` if the user has permission to manage G-code profiles for the company. |
+
+## AutoPrint save settings
+
+```shell
+curl https://api.simplyprint.io/{id}/printers/autoprint/SaveAutoPrintSettings \
+  -X POST \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "useDefault": true,
+    "saveAsDefault": false,
+    "bedReleaseTemp": 60,
+    "autoReleaseTime": 3600,
+    "maxPrints": 100,
+    "ackNoGcode": true,
+    "method": "loop"
+  }'
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null
+}
+```
+
+`POST /{id}/printers/autoprint/SaveAutoPrintSettings`
+
+### Request Body
+
+| Parameter         | Type    | Description                                                                               |
+|-------------------|---------|-------------------------------------------------------------------------------------------|
+| `useDefault`      | boolean | `true` to use company defaults, `false` to use custom settings.                           |
+| `saveAsDefault`   | boolean | `true` to save the settings as company defaults.                                          |
+| `bedReleaseTemp`  | integer | Temperature at which the bed releases the print.                                          |
+| `autoReleaseTime` | integer | Time in seconds after which the print is automatically released.                          |
+| `maxPrints`       | integer | Maximum number of prints before requiring manual intervention.                            |
+| `ackNoGcode`      | boolean | `true` to acknowledge no G-code is required.                                              |
+| `method`          | string  | Method to use for auto print settings. One of `loop`, `jobox`, `3dque`, `belt`, `pushoff` |
+
+### Response
+
+| Parameter | Type    | Description                           |
+|-----------|---------|---------------------------------------|
+| `status`  | boolean | `true` if the request was successful. |
+| `message` | string  | Error message if `status` is `false`. |
+
+## AutoPrint get gcode templates
+
+```shell
+curl https://api.simplyprint.io/{id}/printers/autoprint/GetGcodeTemplates \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null,
+  "methods": [
+    {
+      "name": "loop",
+      "gcode": "..."
+    },
+    {
+      "name": "jobox",
+      "gcode": "..."
+    },
+    {
+      "name": "3dque",
+      "gcode": "..."
+    },
+    {
+      "name": "belt",
+      "gcode": "..."
+    },
+    {
+      "name": "pushoff",
+      "gcode": "..."
+    }
+  ]
+}
+```
+
+`GET /{id}/printers/autoprint/GetGcodeTemplates`
+
+### Response
+
+| Parameter         | Type    | Description                                      |
+|-------------------|---------|--------------------------------------------------|
+| `status`          | boolean | `true` if the request was successful.            |
+| `message`         | string  | Error message if `status` is `false`.            |
+| `methods`         | array   | Array of G-code templates for different methods. |
+| `methods[].name`  | string  | Name of the method.                              |
+| `methods[].gcode` | string  | G-code template for the method.                  |
+
+## AutoPrint set cleared beds amount
+
+```shell
+curl https://api.simplyprint.io/{id}/printers/autoprint/SetClearedBedsAmount \
+  -X POST \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "amount": 10
+  }'
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null
+}
+```
+
+`POST /{id}/printers/autoprint/SetClearedBedsAmount`
+
+### Request Body
+
+| Parameter | Type      | Description                                                                         |
+|-----------|-----------|-------------------------------------------------------------------------------------|
+| `pid`     | integer[] | The ID(s) of the printer(s) to set the cleared beds amount for.                     |
+| `amount`  | integer   | The number of cleared beds to set for the printer(s). Must be between 0 and 100000. |
+
+### Response
+
+| Parameter | Type    | Description                           |
+|-----------|---------|---------------------------------------|
+| `status`  | boolean | `true` if the request was successful. |
+| `message` | string  | Error message if `status` is `false`. |
+
 ## Cancel reasons
 
 | ID | Description                        |
