@@ -728,7 +728,7 @@ curl https://api.simplyprint.io/{id}/queue/ReviveItem?job=1234 \
 ## Get groups
 
 <aside class="notice">
-  Print Queue Groups require the <b>Pro</b> plan.
+  This endpoint requires the <b>Pro</b> plan.
 </aside>
 
 ```shell
@@ -775,6 +775,10 @@ curl https://api.simplyprint.io/{id}/queue/groups/Get \
 | `list[].for`        | object  | For which printers, models and groups this queue item is for.                    |
 
 ## Save group
+
+<aside class="notice">
+  This endpoint requires the <b>Pro</b> plan.
+</aside>
 
 ```shell
 curl https://api.simplyprint.io/{id}/queue/groups/Save \
@@ -824,6 +828,10 @@ curl https://api.simplyprint.io/{id}/queue/groups/Save \
 
 ## Delete group
 
+<aside class="notice">
+  This endpoint requires the <b>Pro</b> plan.
+</aside>
+
 ```shell
 curl https://api.simplyprint.io/{id}/queue/groups/Delete?id=123 \
   -X POST \
@@ -862,6 +870,10 @@ curl https://api.simplyprint.io/{id}/queue/groups/Delete?id=123 \
 | `message` | string  | Error message if `status` is `false`. |
 
 ## Set group order
+
+<aside class="notice">
+  This endpoint requires the <b>Pro</b> plan.
+</aside>
 
 ```shell
 curl https://api.simplyprint.io/{id}/queue/groups/SetOrder?queue_group=123 \
