@@ -23,6 +23,7 @@ includes:
   - tags
   - custom_fields
   - webhooks
+  - gcode_macros
   - permissions_scopes
   - errors
 
