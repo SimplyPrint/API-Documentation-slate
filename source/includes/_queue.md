@@ -204,6 +204,120 @@ priority. The result will have skipped all items that do not meet the specified 
 | `queue.matches[].printed` | integer   | The amount of completed prints of this item (from print queue). Only present if `match` is true.                                    |
 | `queue.matches[].left`    | integer   | The amount of prints left (from print queue). Only present if `match` is true.                                                      |
 
+## Get queue item
+
+```shell
+curl https://api.simplyprint.io/{id}/queue/GetItem?id=1234 \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null,
+  "queue": {
+    "id": 51293,
+    "index": 1,
+    "filename": "benchy.gcode",
+    "note": null,
+    "model": false,
+    "printable": true,
+    "type": "printable",
+    "zipPrintable": false,
+    "zipNoModel": false,
+    "left": 1,
+    "printed": 0,
+    "filesystem_id": "c00489ef361771ac098b5a60e6740757",
+    "group": 123,
+    "for": {
+      "printers": [
+        1234
+      ],
+      "models": [
+        1234
+      ],
+      "groups": [
+        1234
+      ]
+    },
+    "analysis": {
+      "slicer": "Simplify3D",
+      "filament": [
+        60
+      ],
+      "estimate": 240,
+      "movement": {
+        "mRelative": 0,
+        "eRelative": 0
+      },
+      "temps": {
+        "tool": {
+          "T0": 210
+        },
+        "bed": 50,
+        "pset": 1
+      },
+      "modelSize": {
+        "x": 151,
+        "y": 16,
+        "z": 5
+      },
+      "printArea": {
+        "maxX": 156.05,
+        "minX": 5,
+        "maxY": 157.86,
+        "minY": 142.14,
+        "maxZ": 5,
+        "minZ": 0.2
+      },
+      "minDeltaRadius": 313.91,
+      "v": 5
+    },
+    "tags": {
+      "nozzle": 0.6,
+      "material": [
+        {
+          "ext": 0,
+          "type": 123,
+          "color": "Green",
+          "hex": "#4CAF50"
+        }
+      ],
+      "custom": [
+        1,
+        2,
+        3
+      ]
+    }
+  }
+}
+```
+
+<aside class="notice">
+  This endpoint requires the <b>Pro</b> plan.
+</aside>
+
+This endpoint returns the queue item with the specified id.
+
+### Request
+
+`GET /{id}/queue/GetItem
+
+| Parameter | Type    | Required | Description                           |
+|-----------|---------|----------|---------------------------------------|
+| `id`      | integer | yes      | The queue item id to get details for. |
+
+### Response
+
+| Parameter | Type    | Description                                            |
+|-----------|---------|--------------------------------------------------------|
+| `status`  | boolean | True if the request was successful.                    |
+| `message` | string  | Success message or error message if `status` is false. |
+| `item`    | object  | The queue item object.                                 |
+
 ## Get queue items
 
 ```shell
