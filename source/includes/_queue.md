@@ -688,3 +688,210 @@ This endpoint empties the queue.
 |-----------|---------|--------------------------------------------------------|
 | `status`  | boolean | True if the request was successful.                    |
 | `message` | string  | Success message or error message if `status` is false. |
+
+## Revive item
+
+```shell
+curl https://api.simplyprint.io/{id}/queue/ReviveItem?job=1234 \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}' \
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null
+}
+```
+
+`POST /{id}/queue/ReviveItem`
+
+### Request Parameters
+
+| Parameter | Type    | Description                  |
+|-----------|---------|------------------------------|
+| `job`     | integer | The ID of the job to revive. |
+
+### Response
+
+| Parameter | Type    | Description                           |
+|-----------|---------|---------------------------------------|
+| `status`  | boolean | `true` if the request was successful. |
+| `message` | string  | Error message if `status` is `false`. |
+
+## Get groups
+
+```shell
+curl https://api.simplyprint.io/{id}/queue/groups/Get \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null,
+  "list": [
+    {
+      "id": 1,
+      "name": "Queue Group 1",
+      "virtual": false,
+      "extensions": [
+        "gcode",
+        "bgcode"
+      ],
+      "sort_order": 1
+    }
+  ]
+}
+```
+
+`GET /{id}/queue/groups/Get`
+
+### Response
+
+| Parameter           | Type    | Description                                                                      |
+|---------------------|---------|----------------------------------------------------------------------------------|
+| `status`            | boolean | `true` if the request was successful.                                            |
+| `message`           | string  | Error message if `status` is `false`.                                            |
+| `list`              | array   | Array of print queue groups.                                                     |
+| `list[].id`         | integer | Unique identifier for the group.                                                 |
+| `list[].name`       | string  | Name of the group.                                                               |
+| `list[].virtual`    | boolean | Whether the group is a virtual queue group.                                      |
+| `list[].extensions` | array   | An array of file extensions that are allowed in the group. (without punctuation) |
+| `list[].sort_order` | integer | The sort order of the group.                                                     |
+| `list[].for`        | object  | For which printers, models and groups this queue item is for.                    |
+
+## Save group
+
+```shell
+curl https://api.simplyprint.io/{id}/queue/groups/Save \
+  -X POST \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}' \
+  -d '{
+    "id": 123,
+    "name": "New Queue Group",
+    "accepted_extensions": ["gcode", "bgcode"],
+    "virtual_only": false,
+    "for_printers": "1,2,3",
+    "for_models": "4,5,6",
+    "for_groups": "7,8,9"
+  }'
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null
+}
+```
+
+`POST /{id}/queue/groups/Save`
+
+### Request Body
+
+| Parameter             | Type    | Description                                                        |
+|-----------------------|---------|--------------------------------------------------------------------|
+| `id`                  | integer | The ID of the group to update (optional for creating a new group). |
+| `name`                | string  | The name of the queue group.                                       |
+| `accepted_extensions` | array   | List of accepted file extensions.                                  |
+| `virtual_only`        | boolean | Whether the group is virtual only.                                 |
+| `for_printers`        | string  | Comma-separated list of printer IDs.                               |
+| `for_models`          | string  | Comma-separated list of printer model IDs.                         |
+| `for_groups`          | string  | Comma-separated list of printer group IDs.                         |
+
+### Response
+
+| Parameter | Type    | Description                           |
+|-----------|---------|---------------------------------------|
+| `status`  | boolean | `true` if the request was successful. |
+| `message` | string  | Error message if `status` is `false`. |
+
+## Delete group
+
+```shell
+curl https://api.simplyprint.io/{id}/queue/groups/Delete?id=123 \
+  -X POST \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}' \
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null
+}
+```
+
+`POST /{id}/queue/groups/Delete`
+
+### Request Parameters
+
+| Parameter | Type    | Description                    |
+|-----------|---------|--------------------------------|
+| `id`      | integer | The ID of the group to delete. |
+
+### Request Body
+
+| Parameter | Type    | Description                                                        |
+|-----------|---------|--------------------------------------------------------------------|
+| `move_to` | integer | The ID of the group to move items to. Defaults to any other group. |
+
+### Response
+
+| Parameter | Type    | Description                           |
+|-----------|---------|---------------------------------------|
+| `status`  | boolean | `true` if the request was successful. |
+| `message` | string  | Error message if `status` is `false`. |
+
+## Set group order
+
+```shell
+curl https://api.simplyprint.io/{id}/queue/groups/SetOrder?queue_group=123 \
+  -X POST \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}' \
+  -d '{
+    "from": 1,
+    "to": 2
+  }'
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null
+}
+```
+
+`POST /{id}/queue/groups/SetOrder`
+
+### Request Parameters
+
+| Parameter     | Type    | Description                |
+|---------------|---------|----------------------------|
+| `queue_group` | integer | The ID of the queue group. |
+
+### Request Body
+
+| Parameter | Type    | Description                         |
+|-----------|---------|-------------------------------------|
+| `to`      | integer | The new sorting order of the group. |
+
+### Response
+
+| Parameter | Type    | Description                           |
+|-----------|---------|---------------------------------------|
+| `status`  | boolean | `true` if the request was successful. |
+| `message` | string  | Error message if `status` is `false`. |
