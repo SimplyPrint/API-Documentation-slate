@@ -341,7 +341,8 @@ state.
 
 `POST /{id}/printers/actions/CreateJob`
 
-To start a print job you must either specify a `filesystem` ID, a `queue_file` ID file, a `file_id` or set `next_queue_item` to true.
+To start a print job you must either specify a `filesystem` ID, a `queue_file` ID file, a `file_id` or set
+`next_queue_item` to true.
 
 | Parameter         | Type                 | Required | Description                                                                                                                                                                                                               |
 |-------------------|----------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -563,6 +564,57 @@ This endpoint can be used to clear the print bed of a printer.
 |-----------|---------|-------------------------------------|
 | `status`  | boolean | True if the request was successful. |
 | `message` | string  | Error message if `status` is false. |
+
+## Send raw gcode
+
+```shell
+curl https://api.simplyprint.io/{id}/printers/actions/SendGcode?pid=1234 \
+  -X POST \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "gcode": ["G28 XY"]
+  }'
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null
+}
+```
+
+<aside class="notice">
+This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+| Required permissions |
+|----------------------|
+| `send_raw_gcode`     |
+
+`POST /{id}/printers/actions/SendGcode`
+
+### Request Parameters
+
+| Parameter | Type      | Description                                       |
+|-----------|-----------|---------------------------------------------------|
+| `pid`     | integer[] | The ID(s) of the printer(s) to send the gcode to. |
+
+#### Request body
+
+| Parameter | Type     | Required | Description                                     |
+|-----------|----------|----------|-------------------------------------------------|
+| `gcode`   | string[] | yes      | Array of gcode commands to send to the printer. |
+
+### Response
+
+| Parameter | Type    | Description                           |
+|-----------|---------|---------------------------------------|
+| `status`  | boolean | `true` if the request was successful. |
+| `message` | string  | Error message if `status` is `false`. |
 
 ## Delete / disconnect printer
 
