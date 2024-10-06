@@ -59,7 +59,7 @@ curl https://api.simplyprint.io/{id}/users/GetPaginatedUsers \
 
 | Required permissions |
 |----------------------|
-| `VIEW_USERS`         |
+| `view_users`         |
 
 ### Request
 
@@ -133,7 +133,7 @@ curl https://api.simplyprint.io/{id}/users/CreateInvitationLink \
 
 | Required permissions |
 |----------------------|
-| `INVITE_USERS`       |
+| `invite_users`       |
 
 This endpoint creates an invitation link that can be used to invite new users to the company.
 Please note that links with unlimited uses expire at the end of the day.
@@ -191,7 +191,7 @@ curl https://api.simplyprint.io/{id}/users/InviteSpecificUser \
 
 | Required permissions |
 |----------------------|
-| `INVITE_USERS`       |
+| `invite_users`       |
 
 This endpoint invites one or more users to the company by email.
 
@@ -245,7 +245,7 @@ curl https://api.simplyprint.io/{id}/users/SetPendingUserState \
 
 | Required permissions |
 |----------------------|
-| `INVITE_USERS`       |
+| `invite_users`       |
 
 ### Request
 
@@ -339,7 +339,7 @@ curl https://api.simplyprint.io/{id}/users/DeleteUser \
 
 | Required permissions |
 |----------------------|
-| `DELETE_USER`        |
+| `delete_user`        |
 
 This endpoint deletes a user from the company. Use this endpoint with caution.
 

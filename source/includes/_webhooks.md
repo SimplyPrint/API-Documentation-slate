@@ -13,6 +13,10 @@ When one of those events is triggered, we'll send an HTTP POST payload to the we
   This endpoint is only available on the <b>Print Farm</b> plan.
 </aside>
 
+| Required permissions |
+|----------------------|
+| `webhooks_manage`    |
+
 `GET /{id}/webhooks/Get`
 
 > Example request
@@ -72,6 +76,10 @@ curl "https://api.simplyprint.io/{id}/webhooks/Get" \
 <aside class="notice">
   This endpoint is only available on the <b>Print Farm</b> plan.
 </aside>
+
+| Required permissions |
+|----------------------|
+| `webhooks_manage`    |
 
 `POST /{id}/webhooks/Create`
 
@@ -135,6 +143,10 @@ https://api.simplyprint.io/{id}/webhooks/Create \
   This endpoint is only available on the <b>Print Farm</b> plan.
 </aside>
 
+| Required permissions |
+|----------------------|
+| `webhooks_manage`    |
+
 `POST /{id}/webhooks/Delete`
 
 > Example request
@@ -175,6 +187,10 @@ https://api.simplyprint.io/{id}/webhooks/Delete \
 <aside class="notice">
   This endpoint is only available on the <b>Print Farm</b> plan.
 </aside>
+
+| Required permissions |
+|----------------------|
+| `webhooks_manage`    |
 
 `POST /{id}/webhooks/SetEnabled`
 

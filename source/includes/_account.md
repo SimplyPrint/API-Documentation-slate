@@ -53,8 +53,8 @@ curl https://api.simplyprint.io/{id}/account/settings/groups/Create \
 </aside>
 
 | Required permissions  |
-| --------------------- |
-| `ORG_RANK_MANAGEMENT` |
+|-----------------------|
+| `org_rank_management` |
 
 This endpoint creates a new group in the company.
 
@@ -63,7 +63,7 @@ This endpoint creates a new group in the company.
 `POST /{id}/account/settings/groups/Create`
 
 | Parameter             | Type    | Required | Description                                                                                         |
-| --------------------- | ------- | -------- | --------------------------------------------------------------------------------------------------- |
+|-----------------------|---------|----------|-----------------------------------------------------------------------------------------------------|
 | `ranks`               | array   | yes      | Array of groups to create.                                                                          |
 | `ranks[].title`       | string  | yes      | The name of the group.                                                                              |
 | `ranks[].description` | string  | no       | The description of the group.                                                                       |
@@ -73,7 +73,7 @@ This endpoint creates a new group in the company.
 ### Response
 
 | Parameter | Type    | Description                         |
-| --------- | ------- | ----------------------------------- |
+|-----------|---------|-------------------------------------|
 | `status`  | boolean | True if the request was successful. |
 | `message` | string  | Error message if `status` is false. |
 | `data`    | array   | Array of the created groups.        |
@@ -97,7 +97,7 @@ curl https://api.simplyprint.io/{id}/account/settings/groups/Update \
       "title": "TITLE",
       "description": "DESCRIPTION",
       "permissions": "{\"view_news\":true,\"org_admin\":true,\"panel_printing\":true,\"printer_restart\":true,\"printer_edit\":true,\"bed_leveling\":true,\"gcode_profiles\":true,\"printer_settings\":true,\"filament_settings\":true,\"change_filament\":true,\"create_filament\":true,\"see_filament_tab\":true,\"view_users\":true,\"change_user_rank\":true,\"manual_user_email_confirm\":true,\"invite_users\":true,\"delete_user\":true,\"org_user_registration_settings\":true,\"org_hub_settings\":true,\"org_rank_management\":true,\"org_view_statistics\":true,\"refill_quota\":true,\"custom_slicer_profiles\":true,\"org_profiles\":true,\"all_slicer_modes\":true,\"queue_remove_all\":true,\"org_api\":true,\"create_org_folder\":true,\"cancel_others\":true,\"see_who_printed\":true,\"max_print_size\":[],\"default_slicer_mode\":2}",
-      "sort_order": 3,
+      "sort_order": 3
     }
   ]
 }
@@ -129,8 +129,8 @@ curl https://api.simplyprint.io/{id}/account/settings/groups/Update \
 </aside>
 
 | Required permissions  |
-| --------------------- |
-| `ORG_RANK_MANAGEMENT` |
+|-----------------------|
+| `org_rank_management` |
 
 This endpoint updates the groups in the company.
 
@@ -139,7 +139,7 @@ This endpoint updates the groups in the company.
 `POST /{id}/account/settings/groups/Update`
 
 | Parameter             | Type    | Required | Description                                                                                         |
-| --------------------- | ------- | -------- | --------------------------------------------------------------------------------------------------- |
+|-----------------------|---------|----------|-----------------------------------------------------------------------------------------------------|
 | `ranks`               | array   | yes      | Array of groups to update.                                                                          |
 | `ranks[].id`          | integer | yes      | The id of the group to update.                                                                      |
 | `ranks[].title`       | string  | no       | The name of the group.                                                                              |
@@ -150,7 +150,7 @@ This endpoint updates the groups in the company.
 ### Response
 
 | Parameter             | Type    | Description                                                                                         |
-| --------------------- | ------- | --------------------------------------------------------------------------------------------------- |
+|-----------------------|---------|-----------------------------------------------------------------------------------------------------|
 | `status`              | boolean | True if the request was successful.                                                                 |
 | `message`             | string  | Error message if `status` is false.                                                                 |
 | `data`                | array   | Array of the updated groups.                                                                        |
@@ -199,8 +199,8 @@ curl https://api.simplyprint.io/{id}/account/GetGroups \
 </aside>
 
 | Required permissions  |
-| --------------------- |
-| `ORG_RANK_MANAGEMENT` |
+|-----------------------|
+| `org_rank_management` |
 
 This endpoint returns a list of groups that exist in the company.
 
@@ -211,7 +211,7 @@ This endpoint returns a list of groups that exist in the company.
 ### Response
 
 | Parameter       | Type    | Description                         |
-| --------------- | ------- | ----------------------------------- |
+|-----------------|---------|-------------------------------------|
 | `status`        | boolean | True if the request was successful. |
 | `message`       | string  | Error message if `status` is false. |
 | `groups`        | array   | Array of group objects.             |
@@ -241,7 +241,7 @@ curl https://api.simplyprint.io/{id}/account/settings/groups/Delete \
 ```json
 {
   "status": true,
-  "message": null,
+  "message": null
 }
 ```
 
@@ -250,22 +250,22 @@ curl https://api.simplyprint.io/{id}/account/settings/groups/Delete \
 </aside>
 
 | Required permissions  |
-| --------------------- |
-| `ORG_RANK_MANAGEMENT` |
+|-----------------------|
+| `org_rank_management` |
 
 ### Request
 
 `POST /{id}/account/settings/groups/Delete`
 
 | Parameter           | Type    | Required | Description                                                                                             |
-| ------------------- | ------- | -------- | ------------------------------------------------------------------------------------------------------- |
+|---------------------|---------|----------|---------------------------------------------------------------------------------------------------------|
 | `id`                | integer | yes      | The id of the group to delete.                                                                          |
 | `replacementRankId` | integer | maybe    | The id of the group to replace the deleted group with.<br>This is only required if the group has users. |
 
 ### Response
 
 | Parameter | Type    | Description                         |
-| --------- | ------- | ----------------------------------- |
+|-----------|---------|-------------------------------------|
 | `status`  | boolean | True if the request was successful. |
 | `message` | string  | Error message if `status` is false. |
 
@@ -282,8 +282,16 @@ curl https://api.simplyprint.io/{id}/account/GetStatistics \
 
 ```json
 {
-  "users": [1234, 1235, 1945],
-  "printers": [1234, 1235, 1945],
+  "users": [
+    1234,
+    1235,
+    1945
+  ],
+  "printers": [
+    1234,
+    1235,
+    1945
+  ],
   "start_date": "1677629786",
   "end_date": "1677629786"
 }
@@ -293,46 +301,46 @@ curl https://api.simplyprint.io/{id}/account/GetStatistics \
 
 ```json
 {
-    "status": true,
-    "message": null,
-    "data": {
-        "total_print_seconds": 1234,
-        "total_filament_usage_gram": 1241.1231231,
-        "print_job_count": 123,
-        "regretted_print_jobs": 123,
-        "failed_print_jobs": 123,
-        "printer_error_print_jobs": 123,
-        "done_print_jobs": 123,
-        "date_range": {
-            "from": "2023-02-22",
-            "to": "2023-03-02",
-            "general": false
-        },
-        "printers": {
-            "3104": {
-                "name": "Printer 1",
-                "done": 0,
-                "failed": 0,
-                "printer_error": 0,
-                "regretted": 0,
-                "filament_usage_gram": 0
-            },
-            ...
-        },
-        "print_jobs": [
-            {
-                "date": "2023-02-27",
-                "started": "2023-02-27 11:39:34",
-                "ended": "2023-02-27 11:56:18",
-                "cancelled": 1,
-                "failed": 0,
-                "cancel_reason_type": 5,
-                "print_seconds": 1004,
-                "filament_usage_gram": 0.03758012402132279
-            },
-            ...
-        ]
-    }
+  "status": true,
+  "message": null,
+  "data": {
+    "total_print_seconds": 1234,
+    "total_filament_usage_gram": 1241.1231231,
+    "print_job_count": 123,
+    "regretted_print_jobs": 123,
+    "failed_print_jobs": 123,
+    "printer_error_print_jobs": 123,
+    "done_print_jobs": 123,
+    "date_range": {
+      "from": "2023-02-22",
+      "to": "2023-03-02",
+      "general": false
+    },
+    "printers": {
+      "3104": {
+        "name": "Printer 1",
+        "done": 0,
+        "failed": 0,
+        "printer_error": 0,
+        "regretted": 0,
+        "filament_usage_gram": 0
+      },
+      ...
+    },
+    "print_jobs": [
+      {
+        "date": "2023-02-27",
+        "started": "2023-02-27 11:39:34",
+        "ended": "2023-02-27 11:56:18",
+        "cancelled": 1,
+        "failed": 0,
+        "cancel_reason_type": 5,
+        "print_seconds": 1004,
+        "filament_usage_gram": 0.03758012402132279
+      },
+      ...
+    ]
+  }
 }
 ```
 
@@ -347,7 +355,7 @@ This endpoint returns statistics for the user / company.
 `POST /{id}/account/GetStatistics`
 
 | Parameter    | Type   | Required | Description                                                                                                  |
-| ------------ | ------ | -------- | ------------------------------------------------------------------------------------------------------------ |
+|--------------|--------|----------|--------------------------------------------------------------------------------------------------------------|
 | `users`      | array  | no       | Array of user ids to get statistics for. Don't include this parameter to get statistics for all users.       |
 | `printers`   | array  | no       | Array of printer ids to get statistics for. Don't include this parameter to get statistics for all printers. |
 | `start_date` | string | no       | The start date of the statistics. Provide a unix timestamp in seconds.                                       |
@@ -356,7 +364,7 @@ This endpoint returns statistics for the user / company.
 ### Response
 
 | Parameter                                | Type    | Description                              |
-| ---------------------------------------- | ------- | ---------------------------------------- |
+|------------------------------------------|---------|------------------------------------------|
 | `status`                                 | boolean | True if the request was successful.      |
 | `message`                                | string  | Error message if `status` is false.      |
 | `data`                                   | object  | Statistics object.                       |

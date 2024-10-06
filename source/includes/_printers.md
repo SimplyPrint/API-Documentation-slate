@@ -482,7 +482,7 @@ curl https://api.simplyprint.io/{id}/printers/actions/Cancel?pid=1234 \
 
 | Required permission    | Description                                                                                 |
 |------------------------|---------------------------------------------------------------------------------------------|
-| `CANCEL_OTHERS_PRINTS` | Need permission to cancel other users' prints if the print job was started by another user. |
+| `cancel_others_prints` | Need permission to cancel other users' prints if the print job was started by another user. |
 
 This endpoint can be used to cancel one or multiple print jobs. The printers have to be in the `PRINTING`, `PAUSED` or
 `PAUSING` state.
@@ -583,7 +583,7 @@ curl https://api.simplyprint.io/{id}/printers/Delete?pid=1234&just_connection=1 
 
 | Required permissions |
 |----------------------|
-| `PRINTER_EDIT`       |
+| `printer_edit`       |
 
 This endpoint can be used to delete a printer from the database, or to disconnect a pi from a printer. This is useful if
 you want to change the printer that is connected to a pi.
@@ -609,6 +609,10 @@ you want to change the printer that is connected to a pi.
 <aside class="notice">
   This endpoint requires the <b>Pro</b> plan.
 </aside>
+
+| Required permission |
+|---------------------|
+| `print_queue`       |
 
 ```shell
 curl https://api.simplyprint.io/{id}/printers/OneClickPrint?pIds=1234,1235 \
@@ -666,6 +670,10 @@ curl https://api.simplyprint.io/{id}/printers/OneClickPrint?pIds=1234,1235 \
   This endpoint requires the <b>Print Farm</b> plan.
 </aside>
 
+| Required permission |
+|---------------------|
+| `autoprint_manage`  |
+
 ```shell
 curl https://api.simplyprint.io/{id}/printers/autoprint/SetEnabled \
   -X POST \
@@ -705,6 +713,10 @@ curl https://api.simplyprint.io/{id}/printers/autoprint/SetEnabled \
 <aside class="notice">
   This endpoint requires the <b>Print Farm</b> plan.
 </aside>
+
+| Required permission |
+|---------------------|
+| `autoprint_manage`  |
 
 ```shell
 curl https://api.simplyprint.io/{id}/printers/autoprint/CheckState \
@@ -752,6 +764,10 @@ curl https://api.simplyprint.io/{id}/printers/autoprint/CheckState \
 <aside class="notice">
   This endpoint requires the <b>Print Farm</b> plan.
 </aside>
+
+| Required permission |
+|---------------------|
+| `autoprint_manage`  |
 
 ```shell
 curl https://api.simplyprint.io/{id}/printers/autoprint/GetAutoPrintSettings \
@@ -803,6 +819,10 @@ curl https://api.simplyprint.io/{id}/printers/autoprint/GetAutoPrintSettings \
   This endpoint requires the <b>Print Farm</b> plan.
 </aside>
 
+| Required permission |
+|---------------------|
+| `autoprint_manage`  |
+
 ```shell
 curl https://api.simplyprint.io/{id}/printers/autoprint/SaveAutoPrintSettings \
   -X POST \
@@ -851,6 +871,10 @@ curl https://api.simplyprint.io/{id}/printers/autoprint/SaveAutoPrintSettings \
 | `message` | string  | Error message if `status` is `false`. |
 
 ## AutoPrint get gcode templates
+
+| Required permission |
+|---------------------|
+| `autoprint_manage`  |
 
 <aside class="notice">
   This endpoint requires the <b>Print Farm</b> plan.
@@ -910,6 +934,10 @@ curl https://api.simplyprint.io/{id}/printers/autoprint/GetGcodeTemplates \
 <aside class="notice">
   This endpoint requires the <b>Print Farm</b> plan.
 </aside>
+
+| Required permission |
+|---------------------|
+| `autoprint_manage`  |
 
 ```shell
 curl https://api.simplyprint.io/{id}/printers/autoprint/SetClearedBedsAmount \

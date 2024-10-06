@@ -14,6 +14,10 @@ Custom Fields allow you to add your own data-fields inside SimplyPrint.
   This endpoint requires the <b>Print Farm</b> plan.
 </aside>
 
+| Required permissions   |
+|------------------------|
+| `custom_fields_manage` |
+
 `POST /{id}/custom_fields/Get`
 
 > Example request
@@ -95,6 +99,10 @@ curl -X POST https://api.simplyprint.io/{id}/custom_fields/Get \
   This endpoint requires the <b>Print Farm</b> plan.
 </aside>
 
+| Required permissions   |
+|------------------------|
+| `custom_fields_manage` |
+
 `POST /{id}/custom_fields/Save`
 
 > Example request
@@ -151,6 +159,10 @@ curl -X POST https://api.simplyprint.io/{id}/custom_fields/Save \
   This endpoint requires the <b>Print Farm</b> plan.
 </aside>
 
+| Required permissions   |
+|------------------------|
+| `custom_fields_manage` |
+
 `POST /{id}/custom_fields/SetEnabled`
 
 > Example request
@@ -191,6 +203,10 @@ curl -X POST https://api.simplyprint.io/{id}/custom_fields/SetEnabled \
 <aside class="notice">
   This endpoint requires the <b>Print Farm</b> plan.
 </aside>
+
+| Required permissions   |
+|------------------------|
+| `custom_fields_manage` |
 
 `GET /{id}/custom_fields/Delete`
 

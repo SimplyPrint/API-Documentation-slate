@@ -51,7 +51,7 @@ curl -X POST https://api.simplyprint.io/{id}/tags/Create \
 
 | Required permissions |
 |----------------------|
-| `EDIT_TAGS`          |
+| `edit_tags`          |
 
 This endpoint creates or updates a custom tag.
 
@@ -205,7 +205,7 @@ curl https://api.simplyprint.io/{id}/tags/Delete?id=2 \
 
 | Required permissions |
 |----------------------|
-| `EDIT_TAGS`          |
+| `edit_tags`          |
 
 This endpoint deletes a custom tag.
 

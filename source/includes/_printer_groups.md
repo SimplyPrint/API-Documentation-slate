@@ -62,6 +62,10 @@ curl https://api.simplyprint.io/{id}/groups/Create \
 
 `POST /{id}/groups/Create`
 
+| Required permissions |
+|----------------------|
+| `printer_edit`       |
+
 ### Request Body
 
 | Parameter | Type   | Description                |
@@ -97,6 +101,10 @@ curl https://api.simplyprint.io/{id}/groups/Update?group=123 \
 ```
 
 `POST /{id}/groups/Update`
+
+| Required permissions |
+|----------------------|
+| `printer_edit`       |
 
 ### Request Parameters
 
@@ -136,6 +144,10 @@ curl https://api.simplyprint.io/{id}/groups/Delete?group=123 \
 ```
 
 `POST /{id}/groups/Delete`
+
+| Required permissions |
+|----------------------|
+| `printer_edit`       |
 
 ### Request Parameters
 

@@ -83,6 +83,10 @@ curl https://api.simplyprint.io/{id}/account/settings/school/classes/GetClasses 
   This endpoint is only available on the <b>School</b> plan.
 </aside>
 
+| Required permissions         |
+|------------------------------|
+| `org_school_settings_manage` |
+
 `POST /{id}/account/settings/school/classes/SaveClass`
 
 > Example Request

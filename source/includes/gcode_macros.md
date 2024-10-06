@@ -297,6 +297,10 @@ curl -X POST https://api.simplyprint.io/gcode_macros/SaveMacro?type=private \
 }
 ```
 
+| Required permission | Description                         |
+|---------------------|-------------------------------------|
+| `gcode_profiles`    | Required if macro is of type `org`. |
+
 `POST /gcode_macros/SaveMacro`
 
 ### Request Parameters

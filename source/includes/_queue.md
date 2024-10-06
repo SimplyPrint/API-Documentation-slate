@@ -300,6 +300,10 @@ curl https://api.simplyprint.io/{id}/queue/GetItem?id=1234 \
   This endpoint requires the <b>Pro</b> plan.
 </aside>
 
+| Required permissions |
+|----------------------|
+| `print_queue`        |
+
 This endpoint returns the queue item with the specified id.
 
 ### Request
@@ -440,6 +444,10 @@ curl https://api.simplyprint.io/{id}/queue/GetItems?p=1234 \
   This endpoint requires the <b>Pro</b> plan.
 </aside>
 
+| Required permissions |
+|----------------------|
+| `print_queue`        |
+
 This endpoint returns the queue for the specified or all printers.
 
 ### Request
@@ -540,6 +548,10 @@ curl https://api.simplyprint.io/{id}/queue/UpdateItem?job=1234 \
   This endpoint requires the <b>Print Farm</b> plan.
 </aside>
 
+| Required permissions |
+|----------------------|
+| `print_queue`        |
+
 This endpoint updates the queue item with the specified id.
 
 ### Request
@@ -590,6 +602,10 @@ curl https://api.simplyprint.io/{id}/queue/DeleteItem?job=1234 \
   This endpoint requires the <b>Print Farm</b> plan.
 </aside>
 
+| Required permissions |
+|----------------------|
+| `print_queue`        |
+
 This endpoint deletes the queue item with the specified id.
 
 ### Request
@@ -627,6 +643,12 @@ curl https://api.simplyprint.io/{id}/queue/SetOrder?job=1234&from=0&to=1 \
 <aside class="notice">
   This endpoint requires the <b>Print Farm</b> plan.
 </aside>
+
+| Required permissions |
+|----------------------|
+| `print_queue`        |
+| `reorder_queue`      |
+| `queue_see_others`   |
 
 This endpoint changes the order of the queue items by moving the queue item with the specified id.
 
@@ -670,7 +692,8 @@ curl https://api.simplyprint.io/{id}/queue/EmptyQueue \
 
 | Required Permissions     |
 |--------------------------|
-| `PRINT_QUEUE_REMOVE_ALL` |
+| `print_queue`            |
+| `print_queue_remove_all` |
 
 This endpoint empties the queue.
 
@@ -694,6 +717,11 @@ This endpoint empties the queue.
 <aside class="notice">
   This endpoint requires the <b>Print Farm</b> plan.
 </aside>
+
+| Required permissions      |
+|---------------------------|
+| `print_queue`             |
+| `queue_revive_done_items` |
 
 ```shell
 curl https://api.simplyprint.io/{id}/queue/ReviveItem?job=1234 \
@@ -730,6 +758,10 @@ curl https://api.simplyprint.io/{id}/queue/ReviveItem?job=1234 \
 <aside class="notice">
   This endpoint requires the <b>Pro</b> plan.
 </aside>
+
+| Required permissions |
+|----------------------|
+| `print_queue`        |
 
 ```shell
 curl https://api.simplyprint.io/{id}/queue/groups/Get \
@@ -779,6 +811,11 @@ curl https://api.simplyprint.io/{id}/queue/groups/Get \
 <aside class="notice">
   This endpoint requires the <b>Pro</b> plan.
 </aside>
+
+| Required permissions |
+|----------------------|
+| `print_queue`        |
+| `queue_groups`       |
 
 ```shell
 curl https://api.simplyprint.io/{id}/queue/groups/Save \
@@ -832,6 +869,11 @@ curl https://api.simplyprint.io/{id}/queue/groups/Save \
   This endpoint requires the <b>Pro</b> plan.
 </aside>
 
+| Required permissions |
+|----------------------|
+| `print_queue`        |
+| `queue_groups`       |
+
 ```shell
 curl https://api.simplyprint.io/{id}/queue/groups/Delete?id=123 \
   -X POST \
@@ -874,6 +916,11 @@ curl https://api.simplyprint.io/{id}/queue/groups/Delete?id=123 \
 <aside class="notice">
   This endpoint requires the <b>Pro</b> plan.
 </aside>
+
+| Required permissions |
+|----------------------|
+| `queue_groups`       |
+| `reorder_queue`      |
 
 ```shell
 curl https://api.simplyprint.io/{id}/queue/groups/SetOrder?queue_group=123 \

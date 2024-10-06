@@ -176,7 +176,7 @@ want to update.
 
 | Required permissions |
 |----------------------|
-| `CREATE_FILAMENT`    |
+| `create_filament`    |
 
 ### Request
 
@@ -250,7 +250,7 @@ This endpoint deletes a filament specified by the `fid` parameter.
 
 | Required permissions |
 |----------------------|
-| `CREATE_FILAMENT`    |
+| `create_filament`    |
 
 ### Request
 
@@ -300,7 +300,7 @@ This endpoint assigns filament(s) to a printer.
 
 | Required permissions |
 |----------------------|
-| `CHANGE_FILAMENT`    |
+| `change_filament`    |
 
 ### Request
 
@@ -350,7 +350,7 @@ This endpoint unassigns a filament from a printer by filament id.
 
 | Required permissions |
 |----------------------|
-| `CHANGE_FILAMENT`    |
+| `change_filament`    |
 
 ### Request
 
