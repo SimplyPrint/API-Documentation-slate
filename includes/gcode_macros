@@ -1,0 +1,566 @@
+<h1 id='gcode-macros'>GCode Macros</h1><h2 id='get-overview'>Get overview</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/gcode_macros/GetOverview <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Success response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"gcodeCompletions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"G0"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"variable"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Add a straight line movement to the planner"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"detail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"X, Y, Z, E, F, S"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"macro_groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;i class='fas fa-infinity'&gt;&lt;</span><span class="se">\/</span><span class="s2">i&gt; AutoPrint &lt;i&gt;(advanced)&lt;</span><span class="se">\/</span><span class="s2">i&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"desc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The AutoPrint feature can automatically start prints. Here you define what Gcode should be executed to make sure the bed is clear."</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"macros"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"is_autoprint_clear"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"nopersonal"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"macros_cards"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"is_start"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Start print"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GCODE to be executed at start of print when using our slicer"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"macros"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"gcodes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"printer_225"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"{snippet:2731}"</span><span class="w">
+          </span><span class="p">],</span><span class="w">
+          </span><span class="nl">"printer_10063"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"printer_10372"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"{snippet:2796}"</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"is_start"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"personal"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sp"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"gcodes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"type_0"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"{snippet:26}"</span><span class="w">
+          </span><span class="p">],</span><span class="w">
+          </span><span class="nl">"type_236"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"{snippet:1103}"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"{snippet:26}"</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"is_pause"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"snippets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Indentify Ender 5"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Identify printer specifically for Ender 5"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-22T09:19:37+00:00"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"variables"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"bed_x"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Printer bed X length in mm"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"bed_y"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Printer bed Y length in mm"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"slicerVariables"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"temp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hot end temperature"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"bed_temp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bed temperature"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"fan_speed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Active cooling fan speed (usually 0-255)"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET /{id}/gcode_macros/GetOverview</code></p>
+<h3 id='response'>Response</h3>
+<p>See example response.</p>
+<h2 id='get-snippet'>Get snippet</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/gcode_macros/GetSnippet?id<span class="o">=</span>123 <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span> <span class="se">\</span>
+</code></pre></div>
+<blockquote>
+<p>Success Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"snippet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example Snippet"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is an example snippet"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"gcode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"G1 X10 Y10"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET /gcode_macros/GetSnippet</code></p>
+<h3 id='request-parameters'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>The ID of the snippet to retrieve.</td>
+</tr>
+</tbody></table>
+<h3 id='response-2'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td><code>true</code> if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is <code>false</code>.</td>
+</tr>
+<tr>
+<td><code>snippet</code></td>
+<td>object</td>
+<td>The details of the snippet.</td>
+</tr>
+<tr>
+<td><code>snippet.id</code></td>
+<td>integer</td>
+<td>Unique identifier for the snippet.</td>
+</tr>
+<tr>
+<td><code>snippet.name</code></td>
+<td>string</td>
+<td>Name of the snippet.</td>
+</tr>
+<tr>
+<td><code>snippet.description</code></td>
+<td>string</td>
+<td>Description of the snippet.</td>
+</tr>
+<tr>
+<td><code>snippet.priority</code></td>
+<td>integer</td>
+<td>Priority of the snippet.</td>
+</tr>
+<tr>
+<td><code>snippet.gcode</code></td>
+<td>string?</td>
+<td>GCode content of the snippet (if any).</td>
+</tr>
+</tbody></table>
+<h2 id='save-snippet'>Save snippet</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/gcode_macros/SaveSnippet?id<span class="o">=</span>123&amp;type<span class="o">=</span>private <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{
+    "name": "Updated Snippet",
+    "description": "This is an updated snippet.",
+    "gcode": ["G1 X10 Y10", "G1 X20 Y20"]
+  }'</span>
+</code></pre></div>
+<blockquote>
+<p>Success Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"new_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">Updated</span><span class="w"> </span><span class="err">data</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">GCODE</span><span class="w"> </span><span class="err">snippets</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>POST /gcode_macros/SaveSnippet</code></p>
+<h3 id='request-parameters-2'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>The ID of the snippet to update (optional for creating a new snippet).</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>string</td>
+<td>The type of the snippet (<code>org</code>, <code>private</code>, <code>public</code>).</td>
+</tr>
+</tbody></table>
+<h3 id='request-body'>Request Body</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>The name of the GCODE snippet.</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>The description of the snippet.</td>
+</tr>
+<tr>
+<td><code>gcode</code></td>
+<td>array</td>
+<td>The GCODE commands of the snippet.</td>
+</tr>
+<tr>
+<td><code>gcode.*</code></td>
+<td>string</td>
+<td>A single GCODE command.</td>
+</tr>
+</tbody></table>
+<h3 id='response-3'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td><code>true</code> if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is <code>false</code>.</td>
+</tr>
+<tr>
+<td><code>created</code></td>
+<td>integer</td>
+<td>The ID of the newly created snippet (if applicable).</td>
+</tr>
+<tr>
+<td><code>new_data</code></td>
+<td>object</td>
+<td>The updated data of the GCODE snippets.</td>
+</tr>
+</tbody></table>
+<h2 id='delete-snippet'>Delete snippet</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/gcode_macros/DeleteSnippet?id<span class="o">=</span>123 <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span>
+</code></pre></div>
+<blockquote>
+<p>Success Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"new_data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">Updated</span><span class="w"> </span><span class="err">data</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">GCODE</span><span class="w"> </span><span class="err">snippets</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>POST /gcode_macros/DeleteSnippet</code></p>
+<h3 id='request-parameters-3'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>id</code></td>
+<td>integer</td>
+<td>The ID of the snippet to delete (required if <code>ids</code> is not provided).</td>
+</tr>
+<tr>
+<td><code>ids</code></td>
+<td>string</td>
+<td>Comma-separated list of IDs of snippets to delete (required if <code>id</code> is not provided).</td>
+</tr>
+</tbody></table>
+<h3 id='response-4'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td><code>true</code> if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is <code>false</code>.</td>
+</tr>
+<tr>
+<td><code>new_data</code></td>
+<td>object</td>
+<td>The updated data of the GCODE snippets.</td>
+</tr>
+</tbody></table>
+<h2 id='get-macro'>Get macro</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.simplyprint.io/<span class="o">{</span><span class="nb">id</span><span class="o">}</span>/gcode_macros/GetMacroGcode?macro<span class="o">=</span>is_start&amp;printer<span class="o">=</span>123&amp;model<span class="o">=</span>456&amp;org<span class="o">=</span><span class="nb">true</span>&amp;private<span class="o">=</span><span class="nb">false</span>&amp;public<span class="o">=</span><span class="nb">true</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span> <span class="se">\</span>
+</code></pre></div>
+<blockquote>
+<p>Success Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"gcode"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"G1 X10 Y10"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"G1 X20 Y20"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"multiple"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>GET /gcode_macros/GetMacroGcode</code></p>
+<h3 id='request-parameters-4'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>macro</code></td>
+<td>string</td>
+<td>The type of the macro. Must be one of the enums defined in <code>GcodeMacroType</code>.</td>
+</tr>
+<tr>
+<td><code>printer</code></td>
+<td>integer</td>
+<td>The ID of the printer.</td>
+</tr>
+<tr>
+<td><code>model</code></td>
+<td>integer</td>
+<td>The ID of the printer model.</td>
+</tr>
+<tr>
+<td><code>org</code></td>
+<td>boolean</td>
+<td>Whether to include organization macros.</td>
+</tr>
+<tr>
+<td><code>private</code></td>
+<td>boolean</td>
+<td>Whether to include private macros.</td>
+</tr>
+<tr>
+<td><code>public</code></td>
+<td>boolean</td>
+<td>Whether to include public macros.</td>
+</tr>
+</tbody></table>
+<h3 id='response-5'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td><code>true</code> if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is <code>false</code>.</td>
+</tr>
+<tr>
+<td><code>gcode</code></td>
+<td>array</td>
+<td>The GCODE commands of the macro.</td>
+</tr>
+<tr>
+<td><code>multiple</code></td>
+<td>boolean</td>
+<td>Whether multiple GCODEs are returned.</td>
+</tr>
+</tbody></table>
+<h2 id='save-macro'>Save macro</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST https://api.simplyprint.io/gcode_macros/SaveMacro?type<span class="o">=</span>private <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{
+  "type": "is_start",
+  "gcodes": {"printer_225": ["G1 X10 Y10"], "type_123": ["G1 X20 Y20", "{snippet:123}"]}
+  }'</span>
+</code></pre></div>
+<blockquote>
+<p>Success Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Required permission</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>gcode_profiles</code></td>
+<td>Required if macro is of type <code>org</code>.</td>
+</tr>
+</tbody></table>
+
+<p><code>POST /gcode_macros/SaveMacro</code></p>
+<h3 id='request-parameters-5'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>type</code></td>
+<td>string</td>
+<td>One of <code>org</code>, <code>private</code></td>
+</tr>
+</tbody></table>
+<h3 id='request-body-2'>Request Body</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>type</code></td>
+<td>string</td>
+<td>One of <code>is_start</code>, <code>is_end</code>, <code>is_cancel</code>, <code>is_pause</code>, <code>is_resume</code>, <code>is_autorpint_clear</code></td>
+</tr>
+<tr>
+<td><code>gcodes</code></td>
+<td>object</td>
+<td>Content of the macro.</td>
+</tr>
+<tr>
+<td><code>gcodes.printer_{id}</code></td>
+<td>array</td>
+<td>GCODE commands for the printer with ID <code>{id}</code>.</td>
+</tr>
+<tr>
+<td><code>gcodes.type_{id}</code></td>
+<td>array</td>
+<td>GCODE commands for the printer model with ID <code>{id}</code>.</td>
+</tr>
+<tr>
+<td><code>gcodes.*[]</code></td>
+<td>string</td>
+<td>Can be a GCODE command or <code>{snippet:{id}}</code> to reference a snippet.</td>
+</tr>
+</tbody></table>
+<h3 id='response-6'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td><code>true</code> if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is <code>false</code>.</td>
+</tr>
+</tbody></table>
+<h2 id='arrange-gcode-order-in-macro'>Arrange gcode order in macro</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST https://api.simplyprint.io/gcode_macros/Arrange <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-API-KEY: {API_KEY}'</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{
+    "order": [4,2,3,1]
+  }'</span>
+</code></pre></div>
+<blockquote>
+<p>Success Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>POST /gcode_macros/Arrange</code></p>
+<h3 id='request-parameters-6'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>order</code></td>
+<td>array</td>
+<td>An array of snippet IDs in the desired order.</td>
+</tr>
+<tr>
+<td><code>order.*</code></td>
+<td>integer</td>
+<td>A single snippet ID.</td>
+</tr>
+</tbody></table>
+<h3 id='response-7'>Response</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>status</code></td>
+<td>boolean</td>
+<td><code>true</code> if the request was successful.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>string</td>
+<td>Error message if <code>status</code> is <code>false</code>.</td>
+</tr>
+</tbody></table>
