@@ -3,7 +3,7 @@
 ## List Slicer Profiles
 
 ```shell
-curl -X GET https://api.simplyprint.io/{id}/slicer/ListProfiles \
+curl https://api.simplyprint.io/{id}/slicer/ListProfiles \
   -H 'accept: application/json' \
   -H 'X-API-KEY: {API_KEY}'
 ```
@@ -25,7 +25,8 @@ curl -X GET https://api.simplyprint.io/{id}/slicer/ListProfiles \
 }
 ```
 
-This endpoint returns a list overview of slicer profiles that the user has access to. Includes personal and company profiles.
+This endpoint returns a list overview of slicer profiles that the user has access to. Includes personal and company
+profiles.
 
 ### Request
 
@@ -34,7 +35,7 @@ This endpoint returns a list overview of slicer profiles that the user has acces
 ### Response
 
 | Field                     | Type    | Description                                                        |
-| ------------------------- | ------- | ------------------------------------------------------------------ |
+|---------------------------|---------|--------------------------------------------------------------------|
 | `status`                  | boolean | True if the request was successful.                                |
 | `message`                 | string  | Error message if `status` is false.                                |
 | `profiles`                | array   | An array of profile objects.                                       |
@@ -130,13 +131,13 @@ This endpoint can be used to get a slicer profile by its ID. This includes the s
 `GET /{id}/printers/Delete`
 
 | Parameter | Type    | Required | Description                     |
-| --------- | ------- | -------- | ------------------------------- |
+|-----------|---------|----------|---------------------------------|
 | `id`      | integer | yes      | The id of the profile to fetch. |
 
 ### Response
 
 | Field                  | Type    | Description                                                        |
-| ---------------------- | ------- | ------------------------------------------------------------------ |
+|------------------------|---------|--------------------------------------------------------------------|
 | `status`               | boolean | True if the request was successful.                                |
 | `message`              | string  | Error message if `status` is false.                                |
 | `profile`              | object  | The profile object.                                                |
@@ -159,7 +160,7 @@ TODO
 ## Delete Slicer Profile
 
 ```shell
-curl -X GET https://api.simplyprint.io/{id}/slicer/DeleteProfile?id=1234 \
+curl https://api.simplyprint.io/{id}/slicer/DeleteProfile?id=1234 \
   -H 'accept: application/json' \
   -H 'X-API-KEY: {API_KEY}'
 ```
@@ -174,8 +175,8 @@ curl -X GET https://api.simplyprint.io/{id}/slicer/DeleteProfile?id=1234 \
 ```
 
 | Required permissions  | Description                             |
-| --------------------- | --------------------------------------- |
-| `SLICER_ORG_PROFILES` | If the profile is owned by the company. |
+|-----------------------|-----------------------------------------|
+| `slicer_org_profiles` | If the profile is owned by the company. |
 
 This endpoint can be used to delete a slicer profile by its ID.
 
@@ -184,12 +185,12 @@ This endpoint can be used to delete a slicer profile by its ID.
 `GET /{id}/printers/Delete`
 
 | Parameter | Type    | Required | Description                      |
-| --------- | ------- | -------- | -------------------------------- |
+|-----------|---------|----------|----------------------------------|
 | `id`      | integer | yes      | The id of the profile to delete. |
 
 ### Response
 
 | Field     | Type    | Description                         |
-| --------- | ------- | ----------------------------------- |
+|-----------|---------|-------------------------------------|
 | `status`  | boolean | True if the request was successful. |
 | `message` | string  | Error message if `status` is false. |

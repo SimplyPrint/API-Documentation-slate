@@ -11,14 +11,21 @@ toc_footers:
 includes:
   - printers
   - filament
-  - files
+  - jobs
   - api_files
   - queue
+  - printer_groups
+  - files
   - account
-  - jobs
   - users
+  - schools
   - slicer
   - tags
+  - custom_fields
+  - webhooks
+  - gcode_macros
+  - courses
+  - partner
   - permissions_scopes
   - errors
 

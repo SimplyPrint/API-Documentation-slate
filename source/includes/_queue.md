@@ -37,25 +37,32 @@ curl https://api.simplyprint.io/{id}/queue/AddItem \
   You can only upload files through the API using <a href="#api-files">API Files</a>
 </aside>
 
-This endpoint adds a file to the queue. The file can either be a file on the filesystem or an uploaded stl/3mf/obj/gcode/gco/nc/npg file.
+This endpoint adds a file to the queue. The file can either be a file on the filesystem or an uploaded
+stl/3mf/obj/gcode/gco/nc/npg file.
 
-**Note:** if you want to specify which printer/printer type/printer model the print job should be assigned, you can [edit the print job](#update-queue-item) after it has been added to the queue.
+**Note:** if you want to specify which printer/printer type/printer model the print job should be assigned, you
+can [edit the print job](#update-queue-item) after it has been added to the queue.
 
 ### Request
 
 `POST /{id}/queue/AddItem`
 
-| Parameter    | Type    | Required | Description                                                                                                                   |
-| ------------ | ------- | -------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `filesystem` | string  | no       | The [filesystem](#files) id of the file to add to the queue.                                                                            |
-| `amount`     | integer | no       | The amount of prints to add to the queue.<br>**Default: 1**                                                                   |
-| `group`      | integer | no       | If you have Queue Groups - ID of the group the item should be added to.<br>**Default: 0 - required if you have Queue Groups** |
-| `fileId`     | string  | no       | Optional File ID from [API File](#api-files) - use this to add a file uploaded via the API.  |
+| Parameter       | Type    | Required | Description                                                                                                                                                                                                                |
+|-----------------|---------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `filesystem`    | string  | no       | The [filesystem](#files) id of the file to add to the queue.                                                                                                                                                               |
+| `amount`        | integer | no       | The amount of prints to add to the queue.<br>**Default: 1**                                                                                                                                                                |
+| `group`         | integer | no       | If you have Queue Groups - ID of the group the item should be added to.<br>**Default: 0 - required if you have Queue Groups**                                                                                              |
+| `fileId`        | string  | no       | Optional File ID from [API File](#api-files) - use this to add a file uploaded via the API.                                                                                                                                |
+| `tags`          | object  | no       | Tags to assign. Only send [nozzle](#assign-nozzle-size-tag) body, [material](#assign-material-tag) body or [custom](#assign-custom-tag) body, without `type`, `id` or `edited`                                             |
+| `for_printers`  | array   | no       | An array of printer ids to assign the queue item to.                                                                                                                                                                       |
+| `for_models`    | array   | no       | An array of printer model ids to assign the queue item to.                                                                                                                                                                 |
+| `for_groups`    | array   | no       | An array of group ids to assign the queue item to.                                                                                                                                                                         |
+| `custom_fields` | array   | no       | An array with custom fields to assign to the queue item. Each custom field consists of `{customFieldId: string, value: <value>}` where the `<value>` is a [Custom Field Submission Value](#custom-field-submission-value). |
 
 ### Response
 
 | Parameter    | Type    | Description                                            |
-| ------------ | ------- | ------------------------------------------------------ |
+|--------------|---------|--------------------------------------------------------|
 | `status`     | boolean | True if the request was successful.                    |
 | `message`    | string  | Success message or error message if `status` is false. |
 | `created_id` | integer | The id of the created queue item                       |
@@ -107,7 +114,15 @@ curl https://api.simplyprint.io/{id}/queue/GetNextItems?p=1234 \
         "missed": 0,
         "name": "Benchy.gcode",
         "printed": 2,
-        "left": 1
+        "left": 1,
+        "customFields": [
+          {
+            "id": "student_id",
+            "value": {
+              "string": "1234567890"
+            }
+          }
+        ]
       }
     ]
   }
@@ -144,7 +159,8 @@ curl https://api.simplyprint.io/{id}/queue/GetNextItems?p=1234 \
   This endpoint requires the <b>Print Farm</b> plan.
 </aside>
 
-This endpoint gets the next item in the queue for the specified printer. The next item is the item that has the highest priority. The result will have skipped all items that do not meet the specified conditions.
+This endpoint gets the next item in the queue for the specified printer. The next item is the item that has the highest
+priority. The result will have skipped all items that do not meet the specified conditions.
 
 ### Request
 
@@ -153,13 +169,13 @@ This endpoint gets the next item in the queue for the specified printer. The nex
 #### Request parameters
 
 | Parameter | Type      | Required | Description                                                    |
-| --------- | --------- | -------- | -------------------------------------------------------------- |
+|-----------|-----------|----------|----------------------------------------------------------------|
 | p         | integer[] | yes      | Comma separated list of printer ids to get the next items for. |
 
 #### Request body
 
 | Parameter                | Type    | Required | Description                                                                                                  |
-| ------------------------ | ------- | -------- | ------------------------------------------------------------------------------------------------------------ |
+|--------------------------|---------|----------|--------------------------------------------------------------------------------------------------------------|
 | `settings`               | object  | no       | Conditions that must be met for the next item.                                                               |
 | `settings.filament`      | boolean | no       | Must have enough filament.<br>**Default: true**                                                              |
 | `settings.filamentTemps` | boolean | no       | Printer's filament temperature must match filament temperature of file.<br>**Default: true**                 |
@@ -171,7 +187,7 @@ This endpoint gets the next item in the queue for the specified printer. The nex
 ### Response
 
 | Parameter                 | Type      | Description                                                                                                                         |
-| ------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+|---------------------------|-----------|-------------------------------------------------------------------------------------------------------------------------------------|
 | `status`                  | boolean   | True if the request was successful.                                                                                                 |
 | `message`                 | string    | Success message or error message if `status` is false.                                                                              |
 | `queue`                   | object    | The queue object.                                                                                                                   |
@@ -187,6 +203,124 @@ This endpoint gets the next item in the queue for the specified printer. The nex
 | `queue.matches[].name`    | string    | The name of the item. Only present if `match` is true.                                                                              |
 | `queue.matches[].printed` | integer   | The amount of completed prints of this item (from print queue). Only present if `match` is true.                                    |
 | `queue.matches[].left`    | integer   | The amount of prints left (from print queue). Only present if `match` is true.                                                      |
+
+## Get queue item
+
+```shell
+curl https://api.simplyprint.io/{id}/queue/GetItem?id=1234 \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null,
+  "queue": {
+    "id": 51293,
+    "index": 1,
+    "filename": "benchy.gcode",
+    "note": null,
+    "model": false,
+    "printable": true,
+    "type": "printable",
+    "zipPrintable": false,
+    "zipNoModel": false,
+    "left": 1,
+    "printed": 0,
+    "filesystem_id": "c00489ef361771ac098b5a60e6740757",
+    "group": 123,
+    "for": {
+      "printers": [
+        1234
+      ],
+      "models": [
+        1234
+      ],
+      "groups": [
+        1234
+      ]
+    },
+    "analysis": {
+      "slicer": "Simplify3D",
+      "filament": [
+        60
+      ],
+      "estimate": 240,
+      "movement": {
+        "mRelative": 0,
+        "eRelative": 0
+      },
+      "temps": {
+        "tool": {
+          "T0": 210
+        },
+        "bed": 50,
+        "pset": 1
+      },
+      "modelSize": {
+        "x": 151,
+        "y": 16,
+        "z": 5
+      },
+      "printArea": {
+        "maxX": 156.05,
+        "minX": 5,
+        "maxY": 157.86,
+        "minY": 142.14,
+        "maxZ": 5,
+        "minZ": 0.2
+      },
+      "minDeltaRadius": 313.91,
+      "v": 5
+    },
+    "tags": {
+      "nozzle": 0.6,
+      "material": [
+        {
+          "ext": 0,
+          "type": 123,
+          "color": "Green",
+          "hex": "#4CAF50"
+        }
+      ],
+      "custom": [
+        1,
+        2,
+        3
+      ]
+    }
+  }
+}
+```
+
+<aside class="notice">
+  This endpoint requires the <b>Pro</b> plan.
+</aside>
+
+| Required permissions |
+|----------------------|
+| `print_queue`        |
+
+This endpoint returns the queue item with the specified id.
+
+### Request
+
+`GET /{id}/queue/GetItem
+
+| Parameter | Type    | Required | Description                           |
+|-----------|---------|----------|---------------------------------------|
+| `id`      | integer | yes      | The queue item id to get details for. |
+
+### Response
+
+| Parameter | Type    | Description                                            |
+|-----------|---------|--------------------------------------------------------|
+| `status`  | boolean | True if the request was successful.                    |
+| `message` | string  | Success message or error message if `status` is false. |
+| `item`    | object  | The queue item object.                                 |
 
 ## Get queue items
 
@@ -269,11 +403,23 @@ curl https://api.simplyprint.io/{id}/queue/GetItems?p=1234 \
               "ext": 0,
               "type": 123,
               "color": "Green",
-              "hex":"#4CAF50"
+              "hex": "#4CAF50"
             }
           ],
-          "custom": [1, 2, 3]
-        }
+          "custom": [
+            1,
+            2,
+            3
+          ]
+        },
+        "customFields": [
+          {
+            "id": "student_id",
+            "value": {
+              "string": "1234567890"
+            }
+          }
+        ]
       }
     ]
   },
@@ -285,7 +431,7 @@ curl https://api.simplyprint.io/{id}/queue/GetItems?p=1234 \
       "extensions": [
         "gcode",
         "gco",
-        "stl",
+        "stl"
       ],
       "sort_order": 0
     },
@@ -298,6 +444,10 @@ curl https://api.simplyprint.io/{id}/queue/GetItems?p=1234 \
   This endpoint requires the <b>Pro</b> plan.
 </aside>
 
+| Required permissions |
+|----------------------|
+| `print_queue`        |
+
 This endpoint returns the queue for the specified or all printers.
 
 ### Request
@@ -305,14 +455,14 @@ This endpoint returns the queue for the specified or all printers.
 `GET /{id}/queue/GetItems`
 
 | Parameter | Type    | Required | Description                                                                                         |
-| --------- | ------- | -------- | --------------------------------------------------------------------------------------------------- |
+|-----------|---------|----------|-----------------------------------------------------------------------------------------------------|
 | `p`       | integer | no       | The printer id to get the queue for. If not specified, the queue for all printers will be returned. |
 | `groups`  | boolean | no       | Attaches a list of print queue groups to the response. Note: this argument does not take a value.   |
 
 ### Response
 
 | Parameter                               | Type          | Description                                                                                                                                                                      |
-| --------------------------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|-----------------------------------------|---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `status`                                | boolean       | True if the request was successful.                                                                                                                                              |
 | `message`                               | string        | Success message or error message if `status` is false.                                                                                                                           |
 | `queue`                                 | object        | The queue object.                                                                                                                                                                |
@@ -398,6 +548,10 @@ curl https://api.simplyprint.io/{id}/queue/UpdateItem?job=1234 \
   This endpoint requires the <b>Print Farm</b> plan.
 </aside>
 
+| Required permissions |
+|----------------------|
+| `print_queue`        |
+
 This endpoint updates the queue item with the specified id.
 
 ### Request
@@ -407,13 +561,13 @@ This endpoint updates the queue item with the specified id.
 #### Query parameters
 
 | Parameter | Type    | Required | Description                  |
-| --------- | ------- | -------- | ---------------------------- |
+|-----------|---------|----------|------------------------------|
 | `job`     | integer | yes      | The queue item id to update. |
 
 #### Request body
 
 | Parameter      | Type    | Required | Description                                                |
-| -------------- | ------- | -------- | ---------------------------------------------------------- |
+|----------------|---------|----------|------------------------------------------------------------|
 | `for_groups`   | array   | no       | An array of group ids to assign the queue item to.         |
 | `for_models`   | array   | no       | An array of printer model ids to assign the queue item to. |
 | `for_printers` | array   | no       | An array of printer ids to assign the queue item to.       |
@@ -423,7 +577,7 @@ This endpoint updates the queue item with the specified id.
 ### Response
 
 | Parameter | Type    | Description                                            |
-| --------- | ------- | ------------------------------------------------------ |
+|-----------|---------|--------------------------------------------------------|
 | `status`  | boolean | True if the request was successful.                    |
 | `message` | string  | Success message or error message if `status` is false. |
 
@@ -448,6 +602,10 @@ curl https://api.simplyprint.io/{id}/queue/DeleteItem?job=1234 \
   This endpoint requires the <b>Print Farm</b> plan.
 </aside>
 
+| Required permissions |
+|----------------------|
+| `print_queue`        |
+
 This endpoint deletes the queue item with the specified id.
 
 ### Request
@@ -455,13 +613,13 @@ This endpoint deletes the queue item with the specified id.
 `? /{id}/queue/DeleteItem`
 
 | Parameter | Type    | Required | Description                  |
-| --------- | ------- | -------- | ---------------------------- |
+|-----------|---------|----------|------------------------------|
 | `job`     | integer | yes      | The queue item id to delete. |
 
 ### Response
 
 | Parameter | Type    | Description                                            |
-| --------- | ------- | ------------------------------------------------------ |
+|-----------|---------|--------------------------------------------------------|
 | `status`  | boolean | True if the request was successful.                    |
 | `message` | string  | Success message or error message if `status` is false. |
 
@@ -477,14 +635,20 @@ curl https://api.simplyprint.io/{id}/queue/SetOrder?job=1234&from=0&to=1 \
 
 ```json
 {
-    "success": true,
-    "message": null
+  "success": true,
+  "message": null
 }
 ```
 
 <aside class="notice">
   This endpoint requires the <b>Print Farm</b> plan.
 </aside>
+
+| Required permissions |
+|----------------------|
+| `print_queue`        |
+| `reorder_queue`      |
+| `queue_see_others`   |
 
 This endpoint changes the order of the queue items by moving the queue item with the specified id.
 
@@ -493,7 +657,7 @@ This endpoint changes the order of the queue items by moving the queue item with
 `GET /{id}/queue/SetOrder`
 
 | Parameter | Type    | Required | Description                             |
-| --------- | ------- | -------- | --------------------------------------- |
+|-----------|---------|----------|-----------------------------------------|
 | `job`     | integer | yes      | The queue item id to move.              |
 | `from`    | integer | yes      | The current position of the queue item. |
 | `to`      | integer | yes      | The new position of the queue item.     |
@@ -501,7 +665,7 @@ This endpoint changes the order of the queue items by moving the queue item with
 ### Response
 
 | Parameter | Type    | Description                                             |
-| --------- | ------- | ------------------------------------------------------- |
+|-----------|---------|---------------------------------------------------------|
 | `success` | boolean | True if the request was successful.                     |
 | `message` | string  | Success message or error message if `success` is false. |
 
@@ -527,8 +691,9 @@ curl https://api.simplyprint.io/{id}/queue/EmptyQueue \
 </aside>
 
 | Required Permissions     |
-| ------------------------ |
-| `PRINT_QUEUE_REMOVE_ALL` |
+|--------------------------|
+| `print_queue`            |
+| `print_queue_remove_all` |
 
 This endpoint empties the queue.
 
@@ -537,12 +702,263 @@ This endpoint empties the queue.
 `GET /{id}/queue/EmptyQueue`
 
 | Parameter | Type    | Required | Description                                                                     |
-| --------- | ------- | -------- | ------------------------------------------------------------------------------- |
+|-----------|---------|----------|---------------------------------------------------------------------------------|
 | `group`   | integer | no       | ID of Queue Group to empty.<br>**Default: 0 - required if you have Queue Groups |
 
 ### Response
 
 | Parameter | Type    | Description                                            |
-| --------- | ------- | ------------------------------------------------------ |
+|-----------|---------|--------------------------------------------------------|
 | `status`  | boolean | True if the request was successful.                    |
 | `message` | string  | Success message or error message if `status` is false. |
+
+## Revive item
+
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+| Required permissions      |
+|---------------------------|
+| `print_queue`             |
+| `queue_revive_done_items` |
+
+```shell
+curl https://api.simplyprint.io/{id}/queue/ReviveItem?job=1234 \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}' \
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null
+}
+```
+
+`POST /{id}/queue/ReviveItem`
+
+### Request Parameters
+
+| Parameter | Type    | Description                  |
+|-----------|---------|------------------------------|
+| `job`     | integer | The ID of the job to revive. |
+
+### Response
+
+| Parameter | Type    | Description                           |
+|-----------|---------|---------------------------------------|
+| `status`  | boolean | `true` if the request was successful. |
+| `message` | string  | Error message if `status` is `false`. |
+
+## Get groups
+
+<aside class="notice">
+  This endpoint requires the <b>Pro</b> plan.
+</aside>
+
+| Required permissions |
+|----------------------|
+| `print_queue`        |
+
+```shell
+curl https://api.simplyprint.io/{id}/queue/groups/Get \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null,
+  "list": [
+    {
+      "id": 1,
+      "name": "Queue Group 1",
+      "virtual": false,
+      "extensions": [
+        "gcode",
+        "bgcode"
+      ],
+      "sort_order": 1
+    }
+  ]
+}
+```
+
+`GET /{id}/queue/groups/Get`
+
+### Response
+
+| Parameter           | Type    | Description                                                                      |
+|---------------------|---------|----------------------------------------------------------------------------------|
+| `status`            | boolean | `true` if the request was successful.                                            |
+| `message`           | string  | Error message if `status` is `false`.                                            |
+| `list`              | array   | Array of print queue groups.                                                     |
+| `list[].id`         | integer | Unique identifier for the group.                                                 |
+| `list[].name`       | string  | Name of the group.                                                               |
+| `list[].virtual`    | boolean | Whether the group is a virtual queue group.                                      |
+| `list[].extensions` | array   | An array of file extensions that are allowed in the group. (without punctuation) |
+| `list[].sort_order` | integer | The sort order of the group.                                                     |
+| `list[].for`        | object  | For which printers, models and groups this queue item is for.                    |
+
+## Save group
+
+<aside class="notice">
+  This endpoint requires the <b>Pro</b> plan.
+</aside>
+
+| Required permissions |
+|----------------------|
+| `print_queue`        |
+| `queue_groups`       |
+
+```shell
+curl https://api.simplyprint.io/{id}/queue/groups/Save \
+  -X POST \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}' \
+  -d '{
+    "id": 123,
+    "name": "New Queue Group",
+    "accepted_extensions": ["gcode", "bgcode"],
+    "virtual_only": false,
+    "for_printers": "1,2,3",
+    "for_models": "4,5,6",
+    "for_groups": "7,8,9"
+  }'
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null
+}
+```
+
+`POST /{id}/queue/groups/Save`
+
+### Request Body
+
+| Parameter             | Type    | Description                                                        |
+|-----------------------|---------|--------------------------------------------------------------------|
+| `id`                  | integer | The ID of the group to update (optional for creating a new group). |
+| `name`                | string  | The name of the queue group.                                       |
+| `accepted_extensions` | array   | List of accepted file extensions.                                  |
+| `virtual_only`        | boolean | Whether the group is virtual only.                                 |
+| `for_printers`        | string  | Comma-separated list of printer IDs.                               |
+| `for_models`          | string  | Comma-separated list of printer model IDs.                         |
+| `for_groups`          | string  | Comma-separated list of printer group IDs.                         |
+
+### Response
+
+| Parameter | Type    | Description                           |
+|-----------|---------|---------------------------------------|
+| `status`  | boolean | `true` if the request was successful. |
+| `message` | string  | Error message if `status` is `false`. |
+
+## Delete group
+
+<aside class="notice">
+  This endpoint requires the <b>Pro</b> plan.
+</aside>
+
+| Required permissions |
+|----------------------|
+| `print_queue`        |
+| `queue_groups`       |
+
+```shell
+curl https://api.simplyprint.io/{id}/queue/groups/Delete?id=123 \
+  -X POST \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}' \
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null
+}
+```
+
+`POST /{id}/queue/groups/Delete`
+
+### Request Parameters
+
+| Parameter | Type    | Description                    |
+|-----------|---------|--------------------------------|
+| `id`      | integer | The ID of the group to delete. |
+
+### Request Body
+
+| Parameter | Type    | Description                                                        |
+|-----------|---------|--------------------------------------------------------------------|
+| `move_to` | integer | The ID of the group to move items to. Defaults to any other group. |
+
+### Response
+
+| Parameter | Type    | Description                           |
+|-----------|---------|---------------------------------------|
+| `status`  | boolean | `true` if the request was successful. |
+| `message` | string  | Error message if `status` is `false`. |
+
+## Set group order
+
+<aside class="notice">
+  This endpoint requires the <b>Pro</b> plan.
+</aside>
+
+| Required permissions |
+|----------------------|
+| `queue_groups`       |
+| `reorder_queue`      |
+
+```shell
+curl https://api.simplyprint.io/{id}/queue/groups/SetOrder?queue_group=123 \
+  -X POST \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}' \
+  -d '{
+    "from": 1,
+    "to": 2
+  }'
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null
+}
+```
+
+`POST /{id}/queue/groups/SetOrder`
+
+### Request Parameters
+
+| Parameter     | Type    | Description                |
+|---------------|---------|----------------------------|
+| `queue_group` | integer | The ID of the queue group. |
+
+### Request Body
+
+| Parameter | Type    | Description                         |
+|-----------|---------|-------------------------------------|
+| `to`      | integer | The new sorting order of the group. |
+
+### Response
+
+| Parameter | Type    | Description                           |
+|-----------|---------|---------------------------------------|
+| `status`  | boolean | `true` if the request was successful. |
+| `message` | string  | Error message if `status` is `false`. |

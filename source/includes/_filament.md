@@ -72,7 +72,7 @@ This endpoint returns a list of all filaments as well as filament types and bran
 ### Response
 
 | Parameter                          | Type    | Description                                                                                           |
-| ---------------------------------- | ------- | ----------------------------------------------------------------------------------------------------- |
+|------------------------------------|---------|-------------------------------------------------------------------------------------------------------|
 | `status`                           | boolean | True if the request was successful.                                                                   |
 | `message`                          | string  | Error message if `status` is false.                                                                   |
 | `showid`                           | boolean | Whether to show filament id. (Frontend data)                                                          |
@@ -171,11 +171,12 @@ curl https://api.simplyprint.io/{id}/filament/Create \
 
 This endpoint can be used to create or update existing filament.
 
-To update existing filament, you need to provide a `fid` query parameter, which is the filament id of the filament you want to update.
+To update existing filament, you need to provide a `fid` query parameter, which is the filament id of the filament you
+want to update.
 
 | Required permissions |
-| -------------------- |
-| `CREATE_FILAMENT`    |
+|----------------------|
+| `create_filament`    |
 
 ### Request
 
@@ -184,13 +185,13 @@ To update existing filament, you need to provide a `fid` query parameter, which 
 #### Query Parameters
 
 | Parameter | Type   | Required | Description                                     |
-| --------- | ------ | -------- | ----------------------------------------------- |
+|-----------|--------|----------|-------------------------------------------------|
 | `fid`     | string | no       | Filament id of the filament you want to update. |
 
 #### Request Body
 
 | Parameter                         | Type         | Required | Description                                                                      |
-| --------------------------------- | ------------ | -------- | -------------------------------------------------------------------------------- |
+|-----------------------------------|--------------|----------|----------------------------------------------------------------------------------|
 | `color_name`                      | string       | yes      | Filament color name.<br>**Max 64 characters**                                    |
 | `color_hex`                       | string       | yes      | Filament color hex code.                                                         |
 | `color_standard`                  | string       | no       | Filament color standard.                                                         |
@@ -222,7 +223,7 @@ To update existing filament, you need to provide a `fid` query parameter, which 
 ### Response
 
 | Parameter      | Type    | Description                         |
-| -------------- | ------- | ----------------------------------- |
+|----------------|---------|-------------------------------------|
 | `status`       | boolean | True if the request was successful. |
 | `message`      | string  | Error message if `status` is false. |
 | `filament_ids` | array   | Array of filament ids.              |
@@ -248,21 +249,21 @@ curl https://api.simplyprint.io/{id}/filament/Delete?fid=4519 \
 This endpoint deletes a filament specified by the `fid` parameter.
 
 | Required permissions |
-| -------------------- |
-| `CREATE_FILAMENT`    |
+|----------------------|
+| `create_filament`    |
 
 ### Request
 
 `GET /{id}/filament/Delete`
 
 | Parameter | Type    | Required | Description |
-| --------- | ------- | -------- | ----------- |
+|-----------|---------|----------|-------------|
 | fid       | integer | yes      | Filament id |
 
 ### Response
 
 | Parameter | Type    | Description                         |
-| --------- | ------- | ----------------------------------- |
+|-----------|---------|-------------------------------------|
 | `status`  | boolean | True if the request was successful. |
 | `message` | string  | Error message if `status` is false. |
 
@@ -279,10 +280,10 @@ curl https://api.simplyprint.io/{id}/filament/Assign?pid=5123&fid=21812,31253 \
 
 ```json
 {
-    "extruder": {
-      "21812": 0,
-      "31253": 1
-    }
+  "extruder": {
+    "21812": 0,
+    "31253": 1
+  }
 }
 ```
 
@@ -298,8 +299,8 @@ curl https://api.simplyprint.io/{id}/filament/Assign?pid=5123&fid=21812,31253 \
 This endpoint assigns filament(s) to a printer.
 
 | Required permissions |
-| -------------------- |
-| `CHANGE_FILAMENT`    |
+|----------------------|
+| `change_filament`    |
 
 ### Request
 
@@ -310,21 +311,21 @@ The request has both query parameters and a request body.
 #### Query parameters
 
 | Parameter | Type    | Required | Description                      |
-| --------- | ------- | -------- | -------------------------------- |
+|-----------|---------|----------|----------------------------------|
 | `pid`     | integer | yes      | Printer id.                      |
 | `fid`     | integer | yes      | Filament id(s), comma separated. |
 
 #### Request body
 
 | Parameter        | Type    | Required | Description                                 |
-| ---------------- | ------- | -------- | ------------------------------------------- |
+|------------------|---------|----------|---------------------------------------------|
 | `extruder`       | object  | yes      | Which filament to assign to which extruder. |
 | `extruder.{fid}` | integer | yes      | Which extruder id to assign `{fid}` to.     |
 
 ### Response
 
 | Parameter | Type    | Description                         |
-| --------- | ------- | ----------------------------------- |
+|-----------|---------|-------------------------------------|
 | `status`  | boolean | True if the request was successful. |
 | `message` | string  | Error message if `status` is false. |
 
@@ -348,20 +349,20 @@ curl https://api.simplyprint.io/{id}/filament/Unassign?fid=21812 \
 This endpoint unassigns a filament from a printer by filament id.
 
 | Required permissions |
-| -------------------- |
-| `CHANGE_FILAMENT`    |
+|----------------------|
+| `change_filament`    |
 
 ### Request
 
 `GET /{id}/filament/Unassign`
 
 | Parameter | Type    | Required | Description              |
-| --------- | ------- | -------- | ------------------------ |
+|-----------|---------|----------|--------------------------|
 | `fid`     | integer | yes      | Filament id to unassign. |
 
 ### Response
 
 | Parameter | Type    | Description                         |
-| --------- | ------- | ----------------------------------- |
+|-----------|---------|-------------------------------------|
 | `status`  | boolean | True if the request was successful. |
 | `message` | string  | Error message if `status` is false. |

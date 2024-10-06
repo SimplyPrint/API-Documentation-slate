@@ -8,20 +8,18 @@
 
 `POST {id}/files/Upload?folder={folder}`
 
-
-| Parameter       | Type    | Required | Description                                                                                                                                                         |
-| --------------- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `folder` (GET)  | integer | no       | Folder ID to get files for. **Defaults to 0 (root folder)**                                                                                                         |
-| `fileId` (POST) | string  | yes       | File ID from [API Files](#api-files)                                                                                           
+| Parameter       | Type    | Required | Description                                                 |
+|-----------------|---------|----------|-------------------------------------------------------------|
+| `folder` (GET)  | integer | no       | Folder ID to get files for. **Defaults to 0 (root folder)** |
+| `fileId` (POST) | string  | yes      | File ID from [API Files](#api-files)                        
 
 ### Response
 
-| Parameter    | Type    | Description                                                |
-| ------------ | ------- | ---------------------------------------------------------- |
-| `status`     | boolean | True if the request was successful.                        |
-| `message`    | string  | Error message if `status` is false.                        |
-| `id`      | string   | User file ID of newly added file                             |
-
+| Parameter | Type    | Description                         |
+|-----------|---------|-------------------------------------|
+| `status`  | boolean | True if the request was successful. |
+| `message` | string  | Error message if `status` is false. |
+| `id`      | string  | User file ID of newly added file    |
 
 ```shell
 curl -X POST https://api.simplyprint.io/{id}/files/Upload?folder=5290 \
@@ -34,9 +32,9 @@ curl -X POST https://api.simplyprint.io/{id}/files/Upload?folder=5290 \
 
 ```json
 {
-  "status":true,
-  "message":null,
-  "id":"6f7d79212f384c6b8eae2811c37d9338"
+  "status": true,
+  "message": null,
+  "id": "6f7d79212f384c6b8eae2811c37d9338"
 }
 ```
 
@@ -72,7 +70,7 @@ curl https://api.simplyprint.io/{id}/files/GetFiles?f=123&search=benchy \
       "user_id": 123,
       "thumbnail": 1,
       "folder": 0,
-      "user": 123,
+      "user": 123
     },
     {
       "id": "e82ab9e1cc3c20850d94d5cf539390c0",
@@ -105,41 +103,53 @@ curl https://api.simplyprint.io/{id}/files/GetFiles?f=123&search=benchy \
             "ext": 0,
             "type": 123,
             "color": "Green",
-            "hex":"#4CAF50"
+            "hex": "#4CAF50"
           }
         ],
-        "custom": [1, 2, 3]
+        "custom": [
+          1,
+          2,
+          3
+        ]
       },
       "cost": {
         "estimate": false,
         "total_cost": 150,
-        "lines":[
-            {
-              "id": 1,
-              "label": "Material usage (account default)",
-              "cost": 0.02
-            },
-            {
-              "id": 2,
-              "label":"Material markup",
-              "cost": null
-            },
-            {
-              "id": 3,
-              "label":"Machine run time cost",
-              "cost": null
-            },
-            {
-              "id": 4,
-              "label": "Energy cost",
-              "cost": null
-            },
-            {
-              "id": 5,
-              "label": "Labor cost",
-              "cost": 1000
-            }
+        "lines": [
+          {
+            "id": 1,
+            "label": "Material usage (account default)",
+            "cost": 0.02
+          },
+          {
+            "id": 2,
+            "label": "Material markup",
+            "cost": null
+          },
+          {
+            "id": 3,
+            "label": "Machine run time cost",
+            "cost": null
+          },
+          {
+            "id": 4,
+            "label": "Energy cost",
+            "cost": null
+          },
+          {
+            "id": 5,
+            "label": "Labor cost",
+            "cost": 1000
+          }
         ]
+      }
+    }
+  ],
+  "customFields": [
+    {
+      "id": "student_id",
+      "value": {
+        "string": "1234567890"
       }
     }
   ],
@@ -176,7 +186,7 @@ This endpoint returns a list of files and folders in a given folder. If no folde
 `GET /{id}/files/GetFiles`
 
 | Parameter       | Type    | Required | Description                                                                                                                                                         |
-| --------------- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|-----------------|---------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `f`             | integer | no       | Folder ID to get files for. **Defaults to 0 (root folder)**                                                                                                         |
 | `search`        | string  | no       | Search string to filter files by.                                                                                                                                   |
 | `global_search` | boolean | no       | If true, search all files in the account, not just the folder specified by `f`.                                                                                     |
@@ -185,7 +195,7 @@ This endpoint returns a list of files and folders in a given folder. If no folde
 ### Response
 
 | Parameter    | Type    | Description                                                |
-| ------------ | ------- | ---------------------------------------------------------- |
+|--------------|---------|------------------------------------------------------------|
 | `status`     | boolean | True if the request was successful.                        |
 | `message`    | string  | Error message if `status` is false.                        |
 | `files`      | array   | Array of file objects.                                     |
@@ -219,14 +229,14 @@ This endpoint moves one or more files to a given folder.
 `GET /{id}/files/MoveFiles`
 
 | Parameter | Type    | Required | Description                                                    |
-| --------- | ------- | -------- | -------------------------------------------------------------- |
+|-----------|---------|----------|----------------------------------------------------------------|
 | `files`   | array   | yes      | Array of file IDs to move. Separate multiple IDs with a comma. |
 | `folder`  | integer | yes      | Folder ID to move files to.                                    |
 
 ### Response
 
 | Parameter | Type    | Description                                            |
-| --------- | ------- | ------------------------------------------------------ |
+|-----------|---------|--------------------------------------------------------|
 | `status`  | boolean | True if the request was successful.                    |
 | `message` | string  | Success message or error message if `status` is false. |
 
@@ -271,13 +281,13 @@ This endpoint returns details about a given folder.
 `GET /{id}/files/GetFolder`
 
 | Parameter | Type    | Required | Description                   |
-| --------- | ------- | -------- | ----------------------------- |
+|-----------|---------|----------|-------------------------------|
 | `id`      | integer | yes      | Folder ID to get details for. |
 
 ### Response
 
 | Parameter                   | Type        | Description                                                                    |
-| --------------------------- | ----------- | ------------------------------------------------------------------------------ |
+|-----------------------------|-------------|--------------------------------------------------------------------------------|
 | `status`                    | boolean     | True if the request was successful.                                            |
 | `message`                   | string      | Error message if `status` is false.                                            |
 | `folder`                    | object      | Folder object.                                                                 |
@@ -316,13 +326,13 @@ Also, folders cannot be moved into themselves.
 `GET /{id}/files/MoveFolder`
 
 | Parameter | Type    | Required | Description           |
-| --------- | ------- | -------- | --------------------- |
+|-----------|---------|----------|-----------------------|
 | `folder`  | integer | yes      | Folder ID to move.    |
 | `target`  | integer | yes      | Folder ID to move to. |
 
 ### Response
 
 | Parameter | Type    | Description                                            |
-| --------- | ------- | ------------------------------------------------------ |
+|-----------|---------|--------------------------------------------------------|
 | `status`  | boolean | True if the request was successful.                    |
 | `message` | string  | Success message or error message if `status` is false. |

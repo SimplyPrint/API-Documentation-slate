@@ -142,10 +142,14 @@ curl https://api.simplyprint.io/{id}/printers/Get \
             "ext": 0,
             "type": 123,
             "color": "Green",
-            "hex":"#4CAF50"
+            "hex": "#4CAF50"
           }
         ],
-        "custom": [1, 2, 3]
+        "custom": [
+          1,
+          2,
+          3
+        ]
       }
     },
     ...
@@ -162,13 +166,13 @@ This endpoint returns a list of printers based on the given parameters.
 #### Query parameters
 
 | Parameter | Type    | Required | Description                                                       |
-| --------- | ------- | -------- | ----------------------------------------------------------------- |
+|-----------|---------|----------|-------------------------------------------------------------------|
 | `pid`     | integer | no       | Optional printer ID if you want to get info for a single printer. |
 
 #### Request body
 
 | Parameter   | Type    | Required | Description                                                     |
-| ----------- | ------- | -------- | --------------------------------------------------------------- |
+|-------------|---------|----------|-----------------------------------------------------------------|
 | `page`      | integer | no       | Page number to get. Leave empty for page 1.                     |
 | `page_size` | integer | no       | Number of printers per page. (Between 1 and 100)<br>Default: 10 |
 | `search`    | string  | no       | Search string to filter printers by.                            |
@@ -178,7 +182,7 @@ This endpoint returns a list of printers based on the given parameters.
 Note that `data` will be an object if `pid` is specified, otherwise it will be an array.
 
 | Parameter                           | Type            | Description                                                                      |
-| ----------------------------------- | --------------- | -------------------------------------------------------------------------------- |
+|-------------------------------------|-----------------|----------------------------------------------------------------------------------|
 | `status`                            | boolean         | True if the request was successful.                                              |
 | `message`                           | string          | Error message if `status` is false.                                              |
 | `data`                              | object or array | Printer object(s).                                                               |
@@ -229,7 +233,10 @@ curl https://api.simplyprint.io/{id}/printers/actions/CreateJob?pid=1234&filesys
 
 ```json
 {
-  "pid": [1234, 1235],
+  "pid": [
+    1234,
+    1235
+  ],
   "filesystem": "196a1dd0b93a66c19192a39fa4c16e71"
 }
 ```
@@ -278,7 +285,7 @@ curl https://api.simplyprint.io/{id}/printers/actions/CreateJob?pid=1234&filesys
       },
       "printers": [
         1234,
-        1235        
+        1235
       ],
       "queued": false,
       "cost": [
@@ -327,28 +334,33 @@ curl https://api.simplyprint.io/{id}/printers/actions/CreateJob?pid=1234&filesys
   You can only upload files through the API using <a href="#api-files">API Files</a>
 </aside>
 
-This endpoint can be used to create a print job for one or more printers. The printers have to be in the `operational` state.
+This endpoint can be used to create a print job for one or more printers. The printers have to be in the `operational`
+state.
 
 ### Request
 
 `POST /{id}/printers/actions/CreateJob`
 
-To start a print job you must either specify a `filesystem` ID, a `queue_file` ID file or set `next_queue_item` to true.
+To start a print job you must either specify a `filesystem` ID, a `queue_file` ID file, a `file_id` or set `next_queue_item` to true.
 
-| Parameter         | Type                 | Required | Description                                                                            |
-| ----------------- | -------------------- | -------- | -------------------------------------------------------------------------------------- |
-| `pid`             | integer or integer[] | yes      | The ID(s) of the printer to create the job for.                                        |
-| `filesystem`      | string               | no       | The filesystem ID of the file to print.                                                |
-| `queue_file`      | integer              | no       | The queue ID of the queue item to print.                                               |
-| `next_queue_item` | boolean              | no       | If true, the next queue item will be printed.<br>**This requires the Print Farm plan** |
-| `file_id` | string              | no       | File ID from [API Files](#api-files) - used to start a file without adding it as a queue item or user file.
+| Parameter         | Type                 | Required | Description                                                                                                                                                                                                               |
+|-------------------|----------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `pid`             | integer or integer[] | yes      | The ID(s) of the printer to create the job for.                                                                                                                                                                           |
+| `filesystem`      | string               | no       | The filesystem ID of the file to print.                                                                                                                                                                                   |
+| `queue_file`      | integer              | no       | The queue ID of the queue item to print.                                                                                                                                                                                  |
+| `multi_queue`     | object               | no       | A map of queue item ID to an array of printer IDs. For example `{638: [12645, 12646]}`.                                                                                                                                   |
+| `next_queue_item` | boolean              | no       | If true, the next queue item will be printed.<br>**This requires the Print Farm plan**                                                                                                                                    |
+| `file_id`         | string               | no       | File ID from [API Files](#api-files) - used to start a file without adding it as a queue item or user file.                                                                                                               |
+| `mms_map`         | object               | no       | A map of printer ids to a map of the extruder specified in the gcode, and the printer extruder index.                                                                                                                     |
+| `custom_fields`   | array                | no       | An array with custom fields to assign to the print job. Each custom field consists of `{customFieldId: string, value: <value>}` where the `<value>` is a [Custom Field Submission Value](#custom-field-submission-value). |
 
 #### Extra settings for `next_queue_item`
 
-You can specify these parameters if `next_queue_item` is `true`. Note that you can specify more/all of the below parameters.
+You can specify these parameters if `next_queue_item` is `true`. Note that you can specify more/all of the below
+parameters.
 
 | Parameter               | Type    | Required | Description                                                                                                                             |
-| ----------------------- | ------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+|-------------------------|---------|----------|-----------------------------------------------------------------------------------------------------------------------------------------|
 | `analysis_strict`       | boolean | no       | Match the next item that has a valid gcode analysis.<br>**Defaults to true**                                                            |
 | `fit_strict`            | boolean | no       | Match the next item if it fits on the printers print area.<br>**Defaults to true**                                                      |
 | `temps_strict`          | boolean | no       | Match the next item where the printer can reach the temperatures specified in the gcode.<br>**Defaults to true**                        |
@@ -358,7 +370,7 @@ You can specify these parameters if `next_queue_item` is `true`. Note that you c
 ### Response
 
 | Field              | Type      | Description                                                                                             |
-| ------------------ | --------- | ------------------------------------------------------------------------------------------------------- |
+|--------------------|-----------|---------------------------------------------------------------------------------------------------------|
 | `status`           | boolean   | True if the request was successful.                                                                     |
 | `message`          | string    | Error message if `status` is false.                                                                     |
 | `files`            | array     | Array of started print job objects.                                                                     |
@@ -396,13 +408,13 @@ This endpoint can be used to pause one or multiple print jobs. The printers have
 #### Query parameters
 
 | Parameter | Type                 | Required | Description                                                                                                                            |
-| --------- | -------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+|-----------|----------------------|----------|----------------------------------------------------------------------------------------------------------------------------------------|
 | `pid`     | integer or integer[] | yes      | The ID(s) of the printer to pause. Pause multiple printers by comma separating printer ids.<br>**Printer must be in `PRINTING` state** |
 
 #### Response
 
 | Field     | Type    | Description                         |
-| --------- | ------- | ----------------------------------- |
+|-----------|---------|-------------------------------------|
 | `status`  | boolean | True if the request was successful. |
 | `message` | string  | Error message if `status` is false. |
 
@@ -431,13 +443,13 @@ curl https://api.simplyprint.io/{id}/printers/actions/Resume?pid=1234 \
 #### Query parameters
 
 | Parameter | Type                 | Required | Description                                                                                                                                    |
-| --------- | -------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+|-----------|----------------------|----------|------------------------------------------------------------------------------------------------------------------------------------------------|
 | `pid`     | integer or integer[] | yes      | The ID(s) of the printer to resume. Resume multiple printers by comma separating printer ids.<br>**Printer must be in `PRINTER_PAUSED` state** |
 
 #### Response
 
 | Field     | Type    | Description                         |
-| --------- | ------- | ----------------------------------- |
+|-----------|---------|-------------------------------------|
 | `status`  | boolean | True if the request was successful. |
 | `message` | string  | Error message if `status` is false. |
 
@@ -469,10 +481,11 @@ curl https://api.simplyprint.io/{id}/printers/actions/Cancel?pid=1234 \
 ```
 
 | Required permission    | Description                                                                                 |
-| ---------------------- | ------------------------------------------------------------------------------------------- |
-| `CANCEL_OTHERS_PRINTS` | Need permission to cancel other users' prints if the print job was started by another user. |
+|------------------------|---------------------------------------------------------------------------------------------|
+| `cancel_others_prints` | Need permission to cancel other users' prints if the print job was started by another user. |
 
-This endpoint can be used to cancel one or multiple print jobs. The printers have to be in the `PRINTING`, `PAUSED` or `PAUSING` state.
+This endpoint can be used to cancel one or multiple print jobs. The printers have to be in the `PRINTING`, `PAUSED` or
+`PAUSING` state.
 
 ### Request
 
@@ -481,20 +494,20 @@ This endpoint can be used to cancel one or multiple print jobs. The printers hav
 #### Query parameters
 
 | Parameter | Type                 | Required | Description                                                                                                                                                     |
-| --------- | -------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|-----------|----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `pid`     | integer or integer[] | yes      | The ID(s) of the printer to cancel. Cancel multiple printers by comma separating printer ids.<br>**Printer must be in `PRINTING`, `PAUSED` or `PAUSING` state** |
 
 #### Request body
 
 | Field     | Type    | Required | Description                                                                                                                                                                |
-| --------- | ------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|-----------|---------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `reason`  | integer | no       | The reason for cancelling the print job. See [Cancel reasons](#cancel-reasons). Depending on the `require_cancel_reason` organization setting, this field may be required. |
 | `comment` | string  | no       | A comment for the cancel reason. Depending on the `require_comment` organization setting, this field may be required.<br>**Max length: 500 characters**                    |
 
 ### Response
 
 | Field     | Type    | Description                         |
-| --------- | ------- | ----------------------------------- |
+|-----------|---------|-------------------------------------|
 | `status`  | boolean | True if the request was successful. |
 | `message` | string  | Error message if `status` is false. |
 
@@ -534,20 +547,20 @@ This endpoint can be used to clear the print bed of a printer.
 #### Query parameters
 
 | Parameter | Type    | Required | Description                                                                                                                    |
-| --------- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------ |
+|-----------|---------|----------|--------------------------------------------------------------------------------------------------------------------------------|
 | `pid`     | integer | yes      | The ID(s) of the printer to clear, comma separated. These printers have to be in either the `operational` or `offline` states. |
 
 #### Request body
 
 | Field     | Type    | Required | Description                                                                          |
-| --------- | ------- | -------- | ------------------------------------------------------------------------------------ |
+|-----------|---------|----------|--------------------------------------------------------------------------------------|
 | `success` | boolean | no       | True if the print was successful.<br>**Default: false**                              |
 | `rating`  | integer | no       | The rating of the print. Don't send this field if you do not want to rate the print. |
 
 ### Response
 
 | Field     | Type    | Description                         |
-| --------- | ------- | ----------------------------------- |
+|-----------|---------|-------------------------------------|
 | `status`  | boolean | True if the request was successful. |
 | `message` | string  | Error message if `status` is false. |
 
@@ -569,34 +582,406 @@ curl https://api.simplyprint.io/{id}/printers/Delete?pid=1234&just_connection=1 
 ```
 
 | Required permissions |
-| -------------------- |
-| `PRINTER_EDIT`       |
+|----------------------|
+| `printer_edit`       |
 
-This endpoint can be used to delete a printer from the database, or to disconnect a pi from a printer. This is useful if you want to change the printer that is connected to a pi.
+This endpoint can be used to delete a printer from the database, or to disconnect a pi from a printer. This is useful if
+you want to change the printer that is connected to a pi.
 
 ### Request
 
 `GET /{id}/printers/Delete`
 
 | Parameter         | Type    | Required | Description                                                                                                                |
-| ----------------- | ------- | -------- | -------------------------------------------------------------------------------------------------------------------------- |
+|-------------------|---------|----------|----------------------------------------------------------------------------------------------------------------------------|
 | `pid`             | integer | yes      | The ID of the printer to delete.                                                                                           |
 | `just_connection` | integer | no       | If set to 1, only the Pi connection will be deleted. Otherwise, the printer will be permanently deleted.<br>**Default: 0** |
 
 ### Response
 
 | Field     | Type    | Description                         |
-| --------- | ------- | ----------------------------------- |
+|-----------|---------|-------------------------------------|
 | `status`  | boolean | True if the request was successful. |
 | `message` | string  | Error message if `status` is false. |
 
+## List 1-Click printers
+
+<aside class="notice">
+  This endpoint requires the <b>Pro</b> plan.
+</aside>
+
+| Required permission |
+|---------------------|
+| `print_queue`       |
+
+```shell
+curl https://api.simplyprint.io/{id}/printers/OneClickPrint?pIds=1234,1235 \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null,
+  "bedsMustBeCleared": true,
+  "autoAddAvailable": true,
+  "settings": {
+    ...
+  },
+  "canEditSettings": true,
+  "hasQueue": true,
+  "custom_fields": [
+    ...
+  ],
+  "queue": [
+    ...
+  ]
+}
+```
+
+`GET /{id}/printers/OneClickPrint?pid=1234,1235`
+
+#### Query parameters
+
+| Parameter | Type      | Required | Description                              |
+|-----------|-----------|----------|------------------------------------------|
+| `pid`     | integer[] | yes      | Printers you want to retrieve data about |
+
+### Response
+
+| Parameter           | Type    | Description                                     |
+|---------------------|---------|-------------------------------------------------|
+| `status`            | boolean | `true` if the request was successful.           |
+| `message`           | string  | Error message if `status` is `false`.           |
+| `bedsMustBeCleared` | boolean | `true` if beds must be cleared before printing. |
+| `autoAddAvailable`  | boolean | `true` if auto-discover printers is available.  |
+| `settings`          | object  | Queue auto-start settings.                      |
+| `canEditSettings`   | boolean | `true` if the user can edit settings.           |
+| `hasQueue`          | boolean | `true` if the company has a print queue.        |
+| `custom_fields`     | array   | Array of custom fields for the print queue.     |
+| `queue`             | array   | Array of next items in the print queue.         |
+
+## AutoPrint enable / disable
+
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+| Required permission |
+|---------------------|
+| `autoprint_manage`  |
+
+```shell
+curl https://api.simplyprint.io/{id}/printers/autoprint/SetEnabled \
+  -X POST \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}' \
+  -d '{
+    "on": true
+  }'
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null
+}
+```
+
+`POST /{id}/printers/autoprint/SetEnabled`
+
+#### Request body
+
+| Parameter | Type    | Required | Description                                                  |
+|-----------|---------|----------|--------------------------------------------------------------|
+| `on`      | boolean | yes      | Set to `true` to enable autoprint, or `false` to disable it. |
+
+### Response
+
+| Parameter | Type    | Description                           |
+|-----------|---------|---------------------------------------|
+| `status`  | boolean | `true` if the request was successful. |
+| `message` | string  | Error message if `status` is `false`. |
+
+## AutoPrint check state
+
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+| Required permission |
+|---------------------|
+| `autoprint_manage`  |
+
+```shell
+curl https://api.simplyprint.io/{id}/printers/autoprint/CheckState \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null,
+  "printers": [
+    {
+      ...
+    }
+  ]
+}
+```
+
+`GET /{id}/printers/autoprint/CheckState`
+
+### Response
+
+| Parameter                                    | Type        | Description                                                            |
+|----------------------------------------------|-------------|------------------------------------------------------------------------|
+| `status`                                     | boolean     | `true` if the request was successful.                                  |
+| `message`                                    | string      | Error message if `status` is `false`.                                  |
+| `printers`                                   | array       | Array of printers along with their AutoPrint status.                   |
+| `printers[].printer`                         | integer     | The printer id.                                                        |
+| `printers[].ready`                           | boolean     | Whether the printer is ready.                                          |
+| `printers[].issues`                          | array       | An array of issues with the printer.                                   |
+| `printers[].state`                           | object      | The state of the printer.                                              |
+| `printers[].state.awaitingBedCool`           | boolean     | True if the printer is awaiting the bed to cool down.                  |
+| `printers[].state.awaitingSecondsPass`       | boolean     | True if the printer is awaiting a specified number of seconds to pass. |
+| `printers[].state.awaitingManualClear`       | boolean     | True if the printer is awaiting manual clearance.                      |
+| `printers[].state.maxCyclesReached`          | boolean     | True if the printer has reached the maximum number of print cycles.    |
+| `printers[].state.waitingForSystem`          | boolean     | True if the printer is waiting for the system.                         |
+| `printers[].state.awaitingMatchingQueueItem` | boolean     | True if the printer is awaiting a matching queue item.                 |
+| `printers[].nextItem`                        | object/null | The next queue item formatted for the printer.                         |
+
+## AutoPrint get settings
+
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+| Required permission |
+|---------------------|
+| `autoprint_manage`  |
+
+```shell
+curl https://api.simplyprint.io/{id}/printers/autoprint/GetAutoPrintSettings \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null,
+  "gcode": "...",
+  "printer_settings": {
+    ...
+  },
+  "printer_has_settings": true,
+  "account_settings": {
+    ...
+  },
+  "account_has_settings": true,
+  "queue_match_settings": {
+    ...
+  },
+  "can_macro": true
+}
+```
+
+`GET /{id}/printers/autoprint/GetAutoPrintSettings`
+
+### Response
+
+| Parameter              | Type    | Description                                                                  |
+|------------------------|---------|------------------------------------------------------------------------------|
+| `status`               | boolean | `true` if the request was successful.                                        |
+| `message`              | string  | Error message if `status` is `false`.                                        |
+| `gcode`                | string  | G-code for clearing the auto print settings.                                 |
+| `printer_settings`     | object  | The auto print settings for the printer.                                     |
+| `printer_has_settings` | boolean | `true` if the printer has auto print settings.                               |
+| `account_settings`     | object  | The auto print settings for the account.                                     |
+| `account_has_settings` | boolean | `true` if the account has auto print settings.                               |
+| `queue_match_settings` | object  | The queue match criteria settings for the account.                           |
+| `can_macro`            | boolean | `true` if the user has permission to manage G-code profiles for the company. |
+
+## AutoPrint save settings
+
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+| Required permission |
+|---------------------|
+| `autoprint_manage`  |
+
+```shell
+curl https://api.simplyprint.io/{id}/printers/autoprint/SaveAutoPrintSettings \
+  -X POST \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "useDefault": true,
+    "saveAsDefault": false,
+    "bedReleaseTemp": 60,
+    "autoReleaseTime": 3600,
+    "maxPrints": 100,
+    "ackNoGcode": true,
+    "method": "loop"
+  }'
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null
+}
+```
+
+`POST /{id}/printers/autoprint/SaveAutoPrintSettings`
+
+### Request Body
+
+| Parameter         | Type    | Description                                                                               |
+|-------------------|---------|-------------------------------------------------------------------------------------------|
+| `useDefault`      | boolean | `true` to use company defaults, `false` to use custom settings.                           |
+| `saveAsDefault`   | boolean | `true` to save the settings as company defaults.                                          |
+| `bedReleaseTemp`  | integer | Temperature at which the bed releases the print.                                          |
+| `autoReleaseTime` | integer | Time in seconds after which the print is automatically released.                          |
+| `maxPrints`       | integer | Maximum number of prints before requiring manual intervention.                            |
+| `ackNoGcode`      | boolean | `true` to acknowledge no G-code is required.                                              |
+| `method`          | string  | Method to use for auto print settings. One of `loop`, `jobox`, `3dque`, `belt`, `pushoff` |
+
+### Response
+
+| Parameter | Type    | Description                           |
+|-----------|---------|---------------------------------------|
+| `status`  | boolean | `true` if the request was successful. |
+| `message` | string  | Error message if `status` is `false`. |
+
+## AutoPrint get gcode templates
+
+| Required permission |
+|---------------------|
+| `autoprint_manage`  |
+
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+```shell
+curl https://api.simplyprint.io/{id}/printers/autoprint/GetGcodeTemplates \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null,
+  "methods": [
+    {
+      "name": "loop",
+      "gcode": "..."
+    },
+    {
+      "name": "jobox",
+      "gcode": "..."
+    },
+    {
+      "name": "3dque",
+      "gcode": "..."
+    },
+    {
+      "name": "belt",
+      "gcode": "..."
+    },
+    {
+      "name": "pushoff",
+      "gcode": "..."
+    }
+  ]
+}
+```
+
+`GET /{id}/printers/autoprint/GetGcodeTemplates`
+
+### Response
+
+| Parameter         | Type    | Description                                      |
+|-------------------|---------|--------------------------------------------------|
+| `status`          | boolean | `true` if the request was successful.            |
+| `message`         | string  | Error message if `status` is `false`.            |
+| `methods`         | array   | Array of G-code templates for different methods. |
+| `methods[].name`  | string  | Name of the method.                              |
+| `methods[].gcode` | string  | G-code template for the method.                  |
+
+## AutoPrint set cleared beds amount
+
+<aside class="notice">
+  This endpoint requires the <b>Print Farm</b> plan.
+</aside>
+
+| Required permission |
+|---------------------|
+| `autoprint_manage`  |
+
+```shell
+curl https://api.simplyprint.io/{id}/printers/autoprint/SetClearedBedsAmount \
+  -X POST \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "amount": 10
+  }'
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null
+}
+```
+
+`POST /{id}/printers/autoprint/SetClearedBedsAmount`
+
+### Request Body
+
+| Parameter | Type      | Description                                                                         |
+|-----------|-----------|-------------------------------------------------------------------------------------|
+| `pid`     | integer[] | The ID(s) of the printer(s) to set the cleared beds amount for.                     |
+| `amount`  | integer   | The number of cleared beds to set for the printer(s). Must be between 0 and 100000. |
+
+### Response
+
+| Parameter | Type    | Description                           |
+|-----------|---------|---------------------------------------|
+| `status`  | boolean | `true` if the request was successful. |
+| `message` | string  | Error message if `status` is `false`. |
+
 ## Cancel reasons
 
-| ID  | Description                        |
-| --- | ---------------------------------- |
-| 1   | Print failed                       |
-| 2   | Regretted print                    |
-| 3   | No filament extruded / nozzle clog |
-| 4   | Fell of the plate                  |
-| 5   | Not enough filament                |
-| 6   | Other                              |
+| ID | Description                        |
+|----|------------------------------------|
+| 1  | Print failed                       |
+| 2  | Regretted print                    |
+| 3  | No filament extruded / nozzle clog |
+| 4  | Fell of the plate                  |
+| 5  | Not enough filament                |
+| 6  | Other                              |
