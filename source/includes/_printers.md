@@ -604,7 +604,7 @@ you want to change the printer that is connected to a pi.
 | `status`  | boolean | True if the request was successful. |
 | `message` | string  | Error message if `status` is false. |
 
-## List one-click printers
+## List 1-Click printers
 
 <aside class="notice">
   This endpoint requires the <b>Pro</b> plan.
