@@ -341,7 +341,7 @@ state.
 
 `POST /{id}/printers/actions/CreateJob`
 
-To start a print job you must either specify a `filesystem` ID, a `queue_file` ID file or set `next_queue_item` to true.
+To start a print job you must either specify a `filesystem` ID, a `queue_file` ID file, a `file_id` or set `next_queue_item` to true.
 
 | Parameter         | Type                 | Required | Description                                                                                                                                                                                                               |
 |-------------------|----------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

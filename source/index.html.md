@@ -12,10 +12,10 @@ includes:
   - printers
   - filament
   - jobs
+  - api_files
   - queue
   - printer_groups
   - files
-  - api_files
   - account
   - users
   - schools
@@ -24,6 +24,8 @@ includes:
   - custom_fields
   - webhooks
   - gcode_macros
+  - courses
+  - partner
   - permissions_scopes
   - errors
 
