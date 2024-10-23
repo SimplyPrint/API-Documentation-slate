@@ -366,3 +366,74 @@ This endpoint unassigns a filament from a printer by filament id.
 |-----------|---------|-------------------------------------|
 | `status`  | boolean | True if the request was successful. |
 | `message` | string  | Error message if `status` is false. |
+
+## Get Filament Types
+
+```shell
+curl https://api.simplyprint.io/{id}/filament/type/Get \
+  -H 'accept: application/json' \
+  -H 'X-API-KEY: {API_KEY}'
+```
+
+> Success response
+
+```json
+{
+  "status": true,
+  "message": null,
+  "data": [
+    {
+      "id": 6030,
+      "org_id": 2,
+      "filament_type_name": "PLA",
+      "width": 1.75,
+      "nozzle_temp": 200,
+      "bed_temp": 60,
+      "print_speed": 70,
+      "finish_rate_factor": 0.5,
+      "min_speed": 15,
+      "density": 1.24,
+      "priority": 0,
+      "deleted": 1,
+      "cost": null,
+      "allowed_nozzle_temp_margin": 10,
+      "allowed_bed_temp_margin": 10
+    },
+    {
+      "id": 10548,
+      "org_id": 2,
+      "filament_type_name": "PolyMide PA6-CF",
+      "width": 1.75,
+      "nozzle_temp": 210,
+      "bed_temp": 60,
+      "print_speed": 60,
+      "finish_rate_factor": 0.5,
+      "min_speed": 15,
+      "density": 1.24,
+      "priority": 0,
+      "deleted": 0,
+      "cost": 1,
+      "allowed_nozzle_temp_margin": 10,
+      "allowed_bed_temp_margin": 10
+    }
+  ]
+}
+```
+
+This endpoint returns a list of filament types available.
+
+| Required permissions |
+|----------------------|
+| `see_filament_tab`   |
+
+### Request
+
+`GET /{id}/filament/type/Get`
+
+### Response
+
+| Parameter | Type    | Description                         |
+|-----------|---------|-------------------------------------|
+| `status`  | boolean | True if the request was successful. |
+| `message` | string  | Error message if `status` is false. |
+| `data`    | array   | Array of filament types.            |
